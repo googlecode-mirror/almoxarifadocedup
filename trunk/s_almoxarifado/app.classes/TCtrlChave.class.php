@@ -11,26 +11,7 @@
  * @author Jomaro
  */
 class TCtrlChave {
-    
-//    public $id;
-//    public $professor_id;
-//    public $laboratorio_id;
-//    public $dt_retirada;
-//    public $observacao;
-//    public $dt_devolucao;
-    
-//    public function __construct($id,$professor_id,$laboratorio_id,$observacao='') 
-      public function __construct() 
-    {
-//        $this->id = $id;
-//        $this->professor_id = $professor_id;
-//        $this->laboratorio_id = $laboratorio_id;
-//        $this->dt_retirada = date('Y/m/d H:i:s');
-//        
-//        if($observacao) $this->observacao = $observacao;
-        
-    }
-    
+
     public function getDisponiveis()
     {
         include 'app.ado/DataBase.php';
