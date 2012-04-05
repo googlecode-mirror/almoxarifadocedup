@@ -1,4 +1,4 @@
-app.ado => serve para armazenar as funções do banco \n
-app.classes => as classes da aplicação (API) \n
+app.ado => serve para armazenar as funções do banco &nbsp;
+app.classes => as classes da aplicação (API) &nbsp;
 app.funcoes => funções gerais usadas na aplicação que não pertencem a um objeto \n
 banco => diretorio para os arquivos do banco (modelagem, backup, scripts de insert para teste, etc)
