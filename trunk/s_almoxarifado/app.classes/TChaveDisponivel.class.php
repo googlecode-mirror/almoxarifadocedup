@@ -10,28 +10,25 @@
  *
  * @author User
  */
-class TChaveDisponivel {
+class TChaveDisponivel extends TChave{
     
-    public $id_laboratorio;
-    public $nome_laboratorio;
-    public $numero_laboratorio;
-
     public function __construct($id,$nome,$numero) {
         $this->id_laboratorio = $id;
         $this->nome_laboratorio = $nome;
         $this->numero_laboratorio = $numero;
     }
     
-    public function encerrar()
+    public function emprestar($professor_id,$observações)
     {
-        $sql = 'UPDATE ctrl_chaves SET dt_devolucao=? WHERE id=?;';
+        $sql = 'INSERT INTO ctrl_chaves (professor_id,laboratorio_id,observacoes,dt_inicial) 
+                VALUES (?,?,?,?);';
         
-        $sth = $db->prepare($sql);
+        $db = new DataBase();
+        $sth = $db->getConn()->prepare($sql);
         
-        $sth->execute(array(date('Y/m/d H:i:s'),$this->id_laboratorio));
-        
+        $sth->execute(array($professor_id,  $this->id_laboratorio,$observações,date('Y/d/m H:i:s')));
     }
-    
+        
 }
 
 ?>
