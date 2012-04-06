@@ -10,17 +10,13 @@
  *
  * @author User
  */
-class TChaveIndisponivel {
+class TChaveIndisponivel extends TChave{
     
-    public $id_laboratorio;
-    public $nome_laboratorio;
-    public $numero_laboratorio;
-        
     public $id_professor;
     public $nome_professor;
     
     public $observacoes;
-    public $dt_retirada;
+    public $dt_inicial;
     
     public function __construct($id_laboratorio,$nome_laboratorio,$numero_laboratorio,$id_professor,
             $nome_professor,$observacoes,$dt_retirada) 
@@ -33,7 +29,19 @@ class TChaveIndisponivel {
         $this->nome_professor = $nome_professor;
 
         $this->observacoes = $observacoes;
-        $this->dt_retirada = $dt_retirada;
+        $this->dt_inicial = $dt_retirada;
+    }
+    
+    public function entregar()
+    {
+        include 'app.ado/DataBase.php';
+        
+        $sql = 'UPDATE ctrl_chaves SET dt_final=? WHERE id=?;';
+        
+        $db = new DataBase();
+        $sth = $db->getConn()->prepare($sql);
+        
+        $sth->execute(array(date('Y/m/d H:i:s'),$this->id_laboratorio));  
     }
 }
 

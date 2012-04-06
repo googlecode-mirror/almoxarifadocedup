@@ -12,6 +12,15 @@
  */
 class TCtrlChave {
 
+    
+    
+    /**
+     *  Busca todas as chaves disponiveis
+     * 
+     * retorna um array de objetos TChaveDisponivel
+     * 
+     * @return \TChaveDisponivel 
+     */
     public function getDisponiveis()
     {
         include 'app.ado/DataBase.php';
@@ -29,6 +38,14 @@ class TCtrlChave {
         return $chaves;
     }
     
+    
+    /**
+     * busca todas as chaves que estão indisponiveis 
+     * 
+     * retorna um array de objetos TChaveIndisponivel
+     * 
+     * @return \TChaveIndisponivel 
+     */
     public function getIndisponiveis()
     {
         include 'app.ado/DataBase.php';
@@ -54,22 +71,48 @@ WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr
                                                $values['c.professor_id'],
                                                $values['u.nome_usuario'],
                                                $values['c.observacoes'],
-                                               $values['u.nome_usuario']);
+                                               $values['c.hr_inicial']);
         }
         
         return $chaves;
     }
+    
+    /**
+     * Carrega o histórico de chaves
+     * 
+     * essa parte vai precisar de paginação
+     * 
+     *  
+     */
+    public function getHistorico()
+    {
+        include 'app.ado/DataBase.php';
+        include 'TChaveHistorico.class.php';
+        
+        $db = new DataBase();
 
-    public function update()
-    {
+        $chaves = array();
         
-    }
-    
-    public function reload()
-    {
+        $historico = $db->query('SELECT 
+    c.professor_id,c.laboratorio_id,c.observacoes,c.hr_inicial,c.hr_final,
+    l.nome_laboratorio,l.numero_laboratorio, u.nome_usuario
+FROM ctrl_chaves c, laboratorios l, usuarios u 
+WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr_final NOT IS NULL;')->fetchALL(PDO::FETCH_ASSOC);
         
+        foreach($historico as $value)
+        {
+            $chaves[] = new TChaveHistorico($values['c.laboratorio_id'],
+                                               $values['l.nome_laboratorio'],
+                                               $values['l.numero_laboratorio'],
+                                               $values['c.professor_id'],
+                                               $values['u.nome_usuario'],
+                                               $values['c.observacoes'],
+                                               $values['c.hr_inicial'],
+                                               $values['c.hr_final']);
+        }
+        
+        return $chaves;
     }
-    
 }
 
 ?>
