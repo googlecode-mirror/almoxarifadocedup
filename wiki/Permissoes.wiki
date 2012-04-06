@@ -1,0 +1,34 @@
+essa é uma lista das permissões que eu pensei
+
+
+* manutenção
+ # requisitar
+ # aprovar
+ # realizar
+ # visualizar pendentes
+ # visualizar historico
+
+* chaves
+ # visualizar
+ # gerenciar
+
+* solicitações de material
+ # visualizar
+ # gerar
+ # imprimir
+ # gerenciar
+
+* emprestimos
+ # visualizar
+ # gerenciar
+
+* permissoes
+ # visualizar
+ # gerenciar
+
+* membros
+ # visualizar
+ # gerenciar
+ # modificar seus próprios dados
+
+pelamordedeus incrementem isso
