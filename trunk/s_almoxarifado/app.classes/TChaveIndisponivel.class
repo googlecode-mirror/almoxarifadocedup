@@ -12,11 +12,11 @@
  */
 class TChaveIndisponivel extends TChave{
     
-    public $id_professor;
-    public $nome_professor;
+    protected $id_professor;
+    protected $nome_professor;
     
-    public $observacoes;
-    public $dt_inicial;
+    protected $observacoes;
+    protected $dt_inicial;
     
     public function __construct($id_laboratorio,$nome_laboratorio,$numero_laboratorio,$id_professor,
             $nome_professor,$observacoes,$dt_retirada) 

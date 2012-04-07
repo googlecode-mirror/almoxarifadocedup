@@ -12,9 +12,9 @@
  */
 abstract class TChave {
     
-    public $id_laboratorio;
-    public $nome_laboratorio;
-    public $numero_laboratorio;
+    protected $id_laboratorio;
+    protected $nome_laboratorio;
+    protected $numero_laboratorio;
     
     abstract function __construct();
 }

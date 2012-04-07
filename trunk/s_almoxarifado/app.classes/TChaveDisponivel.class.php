@@ -28,7 +28,8 @@ class TChaveDisponivel extends TChave{
         
         $sth->execute(array($professor_id,  $this->id_laboratorio,$observações,date('Y/d/m H:i:s')));
     }
-        
+    
+    
 }
 
 ?>
