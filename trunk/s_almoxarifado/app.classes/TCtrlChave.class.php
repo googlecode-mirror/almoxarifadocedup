@@ -99,7 +99,7 @@ WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr
 FROM ctrl_chaves c, laboratorios l, usuarios u 
 WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr_final NOT IS NULL;')->fetchALL(PDO::FETCH_ASSOC);
         
-        foreach($historico as $value)
+        foreach($historico as $values)
         {
             $chaves[] = new TChaveHistorico($values['c.laboratorio_id'],
                                                $values['l.nome_laboratorio'],
