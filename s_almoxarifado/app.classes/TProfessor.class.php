@@ -10,34 +10,28 @@
  *
  * @author User
  */
-class TProfessor {
+class TProfessor extends TUsuario{
         
+    protected $disciplinas;
+    
+    
     /**
      *
-     * @param array $array = array dos valores indexados pelos campos 
-     * 
-     * array(3) {
-     *  ["id_professor"]=>
-     *  int(5)
-     *  ["nome_professor"]=>
-     *  string(4) "joao"
-     *  ["dt_nascimento"]=>
-     *  string(10) "14/02/1980"
-     *} 
+     * @param $nome 
      */
-    public function update(array $array)
+    public function update($nome)
     {
             include 'app.funcoes/array_implode.php';
             include 'app.ado/DataBase.php';
             
             
             // Monta a sql de update
-            $sql = 'UPDATE usuarios SET '.array_implode('=',',',$array).' WHERE id=?;';
+            $sql = 'UPDATE usuarios SET nome_usuario=? WHERE id=?;';
             
             $db = new DataBase();
-            $db->getConn()->prepare($sql);
+            $sth = $db->getConn()->prepare($sql);
             
-            $db->getConn()->execute(array($this->id));        
+            $sth->execute(array($nome,$this->id));        
     }
     
     

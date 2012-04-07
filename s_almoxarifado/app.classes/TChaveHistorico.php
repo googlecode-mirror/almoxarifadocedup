@@ -12,7 +12,7 @@
  */
 class TChaveHistorico extends TChaveIndisponivel{
 
-    public $dt_final;
+    protected $dt_final;
     
     public function __construct($id_laboratorio,$nome_laboratorio,$numero_laboratorio,$id_professor,
             $nome_professor,$observacoes,$dt_inicial,$dt_final) 
