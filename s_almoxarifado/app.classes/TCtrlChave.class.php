@@ -94,10 +94,10 @@ WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr
         $chaves = array();
         
         $historico = $db->query('SELECT 
-    c.professor_id,c.laboratorio_id,c.observacoes,c.hr_inicial,c.hr_final,
-    l.nome_laboratorio,l.numero_laboratorio, u.nome_usuario
-FROM ctrl_chaves c, laboratorios l, usuarios u 
-WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr_final NOT IS NULL;')->fetchALL(PDO::FETCH_ASSOC);
+        c.professor_id,c.laboratorio_id,c.observacoes,c.hr_inicial,c.hr_final,
+        l.nome_laboratorio,l.numero_laboratorio, u.nome_usuario
+        FROM ctrl_chaves c, laboratorios l, usuarios u 
+        WHERE c.laboratorio_id=l.id_laboratorio AND c.professor_id=u.id_usuario AND c.hr_final NOT IS NULL;')->fetchALL(PDO::FETCH_ASSOC);
         
         foreach($historico as $values)
         {
