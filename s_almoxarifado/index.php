@@ -4,7 +4,7 @@ $sessao = new Sessao();
 
 function __autoload($classe)
 {
-	   $pastas = array('app.widgets', 'app.ado', 'app.model', 'app.control');
+	   $pastas = array('app.widgets', 'app.ado', 'app.functions', 'app.actions');
 	   foreach ($pastas as $pasta)
 	   {
 		      if (file_exists("{$pasta}/{$classe}.class.php"))
@@ -29,7 +29,7 @@ class TApplication
                  
                  if(!$_GET) $_GET['class'] = 'Principal';
                  
-                 // carrega a pagina de login e pula o restante
+                 // se está na página de login, carrega a pagina de login e pula o restante
                  if($_GET['class'] == 'Login') include ('template/login.html');
                  else
                  {
