@@ -1,0 +1,31 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+if($_POST['login'] and $_POST['senha'])
+{
+    $db = new DataBase;
+    $sql = 'select login_usuario as login,senha_usuario as senha from usuarios 
+where login_usuario like ? and senha_usuario like ?;';
+    $cmd = $db->prepare($sql);
+    $cmd->execute(array($_POST['login'],$_POST['senha']));
+    $user = $cmd->fetch(PDO::FETCH_OBJ);
+    
+    if($user)
+    {
+        $sessao = new Sessao(true);
+        $sessao->addVar('user',$user);
+    }
+    else
+    {
+        header('location: index.php');
+    }
+}
+else
+{
+    header('location: index.php');
+}
+
+?>
