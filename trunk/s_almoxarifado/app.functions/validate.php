@@ -12,12 +12,12 @@ function validate()
     
     
     // verifica se o usuario está logado
-    if(isset($sessao->session))
+    if(isset($sessao->session['user']))
     {
         // verifica se o endereço está correto
         if(end($path) == 'index.php')
         {
-            // verifica se a pessoa esta tentando se logar novamente
+            // impede a pessoa de se logar novamente
             if($_GET['class'] == 'login')
             {
                 header('location: index.php');
