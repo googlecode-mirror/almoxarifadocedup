@@ -53,7 +53,7 @@ inner join disciplinas_usuarios du on (d.id_disciplina = du.disciplina_id)
 where du.usuario_id = ?;';
         $sth = $db->getConn()->prepare($sql);
         $sth->execute(array($this->id));
-        $this->disciplinas = $sth->fetchALL(PDO::FETCH_OBJ);
+        $this->disciplinas = $sth->fetchALL(PDO::FETCH_ASSOC);
         $db = null;
    }
     
@@ -71,7 +71,7 @@ inner join permissoes p on (p.id_permissao = mp.permissao_id)
 where mpu.usuario_id = ?;';
         $sth = $db->getConn()->prepare($sql);
         $sth->execute(array($this->id));
-        $this->permissoes = $sth->fetchALL(PDO::FETCH_OBJ);
+        $this->permissoes = $sth->fetchALL(PDO::FETCH_ASSOC);
         $db = NULL;
     }
 }

@@ -1,12 +1,10 @@
 <?php
-
 /*
  * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 if($_POST['login'] and $_POST['senha'])
 {
-    $db = new DataBase;
+    $db = new DataBase();
     $sql = 'select 
     id_usuario as id,
     nome_usuario as nome,
@@ -26,13 +24,13 @@ where login_usuario like ? and senha_usuario like ?;';
     
     if($user)
     {
+        include 'app.classes/Sessao.php';
         $sessao = new Sessao(true);
         $sessao->addVar('user',$user);
     }
-    else
-    {
-        header('location: index.php');
-    }
+    var_dump($_SESSION);
+    
+    //header('location: index.php');
 }
 else
 {

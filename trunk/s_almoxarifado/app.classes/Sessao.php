@@ -1,4 +1,6 @@
 <?php
+
+include '../app.classes/SessionException.php';
 /**
  * Classe de manipulação de SESSÃO do php
  *
@@ -113,9 +115,9 @@ class Sessao {
                     return $this->session[$nome];
                 }
             }
-        }/*else{
+        }else{
             throw new SessionException(self::ERROR_INI_SESSION);
-        }*/
+        }
     }
     /**
      *
