@@ -13,19 +13,19 @@ class TMessage
      */
     public function __construct($type, $message)
     {
-        $style = new TStyle('tmessage');
-        $style->position      = 'absolute';
-        $style->left          = '30%';
-        $style->top           = '30%';
-        $style->width         = '300';
-        $style->height        = '150';
-        $style->color         = 'black';
-        $style->background    = '#DDDDDD';
-        $style->border        = '4px solid #000000';
-        $style->z_index       = '10000000000000000';
-
-        // exibe o estilo na tela
-        $style->show();
+//        $style = new TStyle('tmessage');
+//        $style->position      = 'absolute';
+//        $style->left          = '30%';
+//        $style->top           = '30%';
+//        $style->width         = '600';
+//        $style->height        = '350';
+//        $style->color         = 'black';
+//        $style->background    = '#DDDDDD';
+//        $style->border        = '4px solid #000000';
+//        $style->z_index       = '10000000000000000';
+//
+//        // exibe o estilo na tela
+//        $style->show();
 
         // instancia o painel para exibir o diálogo
         $painel = new TElement('div');
@@ -44,7 +44,7 @@ class TMessage
 
         // cria uma linha para o ícone e a mensagem
         $row=$table->addRow();
-        $row->addCell(new TImage("../app.images/{$type}.png"));
+        $row->addCell(new TImage("app.misc/images/{$type}.png"));
         $row->addCell($message);
 
         // cria uma linha para o botão
