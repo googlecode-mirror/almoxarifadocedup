@@ -1,0 +1,44 @@
+        <div class="main">
+            <div id="tdiv">
+                <h1>Cadastro</h1>    
+                <form method="POST" action="">
+
+                    <label>Nome:</label>
+                    <input class="campo" type="text" size="30" id="login" name="nome_usuario" value=""/>
+                    
+                    <label>Tipo:</label>
+                    <select class="campo" name="tipo_usuario_id">
+                            <option value="0"></option>
+                    <?php foreach ($tipos_usuarios as $tipo) {
+                          echo "<option value={$tipo['id_tipo']}>{$tipo['nome_tipo']}</option>\n";  
+                    } ?> 
+                    </select>
+                    
+                    <label>Email:</label>
+                    <input class="campo" type="text" size="30" name="email_usuario" value=""/>
+                    
+                    <label>Telefone:</label>
+                    <input class="campo" type="text" size="15" maxlength="8" name="telefone_usuario" value=""/>
+                    
+                    <label>Celular (Opcional):</label>
+                    <input class="campo" type="text" size="15" maxlength="8" name="celular_usuario" value=""/>
+                    
+                    <label>Data Nascimento:</label>
+                    <input class="campo" type="text" size="15" name="dt_nascimento_usuario" value=""/>
+                    
+                    <label>Login:</label>
+                    <input class="campo" type="text" name="login_usuario" value=""/>
+                    
+                    <label>Senha:</label>
+                    <input class="campo" type="password" name="senha_usuario" value=""/>
+                    
+                    <label>Confirmar Senha:</label>
+                    <input class="campo" type="password" name="confirma_senha" value=""/>
+                    
+                    <input align="center" id="bt" type="submit" name="save" value="Cadastrar"/>
+
+                </form>
+            </div>
+            
+        </div>
+

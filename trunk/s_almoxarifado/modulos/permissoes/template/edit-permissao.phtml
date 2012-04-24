@@ -1,0 +1,87 @@
+
+    <form action="" method="POST">
+    <span><?php echo $usuario['nome_usuario']; ?></span>
+    <table class="table" align="center" frame="box" cellpadding="3">
+        <thead>
+            <tr>
+                <th> - - - - - - - - </th>
+            <?php
+                $j = 0;
+                foreach ($permissoes as $permissao){
+                    $j++;
+                    echo "<th>{$permissao[1]}</th>";
+                    $arrayPermissoes[] = $permissao[0];
+                    
+                } 
+                
+
+            ?>
+            </tr>
+        </thead>
+
+        <tbody align="center">
+            <?php
+                if (isset($dataBanco)){$arrayQTD02 = count($dataBanco);}
+
+                $l = 0;
+                $a = 0;
+                $count = 1;
+                
+                foreach ($modulos as $modulo){
+                    
+                    $bgcolor = ($l % 2) == 0 ? '#ffffff' : '#e0e0e0'; 
+                   
+                    echo " <tr bgcolor={$bgcolor}>
+                            <td align=left>{$modulo[1]}</td>";
+                            $h = 0;
+
+                                if (isset($modulos_permissoes[$l])){$arrayQTD01 = count($modulos_permissoes[$l]);}
+
+                                for ($i=0;$i < $j;$i++){ 
+
+                                    if ($h == $arrayQTD01){
+                                        $h = 0;
+                                    }
+                                          
+                                    if ($modulos_permissoes[$l][$h][2] == $arrayPermissoes[$i]){
+                                        
+                                        if (isset($dataBanco)){
+                                               
+                                                if ($a == $arrayQTD02){
+                                                    $a = 0;
+                                                }
+                                                if ($modulos_permissoes[$l][$h][0] == $dataBanco[$a]) {
+                                                    
+                                                    $a++;
+                                                    echo '<td><input type=checkbox checked=checked name=p'.$count.' value="'.$modulos_permissoes[$l][$h][0].'" > </td>';
+                                                }else{  
+                                                    echo '<td><input type=checkbox name=p'.$count.' value="'.$modulos_permissoes[$l][$h][0].'" ></td>';
+                                                }
+
+                                        }else{
+                                            echo '<td><input type=checkbox name=p'.$count.' value="'.$modulos_permissoes[$l][$h][0].'" ></td>';
+                                        }
+
+                                            $h++;
+                                            $count++;
+
+                                    }else{ 
+                                        echo '<td>xXx</td>';
+                                    }    
+                                }
+
+                    echo " </tr>";
+
+                    $l++;
+
+                }
+
+            ?>
+
+
+        </tbody>
+    </table>
+        <input type="hidden" name="count" value="<?php echo $count;?>" />
+        <input id="btTable" type="submit" value="UPDATE" name="save" />
+
+    </form>

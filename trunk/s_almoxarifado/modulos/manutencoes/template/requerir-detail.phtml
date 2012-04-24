@@ -1,0 +1,72 @@
+<h1> Detalhes da Requisicão </h1>
+
+<table class="detail" align="center">
+    <tr>
+        <th>Requisitante</th>
+        <td><?php echo $requisicao->nome_usuario; ?><td>
+    </tr>
+    <tr>
+        <th>Data</th>
+        <td><?php echo Utils::formatDateBr($requisicao->dt_requisicao); ?><td>
+    </tr>
+    <tr>
+        <th>Equipamento</th>
+        <td><?php echo $requisicao->equipamento_requisicao; ?><td>
+    </tr>
+    <tr>
+        <th>Defeito</th>
+        <td><?php echo $requisicao->defeito_requisicao; ?><td>
+    </tr>
+    
+    <tr>
+        <th>Localização</th>
+        <td><?php echo $requisicao->local_equipamento; ?><td>
+    </tr>
+    
+    <tr>
+        <th>Status</th>
+        <td><?php echo $requisicao->nome_estado_requisicao; ?><td>
+    </tr>
+    <tr>
+        <th colspan="2">&nbsp</th>
+        
+    </tr>
+    <tr>
+        <th></th>
+        <?php 
+        
+        if ($requisicao->estado_id == 1){
+            
+        echo"<td><div>
+            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&key={$requisicao->id_requisicao}'>Aprovar</a>
+            <a  class=actions href='index.php?modulo=manutencoes&page=negar&key={$requisicao->id_requisicao}'>Negar</a>
+            </div></td>";  
+            
+        }elseif ($requisicao->estado_id == 2){
+    
+        echo"<td><div>
+            <a  class=actions href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Realizar</a>
+            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Aprovação</a>
+            </div></td>"; 
+            
+        }elseif ($requisicao->estado_id == 5){
+    
+        echo"<td><div>
+            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Negação</a>
+            </div></td>"; 
+            
+        }
+        ?>
+         
+    </tr>
+    <tr>
+        <th>&nbsp</th>   
+    </tr>
+     <tr>
+         <th><a href='index.php?modulo=manutencoes&page=requerir-visualizar'>
+             Voltar à Lista</a></th>   
+    </tr>
+    
+    
+    
+</table>

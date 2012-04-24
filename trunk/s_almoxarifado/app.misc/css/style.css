@@ -1,0 +1,229 @@
+    ﻿/** general **/
+*{
+   
+    
+}
+body {
+    color: #414141;
+    font-family: arial,verdana,sans-serif;
+    font-size: 12pt;
+    background: #F5F5F5;
+}
+
+h1{
+    
+    margin-bottom: 30px;
+}
+
+#tdiv{
+    width:390px;
+    background-color:#f0f0f0;
+    border: 2px solid;
+    border-color: grey;
+}
+
+#tdiv h1 {
+    background-color:#CCCCCC;
+    text-align:center;
+    font-weight: bold;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top:0;
+    width:387px;
+    font-size: 17pt;
+}
+
+#tdiv label{
+    float:left;
+    width:150px;
+    margin-bottom:15px;
+    font-weight: bold;
+    margin-right:4px;
+    margin-left:10px;
+    color: #4c7cbd;
+}
+
+#tdiv .campo {
+    display:block;
+    margin-bottom:18px;
+    border: solid;
+    border-color: #a0a0a0;
+    border-width: 1px;
+    z-index: 1;
+    
+}
+
+#bt {
+    margin-top:20px;
+    margin-left:150px;
+    margin-bottom:15px;
+    font-size:13pt;
+    border: solid;
+    border-color: #a0a0a0;
+    border-width: 1px;
+    z-index: 1;
+}
+
+.btNoMaginAndLink{
+    text-decoration:none;
+    font-size:11pt;
+    color:black;
+    background-color:#f0f0f0;
+    padding:1px 4.9px 1px 4.9px;
+    border:solid 1px;
+    
+}
+
+.header{
+    background-color:#CCCCCC;
+    text-align:center;
+    font-weight: bold;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-right: 2px solid gray;
+    margin-top:0;
+    width:100px;
+    
+    
+   
+}
+
+.allmenu{
+    float:left;
+    margin-right:15px;
+    margin-left:12px;
+}
+
+.img{
+    width:100px;
+    height:80px;
+    background-color: #ffffff;
+    text-align:center;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+
+}
+
+.tpanel fieldset{
+    display:block;
+    width:auto;
+    float:left;
+    
+}
+
+#mr {
+    font-size:10pt;
+    padding-bottom:4px;
+}
+
+table{
+    border-collapse:separate;
+    font-family:arial,verdana,sans-serif;
+    font-size:10pt;
+    border-spacing:0pt;
+    margin-top:30px;
+
+}
+
+.table th {
+    font-size:9pt;
+    font-weight:bold;
+    border-left:1px solid white;
+    border-top:1px solid white;
+    border-bottom:1px solid gray;
+    border-right:1px solid gray;
+    padding-top:1px;
+    background-color:#CCCCCC;
+}
+
+.table tr th {
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#btTable{
+    
+    text-decoration:none;
+    font-size:11pt;
+    color:black;
+    background-color:#f0f0f0;
+    padding:1px 4.9px 1px 4.9px;
+    border:solid 1px;
+    margin-top:10px;
+    margin-bottom:10px;
+    
+}
+
+#tablePer{
+    margin-top:0;
+}
+
+.table .nome{
+    font-size:13pt;
+}
+
+.tmessage
+{
+	 position: absolute;
+	 left: 38%;
+	 top: 40%;
+	 width: 300;
+	 height: 150;
+	 color: black;
+	 background: #DDDDDD;
+	 border: 4px solid #000000;
+	 z-index: 10000000000000000;
+         padding-right:15px;
+         padding-bottom:15px;
+}
+
+.tquestion
+{
+	 
+         position: absolute;
+	 left: 48%;
+	 top: 40%;
+	 width: 300;
+	 height: 150;
+	 border-width: 1px;
+	 color: black;
+	 background: #DDDDDD;
+	 border: 4px solid #000000;
+	 z-index: 10000000000000000;
+         padding-right:15px;
+         padding-bottom:15px;
+         padding-left:15px;
+}
+
+.tquestion #bt1 {
+        
+}
+
+.detail{
+    text-align: left;
+}
+
+.detail th{
+    padding-right: 20px;
+    padding-bottom:5px;
+}
+
+.detail td{
+    padding-bottom:5px;
+}
+
+.detail .actions{
+    
+    text-decoration:none;
+    font-size:11pt;
+    color:black;
+    background-color:#f0f0f0;
+    padding:1px 4.9px 1px 4.9px;
+    border:solid 1px;
+    margin-left:6px;
+    
+}

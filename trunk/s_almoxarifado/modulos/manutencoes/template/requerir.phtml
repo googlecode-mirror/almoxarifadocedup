@@ -1,0 +1,32 @@
+ <div id="tdiv">
+                <h1>Requerir manutenção</h1>    
+                <form method="POST" action="">
+
+                    <label>Data atual:</label>
+                    <input class="campo" type="text" readonly="readonly" size="7" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
+                    
+                    <label>Requisitante:</label>
+                    <input class="campo" type="text" readonly="readonly" size="30" name="" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
+                    
+                    <label>Equipamento(s):</label>
+                    <textarea cols="24" rows="6" maxlength="100" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
+                    
+                    <label>Localização(s):</label>
+                    <textarea cols="24" rows="6" maxlength="100" class="campo" name="local_equipamento" value=""><?php if (isset($requisicoes)){echo ($requisicoes['local_equipamento']);}?></textarea>
+                    
+                    <label>Defeito(s):</label>
+                    <textarea cols="24" rows="6" maxlength="100" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
+                        
+                    
+                    <input align="center" id="bt" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>
+                </form>
+         </div>
+         <?php
+         if ($sessao->getVar('msg') != null){
+                if ($sessao->getVar('msg') == 1){
+                new TMessage('info','Requisição registrada.');
+                $sessao->removeVar('msg');
+            }
+         }
+          ?>
+         
