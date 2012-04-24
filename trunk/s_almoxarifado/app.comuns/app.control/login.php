@@ -1,7 +1,5 @@
 ﻿<?php
- 
-$sessao = new TSessao(true);
- 
+
  if (isset($_GET['logout'])){
      $sessao->removeVar('usuario');
      header('location:index.php');
