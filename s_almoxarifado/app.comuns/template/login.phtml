@@ -1,0 +1,29 @@
+       <div id="main" align="center">    
+            <div id="tdivLogin">
+                <h1>Login</h1>    
+                <form method="POST" action="">
+
+                    <label>Login:</label>
+                    <input class="campo" type="text" id="login" name="login_usuario" value=""/>
+                    <label>Senha:</label>
+                    <input class="campo" type="password" id="senha" name="senha_usuario"/><br/>
+                    <a id="link" href="index.php?modulo=usuarios&page=add-usuario">Cadastre-se</a><br/>
+                    <input id="btLogin" type="submit" name="check" value="Login"/>
+
+                </form>
+            </div>
+        </div>
+   <?php 
+        if ($sessao->getVar('msg') != null){
+
+            if ($sessao->getVar('msg') == 1){
+                new TMessage('error','Login ou senha errada ou talvez você não tenha permissão =(.');
+                $sessao->removeVar('msg');
+            }elseif ($sessao->getVar('msg') == 2){
+                new TMessage('info','Aguarde o Administrador liberar suas permissões.');
+                $sessao->removeVar('msg');
+            } 
+        }
+    ?>
+
+

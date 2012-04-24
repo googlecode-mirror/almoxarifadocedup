@@ -1,0 +1,57 @@
+<form method="POSt" action="">
+    <label>Nome:</label>
+    <input type="text" name="CampoBusca" value=""/>
+    <input class="btNoMaginAndLink" type="submit" value="Buscar" name="busca"/>
+    
+</form>
+<table align="center" class="table">
+    <thead align="left">
+        <tr>
+            <th width="40">Código</th>
+            <th width="170">Nome</th>
+            <th width="125">Tipo</th>
+            <th width="150">Email</th>
+            <th width="70">Telefone</th>
+            <th></th>
+            <th></th>
+        </tr>
+     <thead>
+     <tbody align="left">
+    <?php
+    $i = 0;
+    foreach($usuarios as $usuario){
+        
+    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
+    
+    echo "<tr>
+              <td align=center bgcolor={$bgcolor}>{$usuario->id_usuario}</td>
+              <td bgcolor={$bgcolor}>{$usuario->nome_usuario}</td>
+              <td bgcolor={$bgcolor}>{$usuario->nome_tipo}</td>
+              <td bgcolor={$bgcolor}>{$usuario->email_usuario}</td>
+              <td bgcolor={$bgcolor}>{$usuario->telefone_usuario}</td>
+              <td bgcolor={$bgcolor}><a title='Editar Usuário' href='index.php?modulo=usuarios&page=edit-usuario&key={$usuario->id_usuario}'>
+                                     <img src='app.misc/images/ico_edit.png'></a></td>
+              <td bgcolor={$bgcolor}><a title='Editar Pemissões' href='index.php?modulo=permissoes&page=edit-permissao&key={$usuario->id_usuario}'>
+                                     <img src='app.misc/images/ico_clientes.png'></a></td>
+          </tr>";
+    $i = $i+1;
+    }    
+    
+    ?>
+    
+     </tbody>
+</table>
+<?php 
+if ($sessao->getVar('msg') != null){
+    
+    if ($sessao->getVar('msg') == 1){
+        new TMessage('info','Usuário alterado.');
+        $sessao->removeVar('msg');
+    }elseif ($sessao->getVar('msg') == 2){
+        new TMessage('info','Permissão alterada.');
+        $sessao->removeVar('msg');
+    } 
+}
+?>
+
+  

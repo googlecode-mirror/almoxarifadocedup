@@ -1,0 +1,81 @@
+/* 
+    Document   : login
+    Created on : Apr 14, 2012, 10:43:41 AM
+    Author     : Home
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#main {
+    margin:auto;
+}
+
+body {
+    background: #F5F5F5;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 100%;
+    color: #414141;
+}
+
+#tdivLogin{
+    width:260px;
+    background-color:#f0f0f0;
+    border: 2px solid;
+    border-color: grey;
+}
+#tdivLogin h1 {
+    background-color:#CCCCCC;
+    text-align:center;
+    font-weight: bold;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top:0;
+    width:257px;
+    font-size:20pt;
+}
+
+#tdivLogin label{
+    float:left;
+    width:60px;
+    margin-right:4px;
+    margin-left:10px;
+    margin-bottom:5px;
+}
+
+#tdivLogin .campo {
+    display:block;
+    margin-bottom:7px;
+    border: solid;
+    border-color: #a0a0a0;
+    border-width: 1px;
+    z-index: 1;
+}
+
+#btLogin {
+    margin-top:20px;
+    border: solid;
+    border-color: #a0a0a0;
+    border-width: 1px;
+    z-index: 1;
+    font-size:12pt;
+    margin-bottom:15px;
+}
+
+#link{
+    margin-left:160px;
+}
+
+.tmessage
+{
+	 position: absolute;
+	 left: 38%;
+	 top: 20%;
+	 width: 300;
+	 height: 150;
+	 color: black;
+	 background: #DDDDDD;
+	 border: 4px solid #000000;
+	 z-index: 10000000000000000;
+        
+}

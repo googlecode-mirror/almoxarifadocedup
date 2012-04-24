@@ -1,0 +1,69 @@
+	body{text-align: center;}
+	#corpo{
+		background:url('../images/b_ff.jpg');
+		width: 1000px;
+		margin:0 auto;         
+		text-align:center; /* "remédio" para o hack do IE */
+	}
+        
+        #tdiv{margin: 0 auto;}
+        #tdiv *{text-align: left;}
+	#topo {
+		width:100%;
+		background:url('../images/t_o.jpg');
+		height:175px;
+                
+			
+	}
+	
+	
+        #h1{
+		background:url('');
+		text-indent:-999px;
+		overflow:hidden;
+		width:164px;
+		height:170px;
+		float:left;
+		margin-right:40px;
+		text-align:center;	
+	}
+	#h2{
+		padding:50px;
+		color:#FFF;
+	}
+
+	
+	
+	#content{
+		width:100%;
+		float:left;
+                margin:0 auto;
+                margin-bottom:30px;
+                padding-left:6px;
+                padding-top:25px;
+	}
+	#content h3{ 
+		border-bottom:1px solid #FFF;
+		padding:2px;
+		margin:5px;
+		text-align:center;	
+	}
+	#content p{ 
+		margin-top:15px;
+		padding: 5px 5px;
+	}
+	#rodape{ 
+	    clear:both;
+		width:97.9%;
+		height:80px;
+		background:#e0e0e0;
+		padding:10px;
+		margin-top:15px;
+                text-align:center;
+                -webkit-box-shadow: 1px 1px 1px 1px #c0c0c0;
+                -moz-box-shadow: 1px 1px 1px 1px #c0c0c0;
+                box-shadow: 1px 1px 1px 1px #c0c0c0;
+		
+	}
+      
+
