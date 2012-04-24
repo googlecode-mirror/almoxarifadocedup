@@ -1,0 +1,66 @@
+<table align="center" class="table">
+    <thead align="left">
+        <tr>
+            <th width="40">Código</th>
+            <th width="170">Requisitante</th>
+            <th width="80">Data</th>
+            <th width="150">Status</th>
+            <th>Detalhes</th>
+            <th></th>
+            <th></th>
+        </tr>
+     <thead>
+     <tbody align="left">
+    <?php 
+    $i = 0;
+    foreach($requisicoes as $requisicao){
+    
+    $databr = Utils::formatDateBr($requisicao->dt_requisicao);    
+        
+    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
+    
+    echo "<tr>
+              <td align=center bgcolor={$bgcolor}>{$requisicao->id_requisicao}</td>
+              <td bgcolor={$bgcolor}>{$requisicao->nome_usuario}</td>
+              <td bgcolor={$bgcolor}>{$databr}</td>
+              <td bgcolor={$bgcolor}>{$requisicao->nome_estado_requisicao}</td>
+
+              <td align=center bgcolor={$bgcolor}><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
+                                     <img src='app.misc/images/ico_produtos.png'></a></td>";
+              echo "<td align=center bgcolor={$bgcolor}><a title='Editar requisição' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
+                                     <img src='app.misc/images/ico_edit.png'></a></td>
+                   <td align=center bgcolor={$bgcolor}><a title='Excluir requisição' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
+                                     <img src='app.misc/images/ico_delete.png'></a></td>";
+              echo "<td bgcolor={$bgcolor}>&nbsp</td>
+                   <td bgcolor={$bgcolor}>&nbsp</td>";
+             
+              
+     echo "</tr>";
+    $i = $i+1;
+    }    
+    
+    ?>
+    
+     </tbody>
+</table>
+<?php 
+            if ($sessao->getVar('msg') != null){
+                if ($sessao->getVar('msg') == 1){
+                    new TMessage('info','Informações alteradas.');
+                    $sessao->removeVar('msg');
+                }
+                if ($sessao->getVar('msg') == 2){
+                    new TMessage('error','Esta requisição não pode ser alterada, contate o
+                                 Administrador para modificar.');
+                    $sessao->removeVar('msg');
+                }
+            }
+            
+            if (isset($_GET['question'])){
+                if ($_GET['question'] == 1){
+                    new TQuestion('Você realmente gostaria de deletar?',
+                                  "index.php?modulo=manutencoes&page=delete&key={$_GET['key']}",
+                                  'index.php?modulo=manutencoes&page=my_requisicao');
+                }
+            }
+ ?>

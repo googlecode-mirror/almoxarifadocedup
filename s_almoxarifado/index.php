@@ -1,55 +1,81 @@
 <?php
-include 'app.classes/Sessao.php';
-include 'app.functions/validate.php';
+class TApplication{
+    
+   
+           static public function init(){
+              
+               function __autoload($classe){
+                   
+                   $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
 
-var_dump($_SESSION);
+                   $pastas = array('app.ado','app.config','app.widgets','util','app.comuns/app.model','app.comuns/mapping',
+                            "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
+                    
+                   foreach ($pastas as $pasta){
+                         if (file_exists("{$pasta}/{$classe}.class.php")) {
 
-if(!$_GET['class']=='login')
-    $sessao = new Sessao();
+                             include_once "{$pasta}/{$classe}.class.php";
+                         }
+                    }
+                }  
 
-//validate();
+           }
+    
+            
+            static public function run(){
+                
+                $sessao = new TSessao(true);
+                $flashes = null;
+               
+                
+      
+                $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
+                $page = (isset($_GET['page'])) ? $_GET['page'] : null;
+                $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
+                
+                if (($page != null) and ($logout == null) and (($sessao->getVar('usuario') != null)) or ($page == 'add-usuario')) {
+                    
+                     if ($page == 'panel'){
+                          $templatePage = "app.comuns/template/{$page}.phtml";
+                          require('layout/index.phtml');
+                     
+           
+                     }elseif ($modulo != null) {
 
-function __autoload($classe)
-{
-	   $pastas = array('app.widgets', 'app.ado', 'app.functions', 'app.actions','app.classes');
-	   foreach ($pastas as $pasta)
-	   {
-		      if (file_exists("{$pasta}/{$classe}.class.php"))
-                      {
-			         include_once "{$pasta}/{$classe}.class.php";
-                                 break;
-		      }
-                      if (file_exists("{$pasta}/{$classe}.{$_GET['type']}.php"))
-                      {
-			         include_once "{$pasta}/{$classe}.{$_GET['type']}.php";
-                                 break;
-		      }
+                            if (file_exists("modulos/{$modulo}/app.control/{$page}.php")){                  
+                                require("modulos/{$modulo}/app.control/{$page}.php"); 
+                            }
+                                     
+                            if (file_exists("modulos/{$modulo}/template/{$page}.phtml")){                
+                            $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
+                            
+                         
+                            if (Flash::hasFlashes()) {
+                                $flashes = Flash::getFlashes();
+                            }
+                     
+   
+                            }
+                                     
+                            require('layout/index.phtml');
+                     }
+		}else{
+                    if ($sessao->getVar('usuario') == null){
+                          
+                          require("app.comuns/app.control/login.php"); 
+                          $templatePage = "app.comuns/template/login.phtml";
+                          require('layout/index.phtml');
+                         
+                    }else{
+                          require("app.comuns/app.control/login.php");
+                          $templatePage = "app.comuns/template/panel.phtml";
+                          require('layout/index.phtml');
+                                
+                    }
+               }     
 	   }
 }
-
-var_dump($_GET);
-
- if(isset($_GET['type']) and $_GET['type']=='action')
- {
-     if(file_exists("app.actions/{$_GET['class']}.action.php"))
-          include_once "app.actions/{$_GET['class']}.action.php";
- }     
- else
- {     
-    if(!$_GET) $_GET['class'] = 'Principal';
-
-    // se está na página de login, carrega a pagina de login e pula o restante
-    if($_GET['class'] == 'login') include ('template/login.html');
-    else
-    {
-        // abre o arquivo de template
-        $template = file_get_contents('layout.html');
-
-        $path = "{$_GET['modulo']}/{$_GET['class']}.php";
-        
-        $content = 'substituir';
-
-        echo str_replace('#conteudo#', $content, $template);
-    }
- }
+TApplication::init();
+TApplication::run();
 ?>
+

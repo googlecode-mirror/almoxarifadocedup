@@ -1,0 +1,79 @@
+<form action="" method="POST">
+    <table id="tablePer"frame="below" align="center" class="table" border="1">
+        <thead>
+            <tr>
+                <th class="nome" >Nome:</th>
+                <th class="nome" colspan="13" align="left"><?php echo $usuario['nome_usuario'];?></th>
+            </tr>
+            <tr>
+                <th colspan="4" align="center">Manutenções</th>
+                <th colspan="2" align="center">Chaves</th>
+                <th colspan="3" align="center">Solicitações</th>
+                <th colspan="2" align="center">Empréstimos</th>
+                <th colspan="1" align="center">Permissões</th>
+                <th colspan="2" align="center">Usuários</th>
+            </tr>
+            <tr>
+                
+                <th>Visualizar</th>
+                <th>Requisitar</th>
+                <th>Aprovar</th>
+                <th>Realizar</th>
+               
+                <th>Visualizar</th>
+                <th>Gerenciar</th>
+                <th>Visualizar</th>
+                <th>Gerenciar</th>
+                <th>Gerar</th>
+                
+                <th>Visualizar</th>
+                <th>Gerenciar</th>
+                <th>Gerenciar</th>
+                <th>Visualizar</th>
+                <th>Gerenciar</th>
+                
+            </tr>
+        </thead>
+        <tbody bgcolor="white" align="center">
+            <tr>
+                <?php  
+                    if (isset($dataBanco)){$arrayQTD = count($dataBanco);}
+                    $j = 0;
+
+                    for ($i=1;$i <= 14;$i++){
+                        
+                        if (isset($dataBanco)){
+                            $arrayQTD = count($dataBanco);
+                            if ($j == $arrayQTD){
+                                $j = 0;
+                            }
+
+                            if ($dataBanco[$j] == $i){
+                                $j++;
+                                $checked = 'checked=checked';
+                            }
+                        }
+                        
+                        $string = '<td><input type="checkbox"';
+                    
+                        if (isset($checked)){    
+                            if ($checked != null){
+                                $string .= ' checked=checked';
+
+                            }
+                        }
+                    
+                    $checked = null;
+                    $string .=' name="p'.$i.'" value="'.$i.'" /></td>';
+                    
+                    echo $string;
+                }
+                ?>
+                
+            </tr>
+            <tr>
+                <td colspan="17" rowspan="4"><input id="btTable" type="submit" name="save" value="Alterar"/></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

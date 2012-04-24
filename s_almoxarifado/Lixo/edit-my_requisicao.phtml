@@ -1,0 +1,22 @@
+ <div id="tdiv">
+                <h1>Alterar Requerimento</h1>    
+                <form method="POST" action="">
+
+                    <label>Data atual:</label>
+                    <input class="campo" type="text" readonly="readonly" size="7" name="dt_requisicao" value="<?php echo Utils::formatDateBr($requisicao->getDtRequisicao())?>"/>
+                    
+                    <label>Requisitante:</label>
+                    <input class="campo" type="text" readonly="readonly" size="31" name="" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
+                    
+                    <label>Equipamento(s):</label>
+                    <textarea cols="24" rows="6" class="campo" name="equipamento_requisicao" size="31" value="<?php echo $requisicao->getEquipamentoRequisicao()?>"></textarea>
+                    
+                    <label>Defeito(s):</label>
+                    <textarea cols="24" rows="6" class="campo" name="defeito_requisicao" size="31" value="<?php echo $requisicao->getDefeitoRequisicao()?>"></textarea>
+                    
+                    <label>Localização(s):</label>
+                    <textarea cols="24" rows="6" class="campo" name="local_equipamento" size="31" value="<?php echo $requisicao->getLocalEquipamento()?>"></textarea>
+   
+                    <input align="center" id="bt" type="submit" name="update" value="Requerir"/>
+                </form>
+ </div>
