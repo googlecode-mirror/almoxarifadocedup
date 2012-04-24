@@ -15,11 +15,11 @@
 
 
 --
--- Create schema almo
+-- Create schema s_almoxarifado
 --
 
-CREATE DATABASE IF NOT EXISTS almo;
-USE almo;
+CREATE DATABASE IF NOT EXISTS s_almoxarifado;
+USE s_almoxarifado;
 
 --
 -- Definition of table `aquisicoes`
@@ -148,9 +148,6 @@ DROP TABLE IF EXISTS `emprestimos`;
 CREATE TABLE `emprestimos` (
   `id_emprestimo` int(11) NOT NULL,
   `dt_inicial_emprestimo` datetime NOT NULL,
-  `dt_final_emprestimo` datetime DEFAULT NULL,
-  `descricao_emprestimo` varchar(100) NOT NULL,
-  `quant_emprestimo` int(11) NOT NULL DEFAULT '1',
   `requisitante_id` int(11) NOT NULL,
   `usuario_id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_emprestimo`),
@@ -177,7 +174,7 @@ CREATE TABLE `estados_requisicoes` (
   `id_estado_requisicao` int(11) NOT NULL AUTO_INCREMENT,
   `nome_estado_requisicao` varchar(45) NOT NULL,
   PRIMARY KEY (`id_estado_requisicao`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `estados_requisicoes`
@@ -186,13 +183,10 @@ CREATE TABLE `estados_requisicoes` (
 /*!40000 ALTER TABLE `estados_requisicoes` DISABLE KEYS */;
 INSERT INTO `estados_requisicoes` (`id_estado_requisicao`,`nome_estado_requisicao`) VALUES 
  (1,'Aguardando aprovação'),
- (2,'Negada'),
- (3,'Aprovada'),
+ (2,'Aprovada'),
+ (3,'Em andamento'),
  (4,'Concluída'),
- (5,'Aguardando aprovação'),
- (6,'Negada'),
- (7,'Aprovada'),
- (8,'Concluída');
+ (5,'Negada');
 /*!40000 ALTER TABLE `estados_requisicoes` ENABLE KEYS */;
 
 
@@ -222,6 +216,30 @@ CREATE TABLE `item_aquisicao` (
 
 
 --
+-- Definition of table `itens_emprestimos`
+--
+
+DROP TABLE IF EXISTS `itens_emprestimos`;
+CREATE TABLE `itens_emprestimos` (
+  `id_item` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao_item` varchar(100) NOT NULL,
+  `quantidade_item` int(11) NOT NULL,
+  `dt_final` datetime NOT NULL,
+  `emprestimos_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_item`),
+  KEY `fk_itens_emprestimos_emprestimos1` (`emprestimos_id`),
+  CONSTRAINT `fk_itens_emprestimos_emprestimos1` FOREIGN KEY (`emprestimos_id`) REFERENCES `emprestimos` (`id_emprestimo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `itens_emprestimos`
+--
+
+/*!40000 ALTER TABLE `itens_emprestimos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `itens_emprestimos` ENABLE KEYS */;
+
+
+--
 -- Definition of table `laboratorios`
 --
 
@@ -232,7 +250,7 @@ CREATE TABLE `laboratorios` (
   `numero_laboratorio` int(11) DEFAULT NULL,
   `chave_laboratorio` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 -> chave disponivel\n1 -> chave indisponivel',
   PRIMARY KEY (`id_laboratorio`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `laboratorios`
@@ -261,27 +279,7 @@ INSERT INTO `laboratorios` (`id_laboratorio`,`nome_laboratorio`,`numero_laborato
  (19,'Eletrônica',19,0),
  (20,'Eletrônica II',20,0),
  (21,'Eletrônica III',45,0),
- (22,'Automação',46,0),
- (23,'Hidraulica',47,0),
- (24,'Pneumática',48,0),
- (25,'Ajustagem',49,0),
- (26,'Fresagem',50,0),
- (27,'Desenho',51,0),
- (28,'Medidas Elétricas',52,0),
- (29,'Ensaios Eléricos',53,0),
- (30,'Metalografia',54,0),
- (31,'Marcenaria',55,0),
- (32,'Soldar',56,0),
- (33,'Máquinas Elétricas',58,0),
- (34,'Manutenção Mecânica',59,0),
- (35,'Comandos Elétricos II',60,0),
- (36,'Instalações Prediais II',61,0),
- (37,'Comandos Elétricos I',62,0),
- (38,'Tornearia',63,0),
- (39,'CNC',64,0),
- (40,'Eletrônica',19,0),
- (41,'Eletrônica II',20,0),
- (42,'Eletrônica III',45,0);
+ (22,'Marcenaria II',0,0);
 /*!40000 ALTER TABLE `laboratorios` ENABLE KEYS */;
 
 
@@ -313,6 +311,136 @@ CREATE TABLE `manutencoes` (
 
 
 --
+-- Definition of table `modulos`
+--
+
+DROP TABLE IF EXISTS `modulos`;
+CREATE TABLE `modulos` (
+  `id_modulo` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_modulo` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_modulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `modulos`
+--
+
+/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` (`id_modulo`,`nome_modulo`) VALUES 
+ (1,'manutencoes'),
+ (2,'chaves'),
+ (3,'solicitacoes'),
+ (4,'emprestimos'),
+ (5,'permissoes'),
+ (6,'usuarios');
+/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
+
+
+--
+-- Definition of table `modulos_permissoes`
+--
+
+DROP TABLE IF EXISTS `modulos_permissoes`;
+CREATE TABLE `modulos_permissoes` (
+  `id_modulo_permissao` int(11) NOT NULL AUTO_INCREMENT,
+  `modulo_id` int(11) NOT NULL,
+  `permissao_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_modulo_permissao`),
+  KEY `fk_modulos_permissoes_modulos1` (`modulo_id`),
+  KEY `fk_modulos_permissoes_permissoes1` (`permissao_id`),
+  CONSTRAINT `fk_modulos_permissoes_modulos1` FOREIGN KEY (`modulo_id`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_modulos_permissoes_permissoes1` FOREIGN KEY (`permissao_id`) REFERENCES `permissoes` (`id_permissao`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `modulos_permissoes`
+--
+
+/*!40000 ALTER TABLE `modulos_permissoes` DISABLE KEYS */;
+INSERT INTO `modulos_permissoes` (`id_modulo_permissao`,`modulo_id`,`permissao_id`) VALUES 
+ (1,1,1),
+ (2,1,3),
+ (3,1,4),
+ (4,1,5),
+ (5,2,1),
+ (6,2,2),
+ (7,3,1),
+ (8,3,2),
+ (9,3,7),
+ (10,4,1),
+ (11,4,2),
+ (12,5,2),
+ (13,6,1),
+ (14,6,2),
+ (15,6,8),
+ (16,1,8),
+ (17,2,9),
+ (18,1,2);
+/*!40000 ALTER TABLE `modulos_permissoes` ENABLE KEYS */;
+
+
+--
+-- Definition of table `modulos_permissoes_usuarios`
+--
+
+DROP TABLE IF EXISTS `modulos_permissoes_usuarios`;
+CREATE TABLE `modulos_permissoes_usuarios` (
+  `modulo_permissao_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  PRIMARY KEY (`modulo_permissao_id`,`usuario_id`),
+  KEY `fk_modulos_permissoes_usuarios_usuarios1` (`usuario_id`),
+  CONSTRAINT `fk_modulos_permissoes_usuarios_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `modulos_permissoes_usuarios`
+--
+
+/*!40000 ALTER TABLE `modulos_permissoes_usuarios` DISABLE KEYS */;
+INSERT INTO `modulos_permissoes_usuarios` (`modulo_permissao_id`,`usuario_id`) VALUES 
+ (1,1),
+ (11,1),
+ (13,1),
+ (17,1),
+ (1,2),
+ (14,2),
+ (16,2),
+ (1,3),
+ (2,3),
+ (3,3),
+ (4,3),
+ (8,3),
+ (13,3),
+ (17,3),
+ (1,4),
+ (2,4),
+ (3,4),
+ (4,4),
+ (5,4),
+ (9,4),
+ (1,5),
+ (11,5),
+ (13,5),
+ (15,5),
+ (17,5),
+ (18,5),
+ (13,6),
+ (1,7),
+ (2,7),
+ (4,7),
+ (5,7),
+ (9,7),
+ (1,8),
+ (2,8),
+ (3,8),
+ (4,8),
+ (6,8),
+ (13,8),
+ (15,8);
+/*!40000 ALTER TABLE `modulos_permissoes_usuarios` ENABLE KEYS */;
+
+
+--
 -- Definition of table `permissoes`
 --
 
@@ -320,34 +448,23 @@ DROP TABLE IF EXISTS `permissoes`;
 CREATE TABLE `permissoes` (
   `id_permissao` int(11) NOT NULL AUTO_INCREMENT,
   `nome_permissao` varchar(45) NOT NULL,
-  `descricao_permissao` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_permissao`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `permissoes`
 --
 
 /*!40000 ALTER TABLE `permissoes` DISABLE KEYS */;
-INSERT INTO `permissoes` (`id_permissao`,`nome_permissao`,`descricao_permissao`) VALUES 
- (1,'requisitarManutencao',NULL),
- (2,'aprovarManutencao',NULL),
- (3,'realizarManutencao',NULL),
- (4,'visualizarpendentesManutencao',NULL),
- (5,'visualizarhistoricoManutencao',NULL),
- (6,'visualizarChaves',NULL),
- (7,'gerenciarChaves',NULL),
- (8,'vizualizarSolicitacoes',NULL),
- (9,'gerarSolicitacoes',NULL),
- (10,'imprimirSolicitacoes',NULL),
- (11,'gerenciarSolicitacoes',NULL),
- (12,'visualizarEmprestimos',NULL),
- (13,'gerenciarEmprestimos',NULL),
- (14,'visualizarPermissoes',NULL),
- (15,'gerenciarPermissoes',NULL),
- (16,'visualizarMembros',NULL),
- (17,'gerenciarMembros',NULL),
- (18,'modificarMembros',NULL);
+INSERT INTO `permissoes` (`id_permissao`,`nome_permissao`) VALUES 
+ (1,'visualizar'),
+ (2,'gerenciar'),
+ (3,'requisitar'),
+ (4,'aprovar'),
+ (5,'realizar'),
+ (7,'gerar'),
+ (8,'Imprimir'),
+ (9,'histórico');
 /*!40000 ALTER TABLE `permissoes` ENABLE KEYS */;
 
 
@@ -360,21 +477,33 @@ CREATE TABLE `req_manutencao` (
   `id_requisicao` int(11) NOT NULL AUTO_INCREMENT,
   `dt_requisicao` date DEFAULT NULL,
   `equipamento_requisicao` varchar(200) DEFAULT NULL,
+  `local_equipamento` varchar(255) DEFAULT NULL,
   `defeito_requisicao` varchar(255) DEFAULT NULL,
-  `professor_id` int(11) NOT NULL,
+  `requisitante_id` int(11) NOT NULL,
   `estado_id` int(11) NOT NULL,
+  `deleted` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id_requisicao`),
-  KEY `fk_Manutencao_Professores1` (`professor_id`),
+  KEY `fk_Manutencao_Professores1` (`requisitante_id`),
   KEY `fk_req_manutencao_estado_requisicoes1` (`estado_id`),
-  CONSTRAINT `fk_Manutencao_Professores1` FOREIGN KEY (`professor_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Manutencao_Professores1` FOREIGN KEY (`requisitante_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_req_manutencao_estado_requisicoes1` FOREIGN KEY (`estado_id`) REFERENCES `estados_requisicoes` (`id_estado_requisicao`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
 
 --
 -- Dumping data for table `req_manutencao`
 --
 
 /*!40000 ALTER TABLE `req_manutencao` DISABLE KEYS */;
+INSERT INTO `req_manutencao` (`id_requisicao`,`dt_requisicao`,`equipamento_requisicao`,`local_equipamento`,`defeito_requisicao`,`requisitante_id`,`estado_id`,`deleted`) VALUES 
+ (6,'2012-04-19','Computador 05','Laboratório 11','Não liga o mouse.',3,1,0),
+ (9,'2012-04-20','Computador 10','Laboratório 20','Tela não liga.',3,1,1),
+ (10,'2012-04-20','Computador 08','Laboratório 20','Lerdo :D',2,3,0),
+ (11,'2012-04-21','Computador 01, 03, 10.','Laboratório 25','Computador 01 não liga e 03 e 04 estão lentos.',3,1,1),
+ (12,'2012-04-21','Máquina do Café','Secretaria','Não sai café pow.',3,1,1),
+ (13,'2012-04-21','Computador 1','Direção','Não liga.',3,2,0),
+ (14,'2012-04-22','Internet','Laboratório 15','Sem Internet',1,1,0),
+ (15,'2012-04-22','Data Show 3','Secretaria','Não liga',5,1,0),
+ (16,'2012-04-24','Computador 11','Laboratório 13','Não liga',3,1,0);
 /*!40000 ALTER TABLE `req_manutencao` ENABLE KEYS */;
 
 
@@ -419,7 +548,7 @@ INSERT INTO `tipos_usuarios` (`id_tipo`,`nome_tipo`) VALUES
  (2,'Operador'),
  (3,'Secretario'),
  (4,'Coopertec'),
- (5,'Resp Manutencao');
+ (5,'Resp manutencao');
 /*!40000 ALTER TABLE `tipos_usuarios` ENABLE KEYS */;
 
 
@@ -432,7 +561,7 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(100) NOT NULL,
   `tipo_usuario_id` int(11) NOT NULL,
-  `email_usuario` varchar(70) NOT NULL,
+  `email_usuario` varchar(60) NOT NULL,
   `telefone_usuario` int(11) NOT NULL,
   `celular_usuario` int(11) DEFAULT NULL,
   `dt_nascimento_usuario` date NOT NULL,
@@ -441,7 +570,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id_usuario`),
   KEY `fk_usuarios_tipos_usuarios1` (`tipo_usuario_id`),
   CONSTRAINT `fk_usuarios_tipos_usuarios1` FOREIGN KEY (`tipo_usuario_id`) REFERENCES `tipos_usuarios` (`id_tipo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `usuarios`
@@ -449,41 +578,15 @@ CREATE TABLE `usuarios` (
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id_usuario`,`nome_usuario`,`tipo_usuario_id`,`email_usuario`,`telefone_usuario`,`celular_usuario`,`dt_nascimento_usuario`,`login_usuario`,`senha_usuario`) VALUES 
- (1,'Administrador',2,'admin@gmail.com',33333335,12321312,'0000-00-00','admin','admin'),
- (2,'testando',5,'testando@gmail.com',22222222,11111111,'0000-00-00','testando','testando'),
- (3,'test',1,'test@gmail.com',33333333,21312312,'0000-00-00','test','test'),
- (4,'user',2,'user@gmail.com',44444444,12312333,'0000-00-00','user','user'),
- (7,'Luan Luiz Corrêa',1,'luanlc@hotmail.com',36322848,91073165,'1993-01-01','luan','luan123'),
- (8,'Maria de Souza',3,'maria@gmail.com',11111111,22222222,'1992-01-01','maria','maria'),
- (9,'Lucas Vieira',2,'lucas@gmail.com',55555555,44444444,'1992-02-02','lucascs','lucas123'),
- (10,'test02',1,'test01@hotmail.com',13123123,31231231,'1990-10-20','test01','test123'),
- (11,'Maria da Silva',2,'maria@hotmail.com',12312312,12312123,'1983-10-20','mariacs','maria123'),
- (12,'João',1,'joao@gmail.com',12312312,31231312,'1950-10-20','joao1','123'),
- (14,'Juca',1,'juca@hotmail.com',12312312,12312312,'1960-10-20','juca','123');
+ (1,'Maria de Souza',4,'test@hotmail.com',11111112,21232133,'1992-10-10','teste','teste'),
+ (2,'Luan Luiz Corrêa',5,'testando@gmail.com',22222222,12345324,'1991-10-11','bondcs','bond123'),
+ (3,'Santos de Souza ',3,'admin@gmail.com',33333323,11222222,'1986-10-10','admin','admin'),
+ (4,'João da Rosa Pereira',3,'joao@gmail.com',12312344,31233333,'1981-10-20','joaocs','123'),
+ (5,'Joana da Silva Pereira',3,'joana@gmail.com',22222223,33423423,'1987-10-10','joana','123'),
+ (6,'Roberto Vieira de Souza',4,'roberto@gmail.com',12312333,31231233,'1992-10-20','roberto','123'),
+ (7,'Lucas da Silva Santos',1,'lucas@gmail.com',12312312,12312312,'1977-10-10','lucas','lucas123'),
+ (8,'Roberta Martins Corrêa',1,'roberta@gmail.com',23123123,12312312,'1982-10-20','roberta','roberta123');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-
-
---
--- Definition of table `usuarios_permissoes`
---
-
-DROP TABLE IF EXISTS `usuarios_permissoes`;
-CREATE TABLE `usuarios_permissoes` (
-  `usuario_id` int(11) NOT NULL,
-  `permissao_id` int(11) NOT NULL,
-  PRIMARY KEY (`usuario_id`,`permissao_id`),
-  KEY `fk_usuarios_permissoes_permissoes1` (`permissao_id`),
-  KEY `fk_usuarios_permissoes_usuarios1` (`usuario_id`),
-  CONSTRAINT `fk_usuarios_permissoes_permissoes1` FOREIGN KEY (`permissao_id`) REFERENCES `permissoes` (`id_permissao`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_usuarios_permissoes_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `usuarios_permissoes`
---
-
-/*!40000 ALTER TABLE `usuarios_permissoes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios_permissoes` ENABLE KEYS */;
 
 
 
