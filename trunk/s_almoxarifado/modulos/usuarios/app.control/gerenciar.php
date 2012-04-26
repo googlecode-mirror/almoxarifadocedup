@@ -19,7 +19,7 @@
       UsuarioMapper::update($objectUsuario);
       
       $sessao->addVar('msg',1);
-      header('location:index.php?modulo=usuarios&page=list-usuario');
+      header('location:index.php?modulo=usuarios&page=visualizar');
       
   }
   
