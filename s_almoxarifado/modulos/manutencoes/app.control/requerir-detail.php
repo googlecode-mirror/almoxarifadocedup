@@ -19,7 +19,7 @@ if (array_key_exists('m-manu',$_GET)){
     
     $PageVoltarLista = 'm-manutencoes';
 }else{
-    $PageVoltarLista = 'requerir-visualizar';
+    $PageVoltarLista = 'visualizar';
 }
     
 

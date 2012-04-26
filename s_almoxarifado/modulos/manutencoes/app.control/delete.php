@@ -11,7 +11,7 @@
             
             if ($requisicao->getRequisitanteId() != $sessao->getVar('usuario')->id_usuario){
                 $sessao->addVar('msg',2);
-                header('location:index.php?modulo=manutencoes&page=requerir-visualizar');
+                header('location:index.php?modulo=manutencoes&page=visualizar');
                 
             }else{
         
@@ -19,7 +19,7 @@
                 RequerirMapper::RequisicaoDelete($requisicao);
 
                 $sessao->addVar('msg',1);
-                header('location:index.php?modulo=manutencoes&page=requerir-visualizar');
+                header('location:index.php?modulo=manutencoes&page=visualizar');
         
             }
     
