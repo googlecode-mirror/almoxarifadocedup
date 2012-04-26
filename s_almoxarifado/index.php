@@ -1,4 +1,9 @@
 <?php
+
+include_once 'util/TSessao.class.php';
+
+
+
 class TApplication{
     
    
@@ -18,7 +23,6 @@ class TApplication{
                          }
                     }
                 }  
-
            }
     
             
@@ -33,7 +37,9 @@ class TApplication{
                 $page = (isset($_GET['page'])) ? $_GET['page'] : null;
                 $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
                 
-                if (($page != null) and ($logout == null) and (($sessao->getVar('usuario') != null)) or ($page == 'add-usuario')) {
+                $usuario = $sessao->getVar('usuario');
+                
+                if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
                      if ($page == 'panel'){
                           $templatePage = "app.comuns/template/{$page}.phtml";
@@ -60,7 +66,7 @@ class TApplication{
                             require('layout/index.phtml');
                      }
 		}else{
-                    if ($sessao->getVar('usuario') == null){
+                    if ($usuario == null){
                           
                           require("app.comuns/app.control/login.php"); 
                           $templatePage = "app.comuns/template/login.phtml";
@@ -75,7 +81,14 @@ class TApplication{
                }     
 	   }
 }
+
+
+
 TApplication::init();
+
+//include 'app.functions/validate.php';
+//validate();
+
 TApplication::run();
 ?>
 

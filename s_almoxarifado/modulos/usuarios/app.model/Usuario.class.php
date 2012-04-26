@@ -30,6 +30,8 @@ class Usuario {
     private $login_usuario;
     /** @var string */
     private $senha_usuario;
+    /** @var array de objetos tipos Permissao */ // por jomaro
+    private $permissoes_usuario;
    
     function __construct(){
         
