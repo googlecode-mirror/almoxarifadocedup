@@ -12,24 +12,40 @@ function validate()
     
     
     // verifica se o usuario está logado
-    if(isset($sessao->session['user']))
+    if(isset($sessao->session['usuario']))
     {
         // verifica se o endereço está correto
         if(end($path) == 'index.php')
         {
             // impede a pessoa de se logar novamente
-            if($_GET['class'] == 'login')
+            if($_GET['page'] == 'login')
             {
                 header('location: index.php');
             }
             
         }
-        else
+                
+        if($sessao->getVar('usuario'))
         {
-            header('location: index.php');
+            $user = $sessao->getVar('usuario');
+            
+            $permissoes = $user->getPermissoes();
+            
+            $valida = false;
+            
+            foreach($permissoes as $permissao)
+            {
+                if(($permissao->modulo = $_GET['modulo']) && ($permissao->script = $_GET['page']))
+                {
+                    $valida = true;
+                }
+            }
+            
+            if(!valida)
+            {
+                header('location: index.php');
+            }
         }
-        
-        
     }
     else
     {
