@@ -8,6 +8,12 @@
       
      $usuario = new Usuario();
      UsuarioMapper::map($usuario,$_POST);
+     
+     if (($_POST['celular_usuario']) == ''){
+         $usuario->setCelularUsuario(null);
+         
+     }
+     
      UsuarioMapper::insert($usuario);
      
      $sessao->addVar('msg',2);
