@@ -8,7 +8,7 @@ if (array_key_exists('key',$_GET)){
  
     if ($requisicoes['requisitante_id'] != $sessao->getVar('usuario')->id_usuario){
          $sessao->addVar('msg',2);
-         header('location:index.php?modulo=manutencoes&page=requerir-visualizar');
+         header('location:index.php?modulo=manutencoes&page=visualizar');
                 
     }
     
@@ -50,7 +50,7 @@ if (array_key_exists('update',$_POST)){
     RequerirMapper::RequisicaoUpdate($requisicao);
     
     $sessao->addVar('msg',3);
-    header('location:index.php?modulo=manutencoes&page=requerir-visualizar');
+    header('location:index.php?modulo=manutencoes&page=visualizar');
   
 }
 
