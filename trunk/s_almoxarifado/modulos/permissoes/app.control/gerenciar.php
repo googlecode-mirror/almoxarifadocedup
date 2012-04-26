@@ -24,7 +24,7 @@ if (array_key_exists('save', $_POST)){
 
     PermissaoMapper::InsertPermissoes($_GET['key'],$data,$count);
     $sessao->addVar('msg',2);
-    header("location:index.php?modulo=usuarios&page=list-usuario&key={$_GET['key']}");
+    header("location:index.php?modulo=usuarios&page=visualizar&key={$_GET['key']}");
    
 }
 
