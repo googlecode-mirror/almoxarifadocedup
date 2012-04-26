@@ -72,18 +72,20 @@ class RequerirMapper {
     }
     
    
-    static function getRequisicaoByid($id){
+    static function getRequisicaoByResp($id){
         
         TTransaction::open('my_config');
             
          if ($conn = TTransaction::get()){
                
                $sql = 'SELECT R.*,U.nome_usuario,E.nome_estado_requisicao FROM req_manutencao R
-               INNER JOIN usuarios U on
-               (R.requisitante_id = U.id_usuario)
-               INNER JOIN estados_requisicoes E on
+               INNER JOIN manutencoes M ON
+               (R.id_requisicao = M.req_manutencao_id)
+               INNER JOIN usuarios U ON
+               (U.id_usuario = R.requisitante_id)
+               INNER JOIN estados_requisicoes E ON
                (R.estado_id = E.id_estado_requisicao)
-               WHERE deleted = 0 and U.id_usuario = ?
+               WHERE deleted = 0 and M.professor_id = ?
                ORDER BY R.id_requisicao DESC';
                        
                $sth = $conn->prepare($sql);
@@ -154,7 +156,9 @@ class RequerirMapper {
                (R.requisitante_id = U.id_usuario)
                INNER JOIN estados_requisicoes E on
                (R.estado_id = E.id_estado_requisicao)
-               WHERE deleted = 0';
+               WHERE deleted = 0
+                and R.estado_id <> 4
+                and R.estado_id <> 5';
                
               if ($criteria !== null){
                     if ($criteria->getValueCriteria() !== null) {

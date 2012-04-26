@@ -7,7 +7,7 @@ if (array_key_exists('key',$_GET)) {
     $requisicao = new Requerir;
     $requisicao->negar($id);
     
-    header("location:index.php?modulo=manutencoes&page=requerir-detail&key={$id}");
+    header("location:index.php?modulo=manutencoes&page=requerir-visualizar");
 
 }
 ?>

@@ -27,6 +27,22 @@
         <th>Status</th>
         <td><?php echo $requisicao->nome_estado_requisicao; ?><td>
     </tr>
+    <?php 
+    if ($requisicao->estado_id == 3){
+      echo "<tr>
+            <th>Responsável</th>
+            <td>{$usuario['nome_usuario']}</td>
+
+            </tr>
+            
+            <tr>
+            <th>Providência</th>
+            <td>{$manutencao->providencia_manutencao}</td>
+
+            </tr>";
+        
+        
+    }?>
     <tr>
         <th colspan="2">&nbsp</th>
         
@@ -39,7 +55,7 @@
             
         echo"<td><div>
             <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&key={$requisicao->id_requisicao}'>Aprovar</a>
-            <a  class=actions href='index.php?modulo=manutencoes&page=negar&key={$requisicao->id_requisicao}'>Negar</a>
+            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&negar=1&key={$requisicao->id_requisicao}'>Negar</a>
             </div></td>";  
             
         }elseif ($requisicao->estado_id == 2){
@@ -63,7 +79,7 @@
         <th>&nbsp</th>   
     </tr>
      <tr>
-         <th><a href='index.php?modulo=manutencoes&page=requerir-visualizar'>
+         <th><a href='index.php?modulo=manutencoes&page=<?php echo $PageVoltarLista; ?>'>
              Voltar à Lista</a></th>   
     </tr>
     

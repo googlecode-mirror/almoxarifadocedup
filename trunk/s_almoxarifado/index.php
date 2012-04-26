@@ -53,12 +53,11 @@ class TApplication{
                             }
                                      
                             if (file_exists("modulos/{$modulo}/template/{$page}.phtml")){                
-                            $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
-                            
-                         
-                            if (Flash::hasFlashes()) {
-                                $flashes = Flash::getFlashes();
-                            }
+                                
+                                $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
+                                if (Flash::hasFlashes()) {
+                                    $flashes = Flash::getFlashes();
+                                }
                      
    
                             }
