@@ -48,6 +48,12 @@ class Manu {
      */
     private $req_manutencao_id;
     
+    /**
+     *
+     * @var text 
+     */
+    private $comentario_manutencao;
+    
     function __construct(){
         
     }
@@ -94,12 +100,20 @@ class Manu {
         return $this->definitivo_manutencao; 
     }
     
-     function setReqManutencaoId($valor){
+    function setReqManutencaoId($valor){
         $this->req_manutencao_id = $valor; 
     }
     
     function getReqManutencaoId(){
         return $this->req_manutencao_id; 
+    }
+    
+    function setComentarioManutencao($valor){
+        $this->comentario_manutencao = $valor; 
+    }
+    
+    function getComentatioManutencao(){
+        return $this->comentario_manutencao; 
     }
     
     

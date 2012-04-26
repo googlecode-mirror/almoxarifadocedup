@@ -85,7 +85,7 @@ class RequerirMapper {
                (U.id_usuario = R.requisitante_id)
                INNER JOIN estados_requisicoes E ON
                (R.estado_id = E.id_estado_requisicao)
-               WHERE deleted = 0 and M.professor_id = ?
+               WHERE deleted = 0 and R.estado_id = 3 and M.professor_id = ?
                ORDER BY R.id_requisicao DESC';
                        
                $sth = $conn->prepare($sql);

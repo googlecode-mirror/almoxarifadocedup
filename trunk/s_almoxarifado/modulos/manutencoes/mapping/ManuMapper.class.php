@@ -95,6 +95,30 @@ class ManuMapper {
 
     }
     
+    public static function addComents(Manu $manu){
+        
+               TTransaction::open('my_config');
+               if ($conn = TTransaction::get()){
+        
+                    $sql = "UPDATE manutencoes SET comentario_manutencao=?
+                            WHERE req_manutencao_id = ?";
+
+                    $sth = $conn->prepare($sql);
+                    $sth->execute(array($manu->getComentatioManutencao(),
+                                        $manu->getReqManutencaoId()));
+                    
+                    $sql = "UPDATE req_manutencao SET estado_id = 4
+                            WHERE id_requisicao = ?";
+
+                    $sth = $conn->prepare($sql);
+                    $sth->execute(array($manu->getReqManutencaoId()));
+                   
+                    TTransaction::close();
+  
+               }
+
+    }
+    
 }
 
 ?>

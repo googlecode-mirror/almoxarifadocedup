@@ -27,12 +27,16 @@
                                             <li><a href="index.php" class="parent"><span>Panel</span></a></li>
                                             <li><a href="#"><span>Informações</span></a></li>
                                             <li class="last"><a href="#"><span>Contatos</span></a></li>
+                                        
+                                            
                                             <?php if ($sessao->getVar('usuario') == null){
-                                                echo '<li class="login"><a href="index.php"><span>Login</span></a></li>';
+                                                echo '<li><a class=login href="index.php"><span>Login</span></a></li>';
                                             }else{
-                                                echo '<li class="login"><a href="index.php?&logout=1"><span>Logout</span></a></li>';
-                                            }?>  
+                                                echo '<li><a class=login href="index.php?&logout=1"><span>Logout</span></a></li>';
+                                            }?> 
+                                            
                                         </ul>
+                                        
                                 </div>
                                 <?php if ($flashes){ ?>
                                 <div id="alert">

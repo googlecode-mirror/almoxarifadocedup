@@ -18,6 +18,17 @@ if (array_key_exists('confirm',$_POST)){
 
 }
 
+if (array_key_exists('comentario_manutencao', $_POST)){
+    
+    $manu = new Manu;
+    $manu->setReqManutencaoId($id);
+    $manu->setComentarioManutencao($_POST['comentario_manutencao']);
+    ManuMapper::addComents($manu);
+    
+    Utils::redirect('m-manutencoes');
+    
+}
+
 
 
 

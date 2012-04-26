@@ -44,7 +44,7 @@ $(document).ready(function() {
     initDatepicker();
     initFlashes();
     initErrorFields();
-    initChangeStatusDialog();
+    initFormDialog();
     initDeleteDialog();
     intAlertMsg();
 });
@@ -95,17 +95,17 @@ function initDeleteDialog() {
     });
 }
 
-function initChangeStatusDialog() {
-    var changeStatusDialog = $('#janela-dialog');
-    var changeStatusLink = $('.open-link');
-    var changeStatusForm = $('#form-dialog');
-    changeStatusDialog.dialog({
+function initFormDialog() {
+    var Dialog = $('#janela-dialog');
+    var Link = $('.open-link');
+    var Form = $('#form-dialog');
+    Dialog.dialog({
         autoOpen: false,
         modal: true,
         width: 520,
         buttons: {
             'OK': function() {
-                changeStatusForm.submit();
+                Form.submit();
                 $(this).dialog('close');
             },
             'Cancel': function() {
@@ -113,10 +113,10 @@ function initChangeStatusDialog() {
             }
         }
     });
-    changeStatusLink.click(function() {
-    changeStatusForm.attr('action', $(this).attr('href'));
-    changeStatusDialog.dialog('option', 'title', $(this).attr('title'));
-    changeStatusDialog.dialog('open');
+    Link.click(function() {
+    Form.attr('action', $(this).attr('href'));
+    Dialog.dialog('option', 'title', $(this).attr('title'));
+    Dialog.dialog('open');
         return false;
     });
 }
