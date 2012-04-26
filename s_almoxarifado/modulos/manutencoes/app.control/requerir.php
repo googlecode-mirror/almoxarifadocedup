@@ -5,9 +5,14 @@ if (array_key_exists('key',$_GET)){
     $id = $_GET['key'];
     
     $requisicoes = UTils::findById($id,'req_manutencao','id_requisicao');
+ 
+    if ($requisicoes['requisitante_id'] != $sessao->getVar('usuario')->id_usuario){
+         $sessao->addVar('msg',2);
+         header('location:index.php?modulo=manutencoes&page=requerir-visualizar');
+                
+    }
     
 }
-
 
 
 

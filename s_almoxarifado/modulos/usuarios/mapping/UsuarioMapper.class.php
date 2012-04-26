@@ -148,7 +148,7 @@ class UsuarioMapper {
                     }
                }
                
-               $sql .=" ORDER BY U.nome_usuario";
+               $sql .=" ORDER BY U.id_usuario DESC";
                        
                $sth = $conn->prepare($sql);
                $sth->execute();
