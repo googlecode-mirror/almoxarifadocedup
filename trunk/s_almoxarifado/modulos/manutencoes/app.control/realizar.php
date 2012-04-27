@@ -25,7 +25,7 @@ if (array_key_exists('comentario_manutencao', $_POST)){
     $manu->setComentarioManutencao($_POST['comentario_manutencao']);
     ManuMapper::addComents($manu);
     
-    Utils::redirect('m-manutencoes');
+    header('location:index.php?modulo=manutencoes&page=m-manutencoes');
     
 }
 

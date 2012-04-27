@@ -54,15 +54,22 @@
         if ($requisicao->estado_id == 1){
             
         echo"<td><div>
-            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&key={$requisicao->id_requisicao}'>Aprovar</a>
-            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&negar=1&key={$requisicao->id_requisicao}'>Negar</a>
+            <a class=actions href='index.php?modulo=manutencoes&page=aprovar&key={$requisicao->id_requisicao}'>Aprovar</a>
+            <a class=actions href='index.php?modulo=manutencoes&page=aprovar&negar=1&key={$requisicao->id_requisicao}'>Negar</a>
             </div></td>";  
             
         }elseif ($requisicao->estado_id == 2){
     
         echo"<td><div>
-            <a  class=actions href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Realizar</a>
-            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Aprovação</a>
+            <a class=actions href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Realizar</a>
+            <a class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Aprovação</a>
+            </div></td>"; 
+            
+        }elseif ($requisicao->estado_id == 3){
+    
+        echo"<td><div>
+            <a id=actions class=open-link href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Concluir</a>
+            <a class=actions href='index.php?modulo=manutencoes&page=imprimir&key={$requisicao->id_requisicao}'>Imprimir</a>
             </div></td>"; 
             
         }elseif ($requisicao->estado_id == 5){
@@ -86,3 +93,12 @@
     
     
 </table>
+
+    <div id="janela-dialog">
+        <form id="form-dialog" class="form" name="frm" method="post" action="">
+            <fieldset>
+                <label>Comentário:</label>
+                <textarea class="campo" name="comentario_manutencao" ></textarea>
+            </fieldset>
+        </form> 
+    </div>  

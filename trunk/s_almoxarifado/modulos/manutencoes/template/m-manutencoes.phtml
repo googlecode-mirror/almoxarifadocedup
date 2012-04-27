@@ -6,9 +6,7 @@
             <th width="80">Data</th>
             <th width="150">Status</th>
             <th>Detalhes</th>
-            <th>Concluir</th>
-            
-
+                   
         </tr>
      </thead>
       <?php 
@@ -26,9 +24,8 @@
               <td align=left bgcolor={$bgcolor}>{$requisicao->nome_estado_requisicao}</td>
 
               <td align=center bgcolor={$bgcolor}><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&m-manu=1&key={$requisicao->id_requisicao}'>
-                                     <img src='app.misc/images/ico_produtos.png'></a></td>
-              <td align=center bgcolor={$bgcolor}><a class=open-link title='Concluir Manutenção' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>
-                                     <img src='app.misc/images/ico_ok.gif'></a></td>";
+                                     <img src='app.misc/images/ico_produtos.png'></a></td>";
+             
     
      echo "</tr>";
     $i = $i+1;
@@ -38,13 +35,4 @@
     
      </tbody>
 </table>
-    
-    <div id="janela-dialog">
-        <form id="form-dialog" class="form" name="frm" method="post" action="">
-            <fieldset>
-                <label>Comentário:</label>
-                <textarea class="campo" name="comentario_manutencao" ></textarea>
-            </fieldset>
-        </form> 
-    </div>  
 
