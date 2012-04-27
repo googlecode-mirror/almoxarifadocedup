@@ -51,7 +51,7 @@ function validate()
     {
         // redireciona o usuario que não está logado para a pagina de login
         if(!((end($path) == 'index.php') and ($_GET['class'] == 'login'))) 
-        { header('location: index.php?class=login'); }
+        { header('location: index.php'); }
     }
 }
 
