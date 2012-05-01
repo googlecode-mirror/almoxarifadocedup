@@ -20,12 +20,19 @@ if (array_key_exists('confirm',$_POST)){
 
 if (array_key_exists('comentario_manutencao', $_POST)){
     
-    $manu = new Manu;
-    $manu->setReqManutencaoId($id);
-    $manu->setComentarioManutencao($_POST['comentario_manutencao']);
-    ManuMapper::addComents($manu);
-    
-    header('location:index.php?modulo=manutencoes&page=m-manutencoes');
+    $manutencao = UTils::findById($_GET['key'], 'manutencoes', 'req_manutencao_id');
+
+    if ($manutencao['professor_id'] == $sessao->getVar('usuario')->id_usuario){
+        
+        $manu = new Manu;
+        $manu->setReqManutencaoId($id);
+        $manu->setComentarioManutencao($_POST['comentario_manutencao']);
+        ManuMapper::addComents($manu);
+
+        header('location:index.php?modulo=manutencoes&page=m-manutencoes');
+    }else{
+        header('location:index.php?modulo=manutencoes&page=visualizar&erro=concl');
+    }
     
 }
 

@@ -112,6 +112,12 @@ class ManuMapper {
 
                     $sth = $conn->prepare($sql);
                     $sth->execute(array($manu->getReqManutencaoId()));
+                    
+                    $sql = "UPDATE manutencoes SET definitivo_manutencao = 1
+                            WHERE req_manutencao_id = ?";
+
+                    $sth = $conn->prepare($sql);
+                    $sth->execute(array($manu->getReqManutencaoId()));
                    
                     TTransaction::close();
   

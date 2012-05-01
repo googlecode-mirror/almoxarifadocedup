@@ -1,0 +1,25 @@
+<div id="tdiv">
+    <h1>Registro de Chaves</h1>
+    <form method="POST" action="">
+        <label>Usuário:</label>
+        <input class="campo" size="30" type="text" value="<?php echo $usuario['nome_usuario']; ?>" name="nome_usuario"/>
+        <label>Laboratório:</label>
+        <select class="campo" name="laboratorio_id">
+            <?php
+            foreach ($laboratorios as $laboratorio){
+                echo "<option value='{$laboratorio->getIdLaboratorio()}'>{$laboratorio->getNomeLaboratorio()}</option>";
+            }
+            ?>
+        </select>
+        <label>Data:</label>
+        <input class="campo" size="10" type="text" value="<?php echo date("d/m/Y"); ?>" name="dt_inicial_controle"/>
+        <label>Hora:</label>
+        <input class="campo" size="7" type="text" value="<?php echo date("H:i:s"); ?>" name="hora_inicial_controle"/>
+        <label>Obs. (opcional):</label>
+        <textarea cols="23" rows="5" class="campo" name="observacao_controle"></textarea>
+        
+        <input id="bt" type="submit" name="save" value="Salvar"/>
+        <a class="btCancel" href="index.php?modulo=usuarios&page=visualizar">Cancelar</a>
+          
+    </form>
+</div>

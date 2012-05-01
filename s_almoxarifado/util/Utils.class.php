@@ -32,7 +32,7 @@ final class Utils {
     
     /**
      * Format date.
-     * @param DateTime $date date to be formatted for US
+     * @param $date date to be formatted for US
      * @return string formatted date
      */
     public static function conv_data_to_us($date){
@@ -41,6 +41,18 @@ final class Utils {
 	$ano = substr($date,6,4);
 	return "{$ano}-{$mes}-{$dia}";
      }
+     
+    /**
+     * Retorna datetime no formato
+     * para mysql
+     * @param $databr string com date time
+     * @return datetime 
+     */
+     
+     static function formatDateTimeUs($databr) {
+       $date = new DateTime($databr);
+       return $date->format('Y-m-d H:i:s');
+    }
 
     /**
      * Format date and time.

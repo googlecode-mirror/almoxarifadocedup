@@ -8,7 +8,7 @@ class TApplication{
     
    
            static public function init(){
-              
+
                function __autoload($classe){
                    
                    $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;

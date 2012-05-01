@@ -57,7 +57,7 @@ h1{
 
 #bt {
     margin-top:20px;
-    margin-left:150px;
+    margin-left:160px;
     margin-bottom:15px;
     font-size:13pt;
     border: solid;
@@ -68,11 +68,27 @@ h1{
 
 .btNoMaginAndLink{
     text-decoration:none;
+    margin-top:1px;
     font-size:11pt;
     color:black;
     background-color:#f0f0f0;
     padding:1px 4.9px 1px 4.9px;
     border:solid 1px;
+
+    
+}
+
+.btCancel{
+    
+    text-decoration:none;
+    margin-top:1px;
+    font-size:11pt;
+    color:black;
+    background-color:#f0f0f0;
+    padding:1.6px 4.9px 2px 4.9px;
+    border:solid 1px;
+    border-color:#BEBEBE;
+    font-size:13pt;
     
 }
 
@@ -210,10 +226,12 @@ table{
 .detail th{
     padding-right: 20px;
     padding-bottom:5px;
+    
 }
 
 .detail td{
     padding-bottom:5px;
+    
 }
 
 .detail .actions{
