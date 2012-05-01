@@ -1,0 +1,19 @@
+<table align="center" class="table">
+    <thead>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Nº Laboratório</th>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($laboratorios as $lab){
+            echo "<tr>
+                    <td>{$lab->getIdLaboratorio()}</td>
+                    <td align='left'>{$lab->getNomeLaboratorio()}</td>
+                    <td>{$lab->getNumeroLaboratorio()}</td>
+                  </tr>";   
+        }
+        
+        ?>
+    </tbody>
+</table>

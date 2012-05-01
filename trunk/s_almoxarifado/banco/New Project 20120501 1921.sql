@@ -66,13 +66,18 @@ CREATE TABLE `ctrl_chaves` (
   KEY `fk_Controle_Professores1` (`professor_id`),
   CONSTRAINT `fk_Controle_laboratorios` FOREIGN KEY (`laboratorio_id`) REFERENCES `laboratorios` (`id_laboratorio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Controle_Professores1` FOREIGN KEY (`professor_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ctrl_chaves`
 --
 
 /*!40000 ALTER TABLE `ctrl_chaves` DISABLE KEYS */;
+INSERT INTO `ctrl_chaves` (`id_controle`,`professor_id`,`laboratorio_id`,`observacao_controle`,`dt_inicial_controle`,`dt_final_controle`) VALUES 
+ (3,9,5,NULL,'2012-01-05 17:36:09',NULL),
+ (4,2,1,NULL,'2012-01-05 17:37:40',NULL),
+ (5,7,16,NULL,'2012-01-05 17:47:10',NULL),
+ (6,9,2,NULL,'2012-01-05 18:02:17',NULL);
 /*!40000 ALTER TABLE `ctrl_chaves` ENABLE KEYS */;
 
 
@@ -249,6 +254,7 @@ CREATE TABLE `laboratorios` (
   `nome_laboratorio` varchar(100) NOT NULL,
   `numero_laboratorio` int(11) DEFAULT NULL,
   `chave_laboratorio` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 -> chave disponivel\n1 -> chave indisponivel',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_laboratorio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
@@ -257,29 +263,29 @@ CREATE TABLE `laboratorios` (
 --
 
 /*!40000 ALTER TABLE `laboratorios` DISABLE KEYS */;
-INSERT INTO `laboratorios` (`id_laboratorio`,`nome_laboratorio`,`numero_laboratorio`,`chave_laboratorio`) VALUES 
- (1,'Automação',46,0),
- (2,'Hidraulica',47,0),
- (3,'Pneumática',48,0),
- (4,'Ajustagem',49,0),
- (5,'Fresagem',50,0),
- (6,'Desenho',51,0),
- (7,'Medidas Elétricas',52,0),
- (8,'Ensaios Eléricos',53,0),
- (9,'Metalografia',54,0),
- (10,'Marcenaria',55,0),
- (11,'Soldar',56,0),
- (12,'Máquinas Elétricas',58,0),
- (13,'Manutenção Mecânica',59,0),
- (14,'Comandos Elétricos II',60,0),
- (15,'Instalações Prediais II',61,0),
- (16,'Comandos Elétricos I',62,0),
- (17,'Tornearia',63,0),
- (18,'CNC',64,0),
- (19,'Eletrônica',19,0),
- (20,'Eletrônica II',20,0),
- (21,'Eletrônica III',45,0),
- (22,'Marcenaria II',0,0);
+INSERT INTO `laboratorios` (`id_laboratorio`,`nome_laboratorio`,`numero_laboratorio`,`chave_laboratorio`,`deleted`) VALUES 
+ (1,'Automação',46,1,0),
+ (2,'Hidraulica',47,1,0),
+ (3,'Pneumática',48,0,0),
+ (4,'Ajustagem',49,0,0),
+ (5,'Fresagem',50,1,0),
+ (6,'Desenho',51,0,0),
+ (7,'Medidas Elétricas',52,0,0),
+ (8,'Ensaios Eléricos',53,0,0),
+ (9,'Metalografia',54,0,0),
+ (10,'Marcenaria',55,0,0),
+ (11,'Soldar',56,0,0),
+ (12,'Máquinas Elétricas',58,0,0),
+ (13,'Manutenção Mecânica',59,0,0),
+ (14,'Comandos Elétricos II',60,0,0),
+ (15,'Instalações Prediais II',61,0,0),
+ (16,'Comandos Elétricos I',62,1,0),
+ (17,'Tornearia',63,0,0),
+ (18,'CNC',64,0,0),
+ (19,'Eletrônica',19,0,0),
+ (20,'Eletrônica II',20,0,0),
+ (21,'Eletrônica III',45,0,0),
+ (22,'Marcenaria II',0,0,0);
 /*!40000 ALTER TABLE `laboratorios` ENABLE KEYS */;
 
 
@@ -309,8 +315,8 @@ CREATE TABLE `manutencoes` (
 
 /*!40000 ALTER TABLE `manutencoes` DISABLE KEYS */;
 INSERT INTO `manutencoes` (`id_manutencao`,`professor_id`,`data_manutencao`,`providencia_manutencao`,`definitivo_manutencao`,`req_manutencao_id`,`comentario_manutencao`) VALUES 
- (2,3,'2012-04-26','Verificar rede.',0,14,'Internet voltou ao estado normal.'),
- (3,3,'2012-04-26','Verificar computador.',0,10,NULL),
+ (2,3,'2012-04-26','Verificar rede.',1,14,'Internet voltou a funcionar.'),
+ (3,3,'2012-04-26','Verificar computador.',0,10,'Computador voltou a funcionar.'),
  (4,1,'2012-04-26','Verificação',0,15,NULL);
 /*!40000 ALTER TABLE `manutencoes` ENABLE KEYS */;
 
@@ -436,17 +442,8 @@ INSERT INTO `modulos_permissoes_usuarios` (`modulo_permissao_id`,`usuario_id`) V
  (15,8),
  (1,9),
  (2,9),
- (5,9),
- (6,9),
- (7,9),
- (8,9),
- (10,9),
- (11,9),
- (12,9),
- (13,9),
- (15,9),
- (16,9),
- (18,9);
+ (4,9),
+ (16,9);
 /*!40000 ALTER TABLE `modulos_permissoes_usuarios` ENABLE KEYS */;
 
 
@@ -591,12 +588,12 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`,`nome_usuario`,`tipo_usuario_id`,`email_usuario`,`telefone_usuario`,`celular_usuario`,`dt_nascimento_usuario`,`login_usuario`,`senha_usuario`) VALUES 
  (1,'Maria de Souza',2,'test@hotmail.com',11111112,21232133,'1992-10-10','teste','teste'),
  (2,'Luan Luiz Corrêa',5,'testando@gmail.com',22222222,12345324,'1991-10-11','bondcs','bond123'),
- (3,'Santos de Souza ',3,'admin@gmail.com',33333323,11222222,'1986-10-10','admin','admin'),
+ (3,'Administrador',3,'admin@gmail.com',33333323,11222222,'1986-10-10','admin','admin'),
  (4,'João da Rosa Pereira',3,'joao@gmail.com',12312344,31233333,'1981-10-20','joaocs','123'),
  (5,'Joana da Silva Pereira',3,'joana@gmail.com',22222223,33423423,'1987-10-10','joana','123'),
  (6,'Roberto Vieira de Souza',4,'roberto@gmail.com',12312333,31231233,'1992-10-20','roberto','123'),
  (7,'Lucas da Silva Santos',1,'lucas@gmail.com',12312312,12312312,'1977-10-10','lucas','lucas123'),
- (8,'Roberta Martins Corrêa',1,'roberta@gmail.com',23123123,12312312,'1982-10-20','roberta','roberta123'),
+ (8,'Roberta Martins Corrêa',3,'roberta@gmail.com',23123123,12312312,'1982-10-20','roberta','roberta123'),
  (9,'Jarkko Ahola',1,'j.ahola@gmail.com',36328877,NULL,'1991-03-27','jahola','1234');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 

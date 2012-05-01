@@ -15,8 +15,7 @@ class SearchCriteria {
     private $value;
     
     function __construct(){
-        
-        
+           
     }
     
     
