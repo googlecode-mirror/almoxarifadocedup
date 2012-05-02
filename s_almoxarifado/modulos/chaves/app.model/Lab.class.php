@@ -15,6 +15,7 @@ class Lab {
     private $id_laboratorio;
     private $nome_laboratorio;
     private $numero_laboratorio;
+    private $chave_laboratorio;
     
     /* Setters and Getters   */
     
@@ -40,6 +41,14 @@ class Lab {
     
     function getNumeroLaboratorio(){
         return $this->numero_laboratorio;
+    }
+    
+    function setChaveLaboratorio($valor){
+        $this->chave_laboratorio = $valor;
+    }
+    
+    function getChaveLaboratorio(){
+        return $this->chave_laboratorio;
     }
 }
 

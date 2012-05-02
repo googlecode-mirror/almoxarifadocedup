@@ -24,7 +24,11 @@ class LabMapper {
         
         if (array_key_exists('numero_laboratorio',$propriedades)){
             $lab->setNumeroLaboratorio($propriedades['numero_laboratorio']);
-        }    
+        }
+        
+        if (array_key_exists('chave_laboratorio',$propriedades)){
+            $lab->setChaveLaboratorio($propriedades['chave_laboratorio']);
+        }   
     }
     
     public static function getLabs(SearchCriteria $condicao = null){
@@ -40,6 +44,8 @@ class LabMapper {
                         $sql .=" AND chave_laboratorio = {$condicao->getValueCriteria()}";
                     }
                }
+               
+               $sql .= " ORDER BY numero_laboratorio";
                                                 
                $sth = $conn->prepare($sql);
                $sth->execute();

@@ -1,19 +1,52 @@
-<table align="center" class="table">
+<table border="1" rules="rows" align="center" class="table">
     <thead>
         <th>Código</th>
         <th>Nome</th>
         <th>Nº Laboratório</th>
+        <th>Editar</th>
+        <th>----</th>
+        <th>----</th>
     </thead>
     <tbody>
         <?php
+        $i = 0;
         foreach ($laboratorios as $lab){
-            echo "<tr>
+            $color = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';
+                if ($lab->getChaveLaboratorio() == '1'){
+                    $color = '#FF7F50';
+                }
+            
+            echo "<tr bgcolor='{$color}'>
                     <td>{$lab->getIdLaboratorio()}</td>
                     <td align='left'>{$lab->getNomeLaboratorio()}</td>
-                    <td>{$lab->getNumeroLaboratorio()}</td>
-                  </tr>";   
+                    <td>{$lab->getNumeroLaboratorio()}</td>";
+                    echo "<td><a title='Editar Laboratório' href='index.php?modulo=chaves&page= &labkey={$lab->getIdLaboratorio()}'>
+                                   <img src='app.misc/images/ico_edit.png'></a></td>";
+                    if ($lab->getChaveLaboratorio() == '1'){
+                         echo "<td><a title='Detalhes Chave' href='index.php?modulo=chaves&page=chave-detail&labkey={$lab->getIdLaboratorio()}'>
+                                   <img src='app.misc/images/ico_produtos.png'></a></td>";
+                         echo "<td><a class=open-link title='Concluir Chave' href='index.php?modulo=chaves&page=gerenciar&labkey={$lab->getIdLaboratorio()}'>
+                                   <img src='app.misc/images/ico_ok02.png'></a></td>";
+                    }else{
+                         echo "<td>&nbsp</td>
+                               <td>&nbsp</td>";
+                    }
+                    
+            echo "</tr>";
+        $i++;            
         }
         
         ?>
     </tbody>
 </table>
+<div style="text-align:center; padding-top:20px">
+    <a class="btNoMaginAndLink" href="">Adicionar</a>
+</div>
+
+<div id="janela-dialog">
+        <form id="form-dialog" class="form" name="frm" method="post" action="">
+            <fieldset>
+                <label>Tem certeza?</label>
+            </fieldset>
+        </form> 
+</div>  

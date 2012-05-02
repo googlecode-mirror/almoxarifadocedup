@@ -24,17 +24,17 @@
         
     $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
     
-    echo "<tr>
-              <td align=center bgcolor={$bgcolor}>{$usuario->id_usuario}</td>
-              <td bgcolor={$bgcolor}>{$usuario->nome_usuario}</td>
-              <td bgcolor={$bgcolor}>{$usuario->nome_tipo}</td>
-              <td bgcolor={$bgcolor}>{$usuario->email_usuario}</td>
-              <td bgcolor={$bgcolor}>{$usuario->telefone_usuario}</td>
-              <td bgcolor={$bgcolor}><a title='Editar Usuário' href='index.php?modulo=usuarios&page=gerenciar&key={$usuario->id_usuario}'>
+    echo "<tr bgcolor='{$bgcolor}'>
+              <td align=center >{$usuario->id_usuario}</td>
+              <td>{$usuario->nome_usuario}</td>
+              <td>{$usuario->nome_tipo}</td>
+              <td>{$usuario->email_usuario}</td>
+              <td>{$usuario->telefone_usuario}</td>
+              <td><a title='Editar Usuário' href='index.php?modulo=usuarios&page=gerenciar&key={$usuario->id_usuario}'>
                                      <img src='app.misc/images/ico_edit.png'></a></td>
-              <td bgcolor={$bgcolor}><a title='Editar Pemissões' href='index.php?modulo=permissoes&page=gerenciar&key={$usuario->id_usuario}'>
+              <td><a title='Editar Pemissões' href='index.php?modulo=permissoes&page=gerenciar&key={$usuario->id_usuario}'>
                                      <img src='app.misc/images/ico_clientes.png'></a></td>
-              <td bgcolor={$bgcolor}><a title='Registrar Chave' href='index.php?modulo=chaves&page=gerenciar&key={$usuario->id_usuario}'>
+              <td><a title='Registrar Chave' href='index.php?modulo=chaves&page=gerenciar&key={$usuario->id_usuario}'>
                                      <img src='app.misc/images/ico_chave02.jpg'></a></td>
           </tr>";
     $i = $i+1;

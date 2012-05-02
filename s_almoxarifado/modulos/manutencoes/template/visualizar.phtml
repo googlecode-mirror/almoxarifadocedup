@@ -43,26 +43,26 @@
         
     $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
     
-    echo "<tr>
-              <td align=center bgcolor={$bgcolor}>{$requisicao->id_requisicao}</td>
-              <td bgcolor={$bgcolor}>{$requisicao->nome_usuario}</td>
-              <td bgcolor={$bgcolor}>{$databr}</td>
-              <td bgcolor={$bgcolor}>{$requisicao->nome_estado_requisicao}</td>
+    echo "<tr bgcolor={$bgcolor}>
+              <td>{$requisicao->id_requisicao}</td>
+              <td>{$requisicao->nome_usuario}</td>
+              <td>{$databr}</td>
+              <td>{$requisicao->nome_estado_requisicao}</td>
 
-              <td align=center bgcolor={$bgcolor}><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
+              <td align=center ><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_produtos.png'></a></td>";
               
               
               if ($requisicao->estado_id == 1){
               
-              echo "<td align=center bgcolor={$bgcolor}><a title='Editar requisição' href='index.php?modulo=manutencoes&page=requerir&key={$requisicao->id_requisicao}'>
+              echo "<td align=center ><a title='Editar requisição' href='index.php?modulo=manutencoes&page=requerir&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_edit.png'></a></td>
-                   <td align=center bgcolor={$bgcolor}><a title='Excluir requisição' href='index.php?modulo=manutencoes&question=1&page=requerir-visualizar&key={$requisicao->id_requisicao}'>
+                   <td align=center ><a title='Excluir requisição' href='index.php?modulo=manutencoes&question=1&page=visualizar&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_delete.png'></a></td>";  
                   
               }else{
-                  echo "<td bgcolor={$bgcolor}>&nbsp</td>
-                        <td bgcolor={$bgcolor}>&nbsp</td>";
+                  echo "<td>&nbsp</td>
+                        <td>&nbsp</td>";
               }
               
      echo "</tr>";
@@ -78,7 +78,7 @@ if (isset($_GET['question'])){
       if ($_GET['question'] == 1){
            new TQuestion('Você realmente gostaria de deletar?',
                     "index.php?modulo=manutencoes&page=delete&key={$_GET['key']}",
-                     'index.php?modulo=manutencoes&page=requerir-visualizar');
+                     'index.php?modulo=manutencoes&page=visualizar');
       }
  }
 

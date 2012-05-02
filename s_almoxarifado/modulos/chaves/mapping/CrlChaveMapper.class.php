@@ -69,6 +69,32 @@ class CrlChaveMapper {
          }
             
     }
+    
+    static function ConcluiCrlChave(CrlChave $ch){
+        TTransaction::open('my_config');
+        
+        if ($conn = TTransaction::get()){
+
+               $sql = "UPDATE laboratorios SET chave_laboratorio=0
+                       WHERE id_laboratorio = ?";
+               
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($ch->getLaboratorioId()));
+               
+               $sql = "UPDATE ctrl_chaves SET dt_final_controle=?
+                       WHERE laboratorio_id = ?";
+               
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($ch->getDtFinalControle(),
+                                    $ch->getLaboratorioId()));
+               
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+            
+    }
 }
 
 ?>
