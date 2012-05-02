@@ -34,5 +34,22 @@
        
        header('location:index.php?modulo=chaves&page=visualizar');
    }
+   
+   if (array_key_exists('lab',$_GET)){
+       $page = 'add-lab';
+       
+      if (array_key_exists('saveLab',$_POST)){
+       
+            $data = array('nome_laboratorio' => $_POST['nome_laboratorio'],
+                            'numero_laboratorio' => $_POST['numero_laboratorio']);
+
+            $lab = new Lab();          
+            LabMapper::map($lab, $data);
+            LabMapper::addLabs($lab);
+
+            header('location:index.php?modulo=chaves&page=visualizar');
+      }        
+       
+   }
 
 ?>

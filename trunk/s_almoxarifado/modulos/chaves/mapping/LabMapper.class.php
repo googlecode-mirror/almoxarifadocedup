@@ -67,6 +67,29 @@ class LabMapper {
             
         
     }
+    
+    public static function addLabs(Lab $lab){
+        
+        TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+               $sql = "INSERT INTO laboratorios 
+                       (nome_laboratorio,
+                        numero_laboratorio) VALUES
+                                            (?,?)";
+                                                
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($lab->getNomeLaboratorio(),
+                                   $lab->getNumeroLaboratorio()));
+             
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+            
+        
+    }
 }
 
 ?>
