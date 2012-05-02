@@ -20,8 +20,19 @@
        CrlChaveMapper::map($ch,$data);
        CrlChaveMapper::addCrlChave($ch);
        
-       header('location:index.php?modulo=usuarios&page=visualizar');
+       header('location:index.php?modulo=chaves&page=visualizar');
        
+   }
+   
+   if (array_key_exists('labkey', $_GET)){
+        
+       $crlchave = new CrlChave;
+       $crlchave->setLaboratorioId($_GET['labkey']);
+       $crlchave->setDtFinalControle(date('Y-m-d H:i:s'));
+       
+       CrlChaveMapper::ConcluiCrlChave($crlchave);
+       
+       header('location:index.php?modulo=chaves&page=visualizar');
    }
 
 ?>
