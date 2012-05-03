@@ -12,4 +12,5 @@ class Config{
 	}
 }
 //pgsql:host=localhost;dbname=aula
+
 ?>
