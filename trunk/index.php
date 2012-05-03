@@ -1,93 +1,12 @@
-<?php
-
-include_once 'util/TSessao.class.php';
-
-
-
-class TApplication{
-    
-   
-           static public function init(){
-
-               function __autoload($classe){
-                   
-                   $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
-
-                   $pastas = array('app.ado','app.config','app.widgets','util','app.comuns/app.model','app.comuns/mapping',
-                            "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
-                    
-                   foreach ($pastas as $pasta){
-                         if (file_exists("{$pasta}/{$classe}.class.php")) {
-
-                             include_once "{$pasta}/{$classe}.class.php";
-                         }
-                    }
-                }  
-           }
-    
-            
-            static public function run(){
-                
-                $sessao = new TSessao(true);
-                $flashes = null;
-               
-                
-      
-                $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
-                $page = (isset($_GET['page'])) ? $_GET['page'] : null;
-                $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
-                
-                $usuario = $sessao->getVar('usuario');
-                
-                if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
-                    
-                     if ($page == 'panel'){
-                          $templatePage = "app.comuns/template/{$page}.phtml";
-                          require('layout/index.phtml');
-                     
-           
-                     }elseif ($modulo != null) {
-
-                            if (file_exists("modulos/{$modulo}/app.control/{$page}.php")){                  
-                                require("modulos/{$modulo}/app.control/{$page}.php"); 
-                            }
-                                     
-                            if (file_exists("modulos/{$modulo}/template/{$page}.phtml")){                
- 
-                                $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
-                                if (Flash::hasFlashes()) {
-                                    $flashes = Flash::getFlashes();
-                                }
-                     
-   
-                            }
-                                     
-                            require('layout/index.phtml');
-                     }
-		}else{
-                    if ($usuario == null){
-                          
-                          require("app.comuns/app.control/login.php"); 
-                          $templatePage = "app.comuns/template/login.phtml";
-                          require('layout/index.phtml');
-                         
-                    }else{
-                          require("app.comuns/app.control/login.php");
-                          $templatePage = "app.comuns/template/panel.phtml";
-                          require('layout/index.phtml');
-                                
-                    }
-               }     
-          }
-}
-
-
-
-TApplication::init();
-
-//include 'app.functions/validate.php';
-//validate();
-
-TApplication::run();
-?>
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        // put your code here
+        ?>
+    </body>
+</html>
