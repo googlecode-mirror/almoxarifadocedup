@@ -12,41 +12,25 @@
  */
 class Lab {
     
-    private $id_laboratorio;
-    private $nome_laboratorio;
-    private $numero_laboratorio;
-    private $chave_laboratorio;
+    public $id_laboratorio;
+    public $nome_laboratorio;
+    public $numero_laboratorio;
+    public $chave_laboratorio;
     
-    /* Setters and Getters   */
-    
-    function setIdLaboratorio($valor){
-        $this->id_laboratorio = $valor;
-    }
+    /* and Getters   */
     
     function getIdLaboratorio(){
         return $this->id_laboratorio;
-    }
-    
-    function setNomeLaboratorio($valor){
-        $this->nome_laboratorio = $valor;
     }
     
     function getNomeLaboratorio(){
         return $this->nome_laboratorio;
     }
     
-    function setNumeroLaboratorio($valor){
-        $this->numero_laboratorio = $valor;
-    }
-    
     function getNumeroLaboratorio(){
         return $this->numero_laboratorio;
     }
-    
-    function setChaveLaboratorio($valor){
-        $this->chave_laboratorio = $valor;
-    }
-    
+  
     function getChaveLaboratorio(){
         return $this->chave_laboratorio;
     }

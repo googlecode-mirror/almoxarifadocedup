@@ -49,15 +49,9 @@ class LabMapper {
                                                 
                $sth = $conn->prepare($sql);
                $sth->execute();
-               $results = $sth->fetchALL(); 
+               $results = $sth->fetchAll(PDO::FETCH_CLASS,'Lab'); 
                
-               foreach ($results as $result){
-                   $lab = new Lab();
-                   self::map($lab,$result);
-                   $objs[] = $lab;
-                   
-               }
-               return $objs;
+               return $results;
                
                TTransaction::close();
 
