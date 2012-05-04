@@ -4,7 +4,22 @@ include_once 'util/TSessao.class.php';
 //test//
 class TApplication{
     
-   
+    static private $styleLink = array('principal');
+    
+    static private $scriptLink = array();
+    
+    static public function setStyle($estilo)
+    {
+        if(!in_array($estilo, self::$styleLink)) 
+            array_push (self::$styleLink,$estilo);
+    }
+
+    static public function setScript($script)
+    {
+        if(!in_array($script, self::$scriptLink)) 
+                self::$scriptLink[] = $script;
+    }    
+    
            static public function init(){
 
                function __autoload($classe){
@@ -29,12 +44,16 @@ class TApplication{
                 $sessao = new TSessao(true);
                 $flashes = null;
 
-      
                 $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
                 $page = (isset($_GET['page'])) ? $_GET['page'] : null;
                 $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
                 
                 $usuario = $sessao->getVar('usuario');
+                
+                include 'app.functions/validate.php';
+                validate($usuario);
+                
+                var_dump($usuario->permissoes);
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
@@ -82,8 +101,7 @@ class TApplication{
 
 TApplication::init();
 
-//include 'app.functions/validate.php';
-//validate();
+
 
 TApplication::run();
 ?>
