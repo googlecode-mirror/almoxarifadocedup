@@ -48,6 +48,10 @@ class LoginMapper {
                $result = $sth->fetch(PDO::FETCH_OBJ);
                
                if ($result){
+                   
+                   include 'app.functions/buscaPermissoes.php';
+                   $result->permissoes = buscaPermissoes($result->id_usuario);
+                   
                    $sessao->addVar('usuario',$result);
                    header('location:index.php');
                }else{
