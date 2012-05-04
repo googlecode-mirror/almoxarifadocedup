@@ -5,53 +5,43 @@
  * and open the template in the editor.
  */
 
-function validate()
+function validate($usuario)
 {
-    // obtem o nome do arquivo que está sendo acessado
-    $path = explode("/",$_SERVER['SCRIPT_NAME']);
-    
-    
     // verifica se o usuario está logado
-    if(isset($sessao->session['usuario']))
-    {
-        // verifica se o endereço está correto
-        if(end($path) == 'index.php')
+    if($usuario)
+    {          
+        if($_GET)
         {
-            // impede a pessoa de se logar novamente
-            if($_GET['page'] == 'login')
-            {
-                header('location: index.php');
-            }
+            $permissoes = $usuario->permissoes;
             
-        }
+            //$valida = false;
+
+            if(isset($permissoes[$_GET['modulo']]))
+            {
+                if(in_array($_GET['page'],$permissoes[$_GET['modulo']])) $valida = true;
                 
-        if($sessao->getVar('usuario'))
-        {
-            $user = $sessao->getVar('usuario');
-            
-            $permissoes = $user->getPermissoes();
-            
-            $valida = false;
-            
-            foreach($permissoes as $permissao)
-            {
-                if(($permissao->modulo = $_GET['modulo']) && ($permissao->script = $_GET['page']))
+                /*foreach($permissoes[$_GET['modulo']] as $permissao)
                 {
-                    $valida = true;
-                }
+                    if(in_array($_GET['page'],$permissao))
+                    {
+                        $valida = true;
+                        break;
+                    }
+                }*/
             }
             
-            if(!valida)
+            if(!$valida)
             {
+                // se o usuario não tem permissao redireciona pra pagina principal
                 header('location: index.php');
             }
         }
     }
     else
     {
-        // redireciona o usuario que não está logado para a pagina de login
-        if(!((end($path) == 'index.php') and ($_GET['class'] == 'login'))) 
-        { header('location: index.php'); }
+        // redireciona o usuario que não está logado para a pagina de login pra não exibir nada no get
+        if($_GET != null) 
+           header('location: index.php');
     }
 }
 
