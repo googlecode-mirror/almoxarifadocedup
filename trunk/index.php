@@ -1,7 +1,6 @@
 <?php
 
 include_once 'util/TSessao.class.php';
-//test//
 class TApplication{
     
     static private $styleLink = array('principal');
@@ -53,8 +52,6 @@ class TApplication{
                 include 'app.functions/validate.php';
                 validate($usuario);
                 
-                var_dump($usuario->permissoes);
-                
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
                      if ($page == 'panel'){
@@ -100,8 +97,5 @@ class TApplication{
 
 
 TApplication::init();
-
-
-
 TApplication::run();
 ?>
