@@ -28,11 +28,7 @@ class TApplication{
                 
                 $sessao = new TSessao(true);
                 $flashes = null;
-               
-                //include_once 'app.functions/buscaPermissoes.php';
-                //var_dump(buscaPermissoes($sessao->getVar('usuario')->id_usuario));
-                
-                var_dump($sessao->getVar('usuario'));
+
       
                 $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
                 $page = (isset($_GET['page'])) ? $_GET['page'] : null;
