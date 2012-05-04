@@ -127,6 +127,31 @@ final class Utils {
         
     }
     
+    public static function getById($id,$tabela,$campo_chave,$class_model){
+        
+         TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+               $sql = "SELECT * FROM {$tabela}
+                      WHERE {$campo_chave} = ?";
+                                                
+               
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($id));
+            
+               $result = $sth->fetchObject($class_model);
+               
+               return $result;
+               
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+        
+        
+    }
+    
     /**
      * Obter todos os registros
      * @return Array com o resultado

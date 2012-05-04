@@ -47,6 +47,7 @@ $(document).ready(function() {
     initFormDialog();
     initDeleteDialog();
     intAlertMsg();
+    initFormDelete();
 });
 
 function initDatepicker() {
@@ -99,6 +100,32 @@ function initFormDialog() {
     var Dialog = $('#janela-dialog');
     var Link = $('.open-link');
     var Form = $('#form-dialog');
+    Dialog.dialog({
+        autoOpen: false,
+        modal: true,
+        width: 520,
+        buttons: {
+            'OK': function() {
+                Form.submit();
+                $(this).dialog('close');
+            },
+            'Cancel': function() {
+                $(this).dialog('close');
+            }
+        }
+    });
+    Link.click(function() {
+    Form.attr('action', $(this).attr('href'));
+    Dialog.dialog('option', 'title', $(this).attr('title'));
+    Dialog.dialog('open');
+        return false;
+    });
+}
+
+function initFormDelete() {
+    var Dialog = $('#janela-delete');
+    var Link = $('.open-link-delete');
+    var Form = $('#form-delete');
     Dialog.dialog({
         autoOpen: false,
         modal: true,
