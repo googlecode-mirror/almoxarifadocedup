@@ -50,7 +50,7 @@ class TApplication{
                 $usuario = $sessao->getVar('usuario');
                 
                 include 'app.functions/validate.php';
-                validate($usuario);
+                validate($usuario);           
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
