@@ -69,6 +69,16 @@
 
             header('location:index.php?modulo=chaves&page=visualizar');
       } 
+      
+      if (array_key_exists('labkeydelete')){
+          
+          $lab = new Lab();
+          $lab->setIdLaboratorio($_GET['labkeydelete']);
+          LabMapper::deleteLab($lab);
+          
+          header('location:index.php?modulo=chaves&page=visualizar');
+  
+      }
        
    }
 
