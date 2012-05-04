@@ -20,14 +20,6 @@ function validate($usuario)
             {
                 if(in_array($_GET['page'],$permissoes[$_GET['modulo']])) $valida = true;
                 
-                /*foreach($permissoes[$_GET['modulo']] as $permissao)
-                {
-                    if(in_array($_GET['page'],$permissao))
-                    {
-                        $valida = true;
-                        break;
-                    }
-                }*/
             }
             
             if(!$valida)

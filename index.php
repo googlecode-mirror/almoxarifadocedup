@@ -1,6 +1,7 @@
 <?php
 
 include_once 'util/TSessao.class.php';
+
 class TApplication{
     
     static private $styleLink = array('principal');
