@@ -70,7 +70,7 @@
             header('location:index.php?modulo=chaves&page=visualizar');
       } 
       
-      if (array_key_exists('labkeydelete')){
+      if (array_key_exists('labkeydelete',$_GET)){
           
           $lab = new Lab();
           $lab->setIdLaboratorio($_GET['labkeydelete']);

@@ -91,11 +91,29 @@ class LabMapper {
                $sql = "UPDATE Laboratorios SET nome_laboratorio=?,
                                                numero_laboratorio=?
                        WHERE id_laboratorio = ?";
-               var_dump($lab);                                 
+                             
                $sth = $conn->prepare($sql);
                $sth->execute(array($lab->nome_laboratorio,
                                    $lab->numero_laboratorio,
                                    $lab->id_laboratorio));
+             
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+    }
+    
+    public static function deleteLab(Lab $lab){
+        
+        TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+               $sql = "UPDATE Laboratorios SET deleted=1
+                       WHERE id_laboratorio = ?";
+                             
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($lab->id_laboratorio));
              
                TTransaction::close();
 
