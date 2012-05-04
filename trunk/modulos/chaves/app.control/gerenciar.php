@@ -1,5 +1,5 @@
 <?php
-    
+
    if (array_key_exists('key',$_GET)){
        $usuario = Utils::findById($_GET['key'],'usuarios', 'id_usuario');
        
@@ -38,6 +38,12 @@
    if (array_key_exists('lab',$_GET)){
        $page = 'add-lab';
        
+      if (array_key_exists('labkeyedit',$_GET)){
+          
+          $lab = Utils::getById($_GET['labkeyedit'], 'laboratorios', 'id_laboratorio', 'Lab');
+         
+      }
+       
       if (array_key_exists('saveLab',$_POST)){
        
             $data = array('nome_laboratorio' => $_POST['nome_laboratorio'],
@@ -48,7 +54,21 @@
             LabMapper::addLabs($lab);
 
             header('location:index.php?modulo=chaves&page=visualizar');
-      }        
+            
+      }
+          
+      if(array_key_exists('updateLab',$_POST)){
+  
+            $data = array('id_laboratorio' => $_POST['id_laboratorio'],
+                            'nome_laboratorio' => $_POST['nome_laboratorio'],
+                            'numero_laboratorio' => $_POST['numero_laboratorio']);
+
+            $lab = new Lab();          
+            LabMapper::map($lab, $data);
+            LabMapper::updateLab($lab);
+
+            header('location:index.php?modulo=chaves&page=visualizar');
+      } 
        
    }
 

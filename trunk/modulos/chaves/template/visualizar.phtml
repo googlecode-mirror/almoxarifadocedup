@@ -3,9 +3,10 @@
         <th>Código</th>
         <th>Nome</th>
         <th>Nº Laboratório</th>
-        <th>Editar</th>
         <th>----</th>
         <th>----</th>
+        <th>----</th>
+        <th></th>
     </thead>
     <tbody>
         <?php
@@ -20,8 +21,7 @@
                     <td>{$lab->id_laboratorio}</td>
                     <td align='left'>{$lab->nome_laboratorio}</td>
                     <td>{$lab->numero_laboratorio}</td>";
-                    echo "<td><a title='Editar Laboratório' href='index.php?modulo=chaves&page= &labkey={$lab->id_laboratorio}'>
-                                   <img src='app.misc/images/ico_edit.png'></a></td>";
+                    
                     if ($lab->chave_laboratorio == '1'){
                          echo "<td><a title='Detalhes Chave' href='index.php?modulo=chaves&page=chave-detail&labkey={$lab->id_laboratorio}'>
                                    <img src='app.misc/images/ico_produtos.png'></a></td>";
@@ -31,6 +31,10 @@
                          echo "<td>&nbsp</td>
                                <td>&nbsp</td>";
                     }
+                    echo "<td><a title='Editar Laboratório' href='index.php?modulo=chaves&page=gerenciar&lab=1&labkeyedit={$lab->id_laboratorio}'>
+                                   <img src='app.misc/images/ico_edit.png'></a></td>";
+                    echo "<td><a class=open-link-delete title='Deletar Laboratório' href='index.php?modulo=chaves&page=gerenciar&lab=1&labkeyedit={$lab->id_laboratorio}'>
+                                   <img src='app.misc/images/ico_delete.png'></a></td>";
                     
             echo "</tr>";
         $i++;            
@@ -49,4 +53,12 @@
                 <label>Tem certeza?</label>
             </fieldset>
         </form> 
-</div>  
+</div>
+
+<div id="janela-delete">
+        <form id="form-delete" class="form" name="frm" method="post" action="">
+            <fieldset>
+                 Deseja deletar este Laboratório?
+            </fieldset>
+        </form> 
+</div>

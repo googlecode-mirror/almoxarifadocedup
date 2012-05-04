@@ -17,22 +17,20 @@ class Lab {
     public $numero_laboratorio;
     public $chave_laboratorio;
     
-    /* and Getters   */
-    
-    function getIdLaboratorio(){
-        return $this->id_laboratorio;
+    function setIdLaboratorio($valor){
+        $this->id_laboratorio = $valor;   
     }
     
-    function getNomeLaboratorio(){
-        return $this->nome_laboratorio;
+    function setNomeLaboratorio($valor){
+        $this->nome_laboratorio = $valor;
     }
     
-    function getNumeroLaboratorio(){
-        return $this->numero_laboratorio;
+    function setNumeroLaboratorio($valor){
+        $this->numero_laboratorio = $valor;
     }
   
-    function getChaveLaboratorio(){
-        return $this->chave_laboratorio;
+    function setChaveLaboratorio($valor){
+        $this->chave_laboratorio = $valor;
     }
 }
 
