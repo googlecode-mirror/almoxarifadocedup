@@ -4,21 +4,16 @@
 		<head>
 			<title>Cedup - Almoxarifado</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<link type="text/css" href="app.misc/css/menu.css" rel="stylesheet" ></link>
-                        <link type="text/css" href="app.misc/css/redmond/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-                        <link type="text/css" href="app.misc/css/login.css" rel="stylesheet" ></link>
-			<link href="app.misc/css/style.css" rel="stylesheet" type="text/css" ></link>
-			<script type="text/javascript" src="app.misc/js/jquery.js"></script>
-			<script type="text/javascript" src="app.misc/js/menu.js"></script>
-                        <link type="text/css" href="app.misc/css/redmond/jquery-ui-1.8.16.custom.css" rel="stylesheet" ></link>
-                        <script type="text/javascript" src="app.misc/js/jquery-1.6.2.min.js"></script>
-                        <script type="text/javascript" src="app.misc/js/jquery-ui-1.8.16.custom.min.js"></script>
-                        <script type="text/javascript" src="app.misc/js/script.js"></script>
-                        <link href="app.misc/css/estilo.css" type="text/css" rel="stylesheet" title="CSS" principal="" media="all"></link>
-			
+<?php
+foreach(TApplication::$styleLink as $style)
+    echo '			<link type="text/css" href="app.misc/css/'.$style.'.css" rel="stylesheet" />',"\n";
+foreach(TApplication::$scriptLink as $script)
+    echo '			<script type="text/javascript" src="app.misc/js/'.$script.'.js"></script>',"\n";
+?>
 		</head>
 	<body>
-		<div id="corpo">
+                <div id="corpo">
+                    <?php $menu->show(); ?>
 			<div id="topo">
 					
 			</div>
