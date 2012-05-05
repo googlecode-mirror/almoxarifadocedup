@@ -16,7 +16,7 @@ class TMenu{
 		foreach($this->itens as $modulo=>$scripts)
 		{
 			echo '  <li class="menu-item">',"\n",
-'   <img src="app.misc/images/menu/'.$modulo.'.png" alt="'.$modulo.'" height="50" width="50" />',"\n",
+'   <img src="app.misc/images/menu/'.$modulo.'.png" alt="'.$modulo.'" class="float" height="50" width="50" />',"\n",
 '       <ul id="id-'.$modulo.'" class="submenu-definition">',"\n";
 			
 			foreach($scripts as $script)
