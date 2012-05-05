@@ -34,6 +34,11 @@ li.menu-item:hover ul
 	visibility: visible;
 }
 
+img.float
+{
+    float: left;
+}
+
 ul.submenu-definition
 {
 	display: block;
@@ -41,9 +46,6 @@ ul.submenu-definition
 	height: auto;
 	float: left;
 	padding-left: 0;
-	position: relative;
-	left: 50px;
-	top:-50;
 	border: 1px solid;
 }
 
