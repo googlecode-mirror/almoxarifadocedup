@@ -34,7 +34,7 @@ li.menu-item:hover ul
 	visibility: visible;
 }
 
-img.float
+li.menu-item img
 {
     float: left;
 }

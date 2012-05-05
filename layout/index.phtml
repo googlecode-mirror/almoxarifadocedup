@@ -13,7 +13,7 @@ foreach(TApplication::$scriptLink as $script)
 		</head>
 	<body>
                 <div id="corpo">
-                    <?php $menu->show(); ?>
+                    <?php if(isset($usuario->permissoes)) $menu->show(); ?>
 			<div id="topo">
 					
 			</div>
