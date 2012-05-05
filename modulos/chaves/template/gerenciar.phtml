@@ -7,7 +7,7 @@
         <select class="campo" name="laboratorio_id">
             <?php
             foreach ($laboratorios as $laboratorio){
-                echo "<option value='{$laboratorio->getIdLaboratorio()}'>{$laboratorio->getNomeLaboratorio()}</option>";
+                echo "<option value='{$laboratorio->id_laboratorio}'>{$laboratorio->nome_laboratorio}</option>";
             }
             ?>
         </select>
