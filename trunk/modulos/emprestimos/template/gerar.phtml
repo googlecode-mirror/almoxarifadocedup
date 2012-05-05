@@ -1,0 +1,47 @@
+<div style="text-align:left;" id="box">
+    <form style="width:530px;" class="form2" method="POST" action="">
+        <label style="padding-right:10px;"><span>Requisitante:</span>
+            <input style="width:250px;" type="text" name="nome_requisitante" value="">
+        </label><br/>
+        <label><span>Responsável:</span>
+            <input style="width:250px" type="text" name="nome_responsável" value="">
+        </label><br/>
+        <label><span>Data Inicial:</span>
+            <input type="text" name="dt_inicial_emprestimo" value="">
+        </label><br/>
+        
+        <fieldset>
+            <legend align="right">
+                <a class="btNoMaginAndLink open-linkMat" href="index.php?modulo=emprestimos&page=gerar&add-mat=1">Adicionar</a>
+            </legend>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="300px">Material</th>
+                        <th width="50px">Qtd</th>
+                        <th width="100px">Entrega</th>
+                    </tr>
+                </thead>
+            </table>
+        </fieldset>
+        
+        <input type="submit" name="save" value="Salvar"/>
+    </form>
+</div>
+<div width="700" id="janela-dialogMat">
+    <form id="form-dialogMat" method="POST" action="">
+        <label>
+            <span>Material</span>
+            <input style="width:300px;" type="text" name="item">
+        </label>
+        <label>
+            <span>Qtd</span>
+            <input style="width:50px;" type="text" name="item_qtd">
+        </label>
+        <label>
+            <span>Entrega</span>
+            <input style="width:100px;" class="text datepicker" type="text" name="item_entrega">
+        </label>
+        
+    </form>
+</div>

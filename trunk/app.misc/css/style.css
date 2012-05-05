@@ -301,3 +301,40 @@ table{
     width: 70px;
     font-weight: bold;
 }
+
+.form2 {
+    margin:0 auto;
+    clear: right;
+    width: 100%;
+    overflow: hidden;
+}
+
+.form2 .field {
+    clear: both;
+}
+
+.form2 label span{
+    float: left;
+    width: 120px;
+    line-height: 18px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    color: #4c7cbd;
+}
+
+.form2 label{
+    display:block;
+}
+
+.form2 input[type="text"]{
+    padding: 1px 0 1px 3px;
+    border: 1px solid #d6d6d6;
+    color: #414141;
+}
+
+.form2 input[type="submit"]{
+    display:block;
+    margin: 20px auto 0;
+
+}
+
