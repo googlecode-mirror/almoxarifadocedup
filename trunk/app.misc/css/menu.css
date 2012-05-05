@@ -1,3 +1,8 @@
+ul,li
+{
+    	border: 1px solid;
+}
+
 ul.menu-definition
 {
 	display: block;
@@ -7,7 +12,7 @@ ul.menu-definition
 	position: fixed;
 	left: 0;
 	top: 100px;
-	border: 1px solid;
+        background-color: #8f8f8f;
 }
 
 li.menu-item
@@ -15,11 +20,16 @@ li.menu-item
 	display: block;
 	width: auto;
 	height: auto;
-	max-height: 60px;
 	margin: 5px;
 	float: left;
 	clear: left;
-	border: 1px solid;
+        background-color: #6b6b6b;
+}
+
+li.menu-item img
+{
+    float: left;
+    background-color: #FFF;
 }
 
 li.menu-item ul
@@ -32,11 +42,7 @@ li.menu-item:hover ul
 {
 	display: block;
 	visibility: visible;
-}
-
-li.menu-item img
-{
-    float: left;
+        background-color: #6b6b6b;
 }
 
 ul.submenu-definition
@@ -46,7 +52,6 @@ ul.submenu-definition
 	height: auto;
 	float: left;
 	padding-left: 0;
-	border: 1px solid;
 }
 
 li.menu-subitem
@@ -56,5 +61,9 @@ li.menu-subitem
 	height: 50px;
 	float: left;
 	margin: 5px;
-	border: 1px solid;
+}
+
+li.menu-subitem img
+{
+        background-color: #FFF;
 }
