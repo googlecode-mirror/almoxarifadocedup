@@ -49,16 +49,18 @@ class TApplication{
                 $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
                 
                 $usuario = $sessao->getVar('usuario');
-                $menu = new TMenu($usuario->permissoes);
+                
                 
                 include 'app.functions/validate.php';
                 //validate($usuario);           
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
+                    $menu = new TMenu($usuario->permissoes); 
+                    
                      if ($page == 'panel'){
-                          $templatePage = "app.comuns/template/{$page}.phtml";
-                          require('layout/index.phtml');
+                         $templatePage = "app.comuns/template/{$page}.phtml";
+                         require('layout/index.phtml');
                      
            
                      }elseif ($modulo != null) {
@@ -73,8 +75,6 @@ class TApplication{
                                 if (Flash::hasFlashes()) {
                                     $flashes = Flash::getFlashes();
                                 }
-                     
-   
                             }
                                      
                             require('layout/index.phtml');
@@ -87,6 +87,7 @@ class TApplication{
                           require('layout/index.phtml');
                          
                     }else{
+                          $menu = new TMenu($usuario->permissoes);
                           require("app.comuns/app.control/login.php");
                           $templatePage = "app.comuns/template/panel.phtml";
                           require('layout/index.phtml');
