@@ -4,9 +4,9 @@ include_once 'util/TSessao.class.php';
 
 class TApplication{
     
-    static private $styleLink = array('principal');
+    static private $styleLink = array('menu1','login','style','redmond/jquery-ui-1.8.16.custom','estilo','menu');
     
-    static private $scriptLink = array();
+    static private $scriptLink = array('jquery','menu','jquery-1.6.2.min','jquery-ui-1.8.16.custom.min','script');
     
     static public function setStyle($estilo)
     {
@@ -49,9 +49,10 @@ class TApplication{
                 $logout = (isset($_GET['logout'])) ? $_GET['logout'] : null;
                 
                 $usuario = $sessao->getVar('usuario');
+                $menu = new TMenu($usuario->permissoes);
                 
                 include 'app.functions/validate.php';
-                validate($usuario);           
+                //validate($usuario);           
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
