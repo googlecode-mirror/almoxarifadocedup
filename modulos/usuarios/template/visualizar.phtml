@@ -1,7 +1,8 @@
 <form method="POSt" action="">
     <label>Nome:</label>
     <input type="text" name="CampoBusca" value=""/>
-    <input class="btNoMaginAndLink" type="submit" value="Buscar" name="busca"/>
+    <input type="submit" value="Buscar" name="busca"/>
+    <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
     
 </form>
 <table align="center" class="table">
@@ -47,17 +48,3 @@
     
      </tbody>
 </table>
-<?php 
-if ($sessao->getVar('msg') != null){
-    
-    if ($sessao->getVar('msg') == 1){
-        new TMessage('info','Usuário alterado.');
-        $sessao->removeVar('msg');
-    }elseif ($sessao->getVar('msg') == 2){
-        new TMessage('info','Permissão alterada.');
-        $sessao->removeVar('msg');
-    } 
-}
-?>
-
-  

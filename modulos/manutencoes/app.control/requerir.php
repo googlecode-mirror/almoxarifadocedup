@@ -7,7 +7,7 @@ if (array_key_exists('key',$_GET)){
     $requisicoes = UTils::findById($id,'req_manutencao','id_requisicao');
  
     if ($requisicoes['requisitante_id'] != $sessao->getVar('usuario')->id_usuario){
-         $sessao->addVar('msg',2);
+         $sessao->addVar('msg',3);
          header('location:index.php?modulo=manutencoes&page=visualizar');
                 
     }
@@ -31,6 +31,7 @@ if (array_key_exists('save',$_POST)){
     RequerirMapper::RequisicaoInsert($requisicao);
     
     $sessao->addVar('msg',1);
+    header('location:index.php?modulo=manutencoes&page=visualizar');
   
 }
 
@@ -49,7 +50,7 @@ if (array_key_exists('update',$_POST)){
     RequerirMapper::map($requisicao,$data);
     RequerirMapper::RequisicaoUpdate($requisicao);
     
-    $sessao->addVar('msg',3);
+    $sessao->addVar('msg',2);
     header('location:index.php?modulo=manutencoes&page=visualizar');
   
 }

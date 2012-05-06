@@ -18,7 +18,8 @@
         ?> 
         
     </select>
-    <input class="btNoMaginAndLink" type="submit" value="Buscar" name="busca"/>
+    <input type="submit" value="Buscar" name="busca"/>
+    <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
     
 </form>
 
@@ -57,7 +58,7 @@
               
               echo "<td align=center ><a title='Editar requisição' href='index.php?modulo=manutencoes&page=requerir&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_edit.png'></a></td>
-                   <td align=center ><a title='Excluir requisição' href='index.php?modulo=manutencoes&question=1&page=visualizar&key={$requisicao->id_requisicao}'>
+                   <td align=center ><a class='open-link-delete' title='Excluir requisição' href='index.php?modulo=manutencoes&page=delete&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_delete.png'></a></td>";  
                   
               }else{
@@ -73,29 +74,11 @@
     
      </tbody>
 </table>
-<?php
-if (isset($_GET['question'])){
-      if ($_GET['question'] == 1){
-           new TQuestion('Você realmente gostaria de deletar?',
-                    "index.php?modulo=manutencoes&page=delete&key={$_GET['key']}",
-                     'index.php?modulo=manutencoes&page=visualizar');
-      }
- }
 
- if ($sessao->getVar('msg') != null){
-                if ($sessao->getVar('msg') == 1){
-                    new TMessage('info','Informações alteradas.');
-                    $sessao->removeVar('msg');
-                }
-                if ($sessao->getVar('msg') == 2){
-                    new TMessage('error','Você não pode Editar/Deletar requisicões de outros.');
-                    $sessao->removeVar('msg');
-                }
-                
-                if ($sessao->getVar('msg') == 3){
-                    new TMessage('info','Requisição alterada.');
-                    $sessao->removeVar('msg');
-                }
- }
- 
- ?>
+<div id="janela-delete">
+        <form id="form-delete" class="form" name="frm" method="post" action="">
+            <fieldset>
+                 Deseja deletar esta requisição?
+            </fieldset>
+        </form> 
+</div>

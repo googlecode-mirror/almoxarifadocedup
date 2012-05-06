@@ -6,7 +6,7 @@
         <input class="campo" size="30" type="text" name="nome_laboratorio" value="<?php if (isset($lab->nome_laboratorio)){ echo $lab->nome_laboratorio;} ?>" />
         <label>Número:</label>
         <input class="campo" size="3" type="text" name="numero_laboratorio" value="<?php if (isset($lab->numero_laboratorio)){ echo $lab->numero_laboratorio;} ?>" />
-        <input id="bt" type="submit" name="<?php echo (isset($_GET['labkeyedit']))? 'updateLab' : 'saveLab'; ?>" value="Salvar" />
-        <input class="btCancel" onclick="javascript:location='index.php?modulo=chaves&page=visualizar'" type="button" name="voltar" value="Voltar" />
+        <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="<?php echo (isset($_GET['labkeyedit']))? 'updateLab' : 'saveLab'; ?>" value="Salvar" />
+        <input onclick="javascript:location='index.php?modulo=chaves&page=visualizar'" type="button" name="voltar" value="Voltar" />
     </form>         
 </div>
