@@ -84,6 +84,26 @@ class TSessao {
             throw new TSessionException(self::ERROR_INI_SESSION);
         }
     }
+    /**
+     * criar uma session array 
+     * com index numério
+     * @param type $nome
+     * @param type $valor 
+     */
+    public function addArray($nome,$valor){
+        echo $valor['descricao_item'];
+        $_SESSION[$nome][$valor['descricao_item']] = $valor; 
+    }
+    
+    /**
+     * deleta um array pelo
+     * seu index 
+     * @param type $nome
+     * @param type $valor 
+     */
+    public function delArray($nome,$key){
+        unset($_SESSION[$nome][$key]);    
+    }
 
     /**
      *

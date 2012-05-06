@@ -1,37 +1,62 @@
 <div style="text-align:left;" id="box">
     <form style="width:530px;" class="form2" method="POST" action="">
         <label style="padding-right:10px;"><span>Requisitante:</span>
-            <input style="width:250px;" type="text" name="nome_requisitante" value="">
+            <input readonly="readonly" style="width:250px;" type="text" name="nome_requisitante" value="<?php echo $requisitante['nome_usuario']; ?>">
         </label><br/>
         <label><span>Responsável:</span>
-            <input style="width:250px" type="text" name="nome_responsável" value="">
+            <input readonly="readonly" style="width:250px" type="text" name="nome_responsável" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
         </label><br/>
         <label><span>Data Inicial:</span>
-            <input type="text" name="dt_inicial_emprestimo" value="">
+            <input readonly="readonly" style="width:70px"type="text" name="dt_inicial_emprestimo" value="<?php echo date('d/m/Y'); ?>">
         </label><br/>
         
         <fieldset>
             <legend align="right">
                 <a class="btNoMaginAndLink open-linkMat" href="index.php?modulo=emprestimos&page=gerar&add-mat=1">Adicionar</a>
             </legend>
-            <table class="table">
+            <table class="table" style="margin-top:5px;">
                 <thead>
                     <tr>
-                        <th width="300px">Material</th>
+                        <th width="300px">Item</th>
                         <th width="50px">Qtd</th>
-                        <th width="100px">Entrega</th>
+                        <th width="130px">Entrega</th>
+                        <th></th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php
+                    if ($sessao->getVar('mat') != null) {
+                        $i=0;
+                        foreach ($sessao->getVar('mat') as $item){
+                            $color = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';
+                            echo "<tr bgcolor='$color'>
+                                    <td style='padding-left:4px'>{$item['descricao_item']}</td>
+                                    <td>{$item['quantidade_item']}</td>
+                                    <td>{$item['dt_final']}</td>
+                                    <td align=center ><a title='Excluir item' href='index.php?modulo=emprestimos&page=gerar&key={$item['descricao_item']}&del=1'>
+                                        <img src='app.misc/images/ico_delete.png'></a></td> 
+                                </tr>"; 
+
+                            $i++;          
+                        }
+                    }else{
+                        echo "<tr bgcolor=#ffffff align=center >
+                              <td colspan=4>Nenhum item Adicionado!</td>
+                              </tr>";
+                    }
+                    ?>
+                </tbody>
             </table>
         </fieldset>
         
         <input type="submit" name="save" value="Salvar"/>
+        <input type="button" name="save" value="Cancelar" onclick="javascript:location='index.php?modulo=usuarios&page=visualizar&empCancel=1'"/>
     </form>
 </div>
-<div width="700" id="janela-dialogMat">
+<div width="770" id="janela-dialogMat">
     <form id="form-dialogMat" method="POST" action="">
         <label>
-            <span>Material</span>
+            <span>Item</span>
             <input style="width:300px;" type="text" name="item">
         </label>
         <label>
@@ -39,9 +64,24 @@
             <input style="width:50px;" type="text" name="item_qtd">
         </label>
         <label>
-            <span>Entrega</span>
-            <input style="width:100px;" class="text datepicker" type="text" name="item_entrega">
+            <span>Data</span>
+            <input style="width:100px;" class="text datepicker" type="text" name="item_entrega" value="00/00/00">
         </label>
+        <select name="hora_entrega">
+        <?php for ($i=0; $i < 24; ++$i){
+               echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
+            }
+        ?>
+        </select>
+        <span>:</span>
+        <select name="minuto_entrega">
+        <?php for ($i=0; $i < 60; $i = $i + 15){
+               echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
+            }
+        ?>
+        </select>
+        
+        
         
     </form>
 </div>
