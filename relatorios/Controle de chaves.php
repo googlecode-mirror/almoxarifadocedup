@@ -1,0 +1,20 @@
+<table>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Professor</th>
+			<th>Laboratorio</th>
+			<th>Observação</th>
+			<th>Hora Entrega</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
