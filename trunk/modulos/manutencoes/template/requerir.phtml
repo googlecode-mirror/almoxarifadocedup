@@ -3,7 +3,7 @@
                 <form method="POST" action="">
 
                     <label>Data atual:</label>
-                    <input class="campo" type="text" readonly="readonly" size="7" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
+                    <input class="campo" type="text" readonly="readonly" size="9" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
                     
                     <label>Requisitante:</label>
                     <input class="campo" type="text" readonly="readonly" size="30" name="" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>

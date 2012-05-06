@@ -70,11 +70,12 @@ final class Utils {
      * @param DateTime $date date to be formatted
      * @return string formatted date and time
      */
-    public static function formatDateTime(DateTime $date = null) {
+    public static function formatDateTime($date = null) {
         if ($date === null) {
             return '';
         }
-        return $date->format('d/m/Y H:i');
+        $dateus = new DateTime($date);
+        return $dateus->format('d/m/Y H:i');
     }
     
     /**

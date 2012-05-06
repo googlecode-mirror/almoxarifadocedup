@@ -26,6 +26,7 @@ function initDatepicker() {
 		dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
 		weekHeader: 'Sm',
 		dateFormat: 'dd/mm/yy',
+                defaultDate: '00/00/00',
 		firstDay: 0,
 		isRTL: false,
 		showMonthAfterYear: false,

@@ -2,6 +2,7 @@
     <form style="width:530px;" class="form2" method="POST" action="">
         <label style="padding-right:10px;"><span>Requisitante:</span>
             <input readonly="readonly" style="width:250px;" type="text" name="nome_requisitante" value="<?php echo $requisitante['nome_usuario']; ?>">
+            <a class="btNoMaginAndLink" href="index.php?modulo=emprestimos&page=visualizar&id=<?php echo $_GET['id'] ?>">Empréstimos</a>
         </label><br/>
         <label><span>Responsável:</span>
             <input readonly="readonly" style="width:250px" type="text" name="nome_responsável" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
