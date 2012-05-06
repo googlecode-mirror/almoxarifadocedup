@@ -3,4 +3,5 @@
     $usuario = Utils::findById($id, 'usuarios', 'id_usuario');
     
     $itens = EmpMapper::getEmps($id);
+
 ?>
