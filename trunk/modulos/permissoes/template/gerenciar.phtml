@@ -1,6 +1,7 @@
-
-    <form action="" method="POST">
-    <span><?php echo $usuario['nome_usuario']; ?></span>
+<div style="text-align:left;" id="box"> 
+    <span style="margin-left:25.5%;"><b>Usuário:</b> <?php echo $usuario['nome_usuario']; ?></span>
+    <form action="" method="POST" style="text-align: center">
+    
     <table class="table" align="center" frame="box" cellpadding="3">
         <thead>
             <tr>
@@ -82,6 +83,8 @@
         </tbody>
     </table>
         <input type="hidden" name="count" value="<?php echo $count;?>" />
-        <input id="btTable" type="submit" value="UPDATE" name="save" />
+        <input style="margin-top:15px;" type="submit" value="Alterar" name="save" />
+        <input type="button" value="Voltar" onclick="javascript:location='index.php?modulo=usuarios&page=visualizar'"/>
 
     </form>
+</div>

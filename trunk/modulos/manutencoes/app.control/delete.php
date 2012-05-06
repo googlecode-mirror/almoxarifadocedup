@@ -8,17 +8,15 @@
         $requisicao->setIdRequisicao($id);
         RequerirMapper::map($requisicao,$row);
         
-            
+                
             if ($requisicao->getRequisitanteId() != $sessao->getVar('usuario')->id_usuario){
-                $sessao->addVar('msg',2);
+                $sessao->addVar('msg',3);
                 header('location:index.php?modulo=manutencoes&page=visualizar');
                 
             }else{
         
-                
                 RequerirMapper::RequisicaoDelete($requisicao);
-
-                $sessao->addVar('msg',1);
+                $sessao->addVar('msg',4);
                 header('location:index.php?modulo=manutencoes&page=visualizar');
         
             }

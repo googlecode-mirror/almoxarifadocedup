@@ -30,7 +30,8 @@
             EmpMapper::insert($emp);
             $sessao->removeVar('mat');
             
-            header('location:index.php?modulo=usuarios&page=visualizar&empOk=1');
+            $sessao->addVar('msg',3);
+            header('location:index.php?modulo=usuarios&page=visualizar');
                 
         }else{
             Flash::addFlash('Por favor adicione um item.');

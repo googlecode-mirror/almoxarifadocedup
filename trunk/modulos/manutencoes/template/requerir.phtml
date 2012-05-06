@@ -18,15 +18,8 @@
                     <textarea cols="24" rows="6" maxlength="100" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
                         
                     
-                    <input align="center" id="bt" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>
+                    <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>
+                    <input type="button" name="edit" value="Voltar" onclick="javascript:location='<?php echo (isset($id))? 'index.php?modulo=manutencoes&page=visualizar' : 'index.php' ?>'"/>
                 </form>
          </div>
-         <?php
-         if ($sessao->getVar('msg') != null){
-                if ($sessao->getVar('msg') == 1){
-                new TMessage('info','Requisição registrada.');
-                $sessao->removeVar('msg');
-            }
-         }
-          ?>
          

@@ -11,7 +11,18 @@
       $sessao->removeVar('mat');
   }
   
-  if (array_key_exists('empOk',$_GET)){
-      Flash::addFlash('Empréstimo salvo com sucesso.');
-  }
+  if ($sessao->getVar('msg') != null){
+    
+    if ($sessao->getVar('msg') == 1){
+        Flash::addFlash('Usuário alterado.');
+        
+    }elseif ($sessao->getVar('msg') == 2){
+        Flash::addFlash('Permissão alterada.');
+
+    }elseif ($sessao->getVar('msg') == 3){
+        Flash::addFlash('Empréstimo salvo com sucesso.');
+    }
+    
+   $sessao->removeVar('msg'); 
+}
 ?>
