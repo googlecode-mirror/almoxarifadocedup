@@ -49,7 +49,7 @@ class ManuMapper {
                                              providencia_manutencao,
                                              definitivo_manutencao,
                                              req_manutencao_id)
-                       VALUE (?,STR_TO_DATE(?,'%d/%m/%Y'),?,?,?)";
+                       VALUES (?,STR_TO_DATE(?,'%d/%m/%Y'),?,?,?)";
                                                 
                
                $sth = $conn->prepare($sql);

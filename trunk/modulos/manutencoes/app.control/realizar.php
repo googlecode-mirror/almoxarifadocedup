@@ -16,6 +16,7 @@ if (array_key_exists('confirm',$_POST)){
     ManuMapper::map($manutencao,$data);
     ManuMapper::addManu($manutencao);
 
+    header('location:index.php?modulo=manutencoes&page=visualizar');
 }
 
 if (array_key_exists('comentario_manutencao', $_POST)){

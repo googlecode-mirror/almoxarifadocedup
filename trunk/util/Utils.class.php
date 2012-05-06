@@ -53,6 +53,17 @@ final class Utils {
        $date = new DateTime($databr);
        return $date->format('Y-m-d H:i:s');
     }
+    
+    /**
+     * Retorna time no formato
+     * para mysql
+     * @param $time string com time
+     * @return time 
+     */
+    static function formatTime($time) {
+       $date = new DateTime($time);
+       return $date->format('H:i:s');
+    }
 
     /**
      * Format date and time.
