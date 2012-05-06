@@ -1,0 +1,45 @@
+   <div id="" style="text-align: left; margin-left:25%;">
+        <label>
+            <span><b>Usuário:</b> <?php echo $usuario['nome_usuario'] ?></span>
+        </label>
+        <table class="table" style="margin-top:5px;">
+            <thead>
+                <tr>
+                <th width="300px">Item</th>
+                <th width="50px">Qtd</th>
+                <th width="130px">Entrega</th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    if (isset($itens)){
+                        $i = 0;
+                        foreach ($itens as $item){
+                          $color = ($i % 2) == 0 ? '#FFFFFF' : '#e0e0e0';
+                          echo '<tr bgcolor='.$color.'>
+                                  <td style=padding-left:5px; >'.$item->descricao_item.'</td>
+                                  <td>'.str_pad($item->quantidade_item, 2, '0', STR_PAD_LEFT).'</td>
+                                  <td>'.Utils::FormatDateTime($item->dt_final).'</td>
+                                  <td><a class=open-link title=Concluir Chave href=index.php?modulo=chaves&page=gerenciar&>
+                                  <img src=app.misc/images/ico_ok02.png></a></td>
+                               </tr>';
+                        $i++;
+                        }
+                        
+                        
+                    }else{
+                        echo "<tr bgcolor='#ffffff' align='center'>
+                                <td colspan='4'>Nenhum empréstimo ativo </td>
+                              <tr>";
+                    }
+                
+                ?>
+                
+                
+            </tbody>
+        </table>
+        <input style="margin-left:32%; margin-top:10px;" type="button" name="back" value="Voltar" onclick="javascript:location='index.php?modulo=emprestimos&page=gerar&id=<?php echo $id ?>'"/>
+       </button>
+    </div>
+
