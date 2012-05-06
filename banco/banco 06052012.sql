@@ -66,7 +66,7 @@ CREATE TABLE `ctrl_chaves` (
   KEY `fk_Controle_Professores1` (`professor_id`),
   CONSTRAINT `fk_Controle_laboratorios` FOREIGN KEY (`laboratorio_id`) REFERENCES `laboratorios` (`id_laboratorio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Controle_Professores1` FOREIGN KEY (`professor_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ctrl_chaves`
@@ -75,7 +75,8 @@ CREATE TABLE `ctrl_chaves` (
 /*!40000 ALTER TABLE `ctrl_chaves` DISABLE KEYS */;
 INSERT INTO `ctrl_chaves` (`id_controle`,`professor_id`,`laboratorio_id`,`observacao_controle`,`dt_inicial_controle`,`dt_final_controle`) VALUES 
  (1,9,2,NULL,'2012-05-05 17:33:44',NULL),
- (2,4,4,NULL,'2012-05-05 17:41:51',NULL);
+ (2,4,4,NULL,'2012-05-05 17:41:51',NULL),
+ (3,9,3,NULL,'2012-06-05 15:24:57',NULL);
 /*!40000 ALTER TABLE `ctrl_chaves` ENABLE KEYS */;
 
 
@@ -158,13 +159,17 @@ CREATE TABLE `emprestimos` (
   KEY `fk_emprestimos_usuarios2` (`usuario_id`),
   CONSTRAINT `fk_emprestimos_usuarios1` FOREIGN KEY (`requisitante_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_emprestimos_usuarios2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `emprestimos`
 --
 
 /*!40000 ALTER TABLE `emprestimos` DISABLE KEYS */;
+INSERT INTO `emprestimos` (`id_emprestimo`,`dt_inicial_emprestimo`,`requisitante_id`,`usuario_id`) VALUES 
+ (2,'2012-06-05 14:05:46',9,3),
+ (4,'2012-06-05 14:05:32',8,3),
+ (5,'2012-06-05 14:05:37',5,3);
 /*!40000 ALTER TABLE `emprestimos` ENABLE KEYS */;
 
 
@@ -229,16 +234,24 @@ CREATE TABLE `itens_emprestimos` (
   `quantidade_item` int(11) NOT NULL,
   `dt_final` datetime NOT NULL,
   `emprestimos_id` int(11) NOT NULL,
+  `entregue` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_item`),
   KEY `fk_itens_emprestimos_emprestimos1` (`emprestimos_id`),
   CONSTRAINT `fk_itens_emprestimos_emprestimos1` FOREIGN KEY (`emprestimos_id`) REFERENCES `emprestimos` (`id_emprestimo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `itens_emprestimos`
 --
 
 /*!40000 ALTER TABLE `itens_emprestimos` DISABLE KEYS */;
+INSERT INTO `itens_emprestimos` (`id_item`,`descricao_item`,`quantidade_item`,`dt_final`,`emprestimos_id`,`entregue`) VALUES 
+ (3,'Alicate',1,'2012-06-05 10:00:00',2,0),
+ (4,'Lapis',5,'2012-06-05 10:00:00',2,0),
+ (5,'Alicate',1,'2012-01-05 16:00:00',4,0),
+ (6,'Fio',1,'0000-00-00 00:00:00',4,1),
+ (7,'Alicate',1,'2012-06-05 12:00:00',5,0),
+ (8,'Corda 100m',1,'0000-00-00 00:00:00',5,1);
 /*!40000 ALTER TABLE `itens_emprestimos` ENABLE KEYS */;
 
 
@@ -264,7 +277,7 @@ CREATE TABLE `laboratorios` (
 INSERT INTO `laboratorios` (`id_laboratorio`,`nome_laboratorio`,`numero_laboratorio`,`chave_laboratorio`,`deleted`) VALUES 
  (1,'Automação',46,0,0),
  (2,'Hidraulica',47,1,0),
- (3,'Pneumática',48,0,0),
+ (3,'Pneumática',48,1,0),
  (4,'Ajustagem',49,1,0),
  (5,'Fresagem',50,0,0),
  (6,'Desenho',51,0,0),
@@ -473,7 +486,7 @@ CREATE TABLE `permissoes` (
   `id_permissao` int(11) NOT NULL AUTO_INCREMENT,
   `nome_permissao` varchar(45) NOT NULL,
   PRIMARY KEY (`id_permissao`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `permissoes`
