@@ -14,7 +14,7 @@ function validate($usuario)
         {
             $permissoes = $usuario->permissoes;
             
-            //$valida = false;
+            $valida = false;
 
             if(isset($permissoes[$_GET['modulo']]))
             {
