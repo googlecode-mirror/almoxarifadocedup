@@ -50,7 +50,7 @@
               <td>{$databr}</td>
               <td>{$requisicao->nome_estado_requisicao}</td>
 
-              <td align=center ><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&key={$requisicao->id_requisicao}'>
+              <td align=center ><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=visualizar&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_produtos.png'></a></td>";
               
               
@@ -58,7 +58,7 @@
               
               echo "<td align=center ><a title='Editar requisição' href='index.php?modulo=manutencoes&page=requerir&key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_edit.png'></a></td>
-                   <td align=center ><a class='open-link-delete' title='Excluir requisição' href='index.php?modulo=manutencoes&page=delete&key={$requisicao->id_requisicao}'>
+                   <td align=center ><a class='open-link-delete' title='Excluir requisição' href='index.php?modulo=manutencoes&page=visualizar&req-key={$requisicao->id_requisicao}'>
                                      <img src='app.misc/images/ico_delete.png'></a></td>";  
                   
               }else{
