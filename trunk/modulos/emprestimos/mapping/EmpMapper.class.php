@@ -102,12 +102,28 @@ class EmpMapper {
             }else{
                 echo 'Sem conexão com banco!';
         }
-        
-        
-        
     }
     
-    
+        public static function concluiEmp($id){
+        
+        TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+               $sql = "UPDATE itens_emprestimos SET entregue = 1
+                       WHERE id_item = ?";
+                                                
+               
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($id));        
+               
+               TTransaction::close();
+
+            }else{
+                echo 'Sem conexão com banco!';
+        }
+
+    }
+
 }
 
 ?>
