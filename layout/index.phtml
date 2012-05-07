@@ -13,9 +13,15 @@ foreach(TApplication::$scriptLink as $script)
 		</head>
 	<body>
             <?php if(isset($usuario)){ ?>
-                <div id="info">
-                    <div style="float: right;"><a href="index.php?modulo=usuarios&page=info-usuario"><p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p></a></div>
-                    <div style="float: right;"><a href="index.php?logout=1">Logout</a></div>
+                <div id="controler_bar">
+                    <div>
+                        <a href="index.php?modulo=usuarios&page=info-usuario">
+                            <div>
+                                <p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p>
+                        </div>
+                        </a>    
+                        <a href="index.php?logout=1"><div><p>Logout</p></div></a>
+                    </div>
                 </div>
             <?php } ?>    
                 <div id="corpo">

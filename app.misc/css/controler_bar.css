@@ -1,0 +1,25 @@
+/* 
+    css praquela barra que fica no topo do layout com as informações do usuario
+*/
+
+#controler_bar
+{
+    width: 100%;
+    height: 50px;
+    background-color: #FFF;
+}
+
+#controler_bar div
+{
+    width: auto;
+    height: 50px;
+    float: left;
+    margin-right: 7px;
+    padding: 5px;
+}
+
+#controler_bar>div
+{
+    float: right;  
+    padding: 0;
+}
