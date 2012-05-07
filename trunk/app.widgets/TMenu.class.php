@@ -3,35 +3,56 @@
 class TMenu{
 	
 	private $itens;
+        private $restrict = array();
 	
-	public function __construct($permissoes)
+	public function __construct($permissoes,$restrict = array())
 	{
 		$this->itens = $permissoes;
+                $this->restrict = $restrict;
 		//TAplication::setStyle('menu');
+                
+                foreach($this->itens as $modulo=>$scripts)
+                {
+                    foreach($scripts as $key=>$script)
+                    {
+                        if(in_array($script,$this->restrict))
+                            unset($this->itens[$modulo][$key]);
+                    }
+                    
+                    if(!$this->itens[$modulo])
+                        unset($this->itens[$modulo]);
+                }
 	}
 	
-	public function show()
-	{
-		echo '<ul class="menu-definition">',"\n";
-                echo '<li class="menu-item">',"\n",'   <a href="index.php"><img src="app.misc/images/menu/principal.png" alt="principal" height="50" width="50" /></a>',"\n","</li>\n";
-		foreach($this->itens as $modulo=>$scripts)
-		{
-			echo '  <li class="menu-item">',"\n",
-'   <img src="app.misc/images/menu/'.$modulo.'.png" alt="'.$modulo.'" height="50" width="50" />',"\n",
-'       <ul id="id-'.$modulo.'" class="submenu-definition">',"\n";
-			
-			foreach($scripts as $script)
-			{
-				echo "          <li class='menu-subitem'><a href='index.php?modulo={$modulo}&page={$script}'><img src='app.misc/images/menu/{$script}.png' alt='{$script}' height='50' width='50' /></a></li>\n";
-			}
-			
-			echo '      </ul>',"\n",'   </li>',"\n";
-		}
-                echo '<li class="menu-item">',"\n",'   <a href="index.php?logout=1"><img src="app.misc/images/menu/logout.png" alt="logout" height="50" width="50" /></a>',"\n","</li>\n";
-                echo '</ul>',"\n";
+	public function show(){?>
+            <ul class="menu-definition">
+                <li class="menu-item">
+                    <a href="index.php">
+                        <img src="app.misc/images/menu/principal.png" alt="principal" height="50" width="50" />
+                    </a>
+                </li>
                 
-        }
+<?php	foreach($this->itens as $modulo=>$scripts){ ?>
+		<li class="menu-item">
+                    <img src="app.misc/images/menu/<?php echo $modulo; ?>.png" alt="<?php $modulo ?>" height="50" width="50" />
+                    <ul id="id-<?php $modulo ?>" class="submenu-definition">
+<?php	foreach($scripts as $script){?>
+                        <li class='menu-subitem'>
+                            <a href='index.php?modulo=<?php echo $modulo; ?>&page=<?php echo $script; ?>'>
+                                <img src='app.misc/images/menu/<?php echo $script; ?>.png' alt='<?php echo $script; ?>' height='50' width='50' />
+                            </a>
+                        </li>
+<?php		}?>
+                    </ul>
+                </li>
+<?php      } ?>
+                <li class="menu-item">
+                    <a href="index.php?logout=1">
+                        <img src="app.misc/images/menu/logout.png" alt="logout" height="50" width="50" />
+                    </a>
+                </li>
+            </ul>
+                
+<?php   }
 
-}
-
-?>
+} ?>
