@@ -1,6 +1,6 @@
 <?php
 //Salvar com o nome DataBase.php
-include '/app.ado/Config.php';
+include './app.ado/Config.php';
 
 class DataBase{
 	public $conexao;
