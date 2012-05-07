@@ -9,27 +9,37 @@
                    
         </tr>
      </thead>
-      <?php 
-    $i = 0;
-    foreach($requisicoes as $requisicao){
+      <?php
     
-    $databr = Utils::formatDateBr($requisicao->dt_requisicao);    
-        
-    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
-    
-    echo "<tr>
-              <td align=center bgcolor={$bgcolor}>{$requisicao->id_requisicao}</td>
-              <td align=left bgcolor={$bgcolor}>{$requisicao->nome_usuario}</td>
-              <td align=left bgcolor={$bgcolor}>{$databr}</td>
-              <td align=left bgcolor={$bgcolor}>{$requisicao->nome_estado_requisicao}</td>
+    if (isset($requisicoes[0])){
+      
+	    $i = 0;
+	    foreach($requisicoes as $requisicao){
+	    
+	    $databr = Utils::formatDateBr($requisicao->dt_requisicao);    
+	        
+	    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
+	    
+	    echo "<tr>
+	              <td align=center bgcolor={$bgcolor}>{$requisicao->id_requisicao}</td>
+	              <td align=left bgcolor={$bgcolor}>{$requisicao->nome_usuario}</td>
+	              <td align=left bgcolor={$bgcolor}>{$databr}</td>
+	              <td align=left bgcolor={$bgcolor}>{$requisicao->nome_estado_requisicao}</td>
+	
+	              <td align=center bgcolor={$bgcolor}><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&m-manu=1&key={$requisicao->id_requisicao}'>
+	                                     <img src='app.misc/images/ico_produtos.png'></a></td>";
+	             
+	    
+	     echo "</tr>";
+	    $i = $i+1;
+	    
+	    } 
 
-              <td align=center bgcolor={$bgcolor}><a title='Exibir detalhes' href='index.php?modulo=manutencoes&page=requerir-detail&m-manu=1&key={$requisicao->id_requisicao}'>
-                                     <img src='app.misc/images/ico_produtos.png'></a></td>";
-             
-    
-     echo "</tr>";
-    $i = $i+1;
-    }    
+    }else{
+    	echo "<tr bgcolor='#FFFFFF'>
+    			<td align='center' colspan = 5 >Você não tem manutenção pendente.</td> 
+    		 </tr>";
+    }
     
     ?>
     
