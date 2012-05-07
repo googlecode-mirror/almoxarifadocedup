@@ -21,7 +21,7 @@
                                   <td style=padding-left:5px; >'.$item->descricao_item.'</td>
                                   <td>'.str_pad($item->quantidade_item, 2, '0', STR_PAD_LEFT).'</td>
                                   <td>'.Utils::FormatDateTime($item->dt_final).'</td>
-                                  <td><a class=open-link title=Concluir Chave href=index.php?modulo=chaves&page=gerenciar&>
+                                  <td><a class=open-link title=Concluir Chave href=index.php?modulo=emprestimos&page=visualizar&id='.$_GET['id'].'&key='.$item->id_item.'>
                                   <img src=app.misc/images/ico_ok02.png></a></td>
                                </tr>';
                         $i++;
@@ -41,5 +41,13 @@
         </table>
         <input style="margin-left:32%; margin-top:10px;" type="button" name="back" value="Voltar" onclick="javascript:location='index.php?modulo=emprestimos&page=gerar&id=<?php echo $id ?>'"/>
        </button>
+    </div>
+
+    <div id="janela-dialog">
+        <form id="form-dialog" class="form" name="frm" method="post" action="">
+            <fieldset>
+                <label>Tem certeza?</label>
+            </fieldset>
+        </form> 
     </div>
 
