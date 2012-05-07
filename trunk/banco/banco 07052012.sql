@@ -75,7 +75,7 @@ CREATE TABLE `ctrl_chaves` (
 /*!40000 ALTER TABLE `ctrl_chaves` DISABLE KEYS */;
 INSERT INTO `ctrl_chaves` (`id_controle`,`professor_id`,`laboratorio_id`,`observacao_controle`,`dt_inicial_controle`,`dt_final_controle`) VALUES 
  (1,9,2,NULL,'2012-05-05 17:33:44',NULL),
- (2,4,4,NULL,'2012-05-05 17:41:51',NULL),
+ (2,4,4,NULL,'2012-05-05 17:41:51','2012-05-06 18:27:24'),
  (3,9,3,NULL,'2012-06-05 15:24:57',NULL);
 /*!40000 ALTER TABLE `ctrl_chaves` ENABLE KEYS */;
 
@@ -159,7 +159,7 @@ CREATE TABLE `emprestimos` (
   KEY `fk_emprestimos_usuarios2` (`usuario_id`),
   CONSTRAINT `fk_emprestimos_usuarios1` FOREIGN KEY (`requisitante_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_emprestimos_usuarios2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `emprestimos`
@@ -169,7 +169,9 @@ CREATE TABLE `emprestimos` (
 INSERT INTO `emprestimos` (`id_emprestimo`,`dt_inicial_emprestimo`,`requisitante_id`,`usuario_id`) VALUES 
  (2,'2012-06-05 14:05:46',9,3),
  (4,'2012-06-05 14:05:32',8,3),
- (5,'2012-06-05 14:05:37',5,3);
+ (5,'2012-06-05 14:05:37',5,3),
+ (6,'2012-06-05 18:05:22',5,2),
+ (7,'2012-06-05 18:05:03',8,2);
 /*!40000 ALTER TABLE `emprestimos` ENABLE KEYS */;
 
 
@@ -238,7 +240,7 @@ CREATE TABLE `itens_emprestimos` (
   PRIMARY KEY (`id_item`),
   KEY `fk_itens_emprestimos_emprestimos1` (`emprestimos_id`),
   CONSTRAINT `fk_itens_emprestimos_emprestimos1` FOREIGN KEY (`emprestimos_id`) REFERENCES `emprestimos` (`id_emprestimo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `itens_emprestimos`
@@ -251,7 +253,9 @@ INSERT INTO `itens_emprestimos` (`id_item`,`descricao_item`,`quantidade_item`,`d
  (5,'Alicate',1,'2012-01-05 16:00:00',4,0),
  (6,'Fio',1,'0000-00-00 00:00:00',4,1),
  (7,'Alicate',1,'2012-06-05 12:00:00',5,0),
- (8,'Corda 100m',1,'0000-00-00 00:00:00',5,1);
+ (8,'Corda 100m',1,'0000-00-00 00:00:00',5,1),
+ (9,'Chave de Fenda',1,'2012-07-05 10:30:00',6,0),
+ (10,'Fio 5 metros',1,'0000-00-00 00:00:00',7,1);
 /*!40000 ALTER TABLE `itens_emprestimos` ENABLE KEYS */;
 
 
@@ -278,7 +282,7 @@ INSERT INTO `laboratorios` (`id_laboratorio`,`nome_laboratorio`,`numero_laborato
  (1,'Automação',46,0,0),
  (2,'Hidraulica',47,1,0),
  (3,'Pneumática',48,1,0),
- (4,'Ajustagem',49,1,0),
+ (4,'Ajustagem',49,0,0),
  (5,'Fresagem',50,0,0),
  (6,'Desenho',51,0,0),
  (7,'Medidas Elétricas',52,0,0),
@@ -318,7 +322,7 @@ CREATE TABLE `manutencoes` (
   KEY `fk_manutencoes_req_manutencao1` (`req_manutencao_id`),
   CONSTRAINT `fk_manutencoes_professores1` FOREIGN KEY (`professor_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_manutencoes_req_manutencao1` FOREIGN KEY (`req_manutencao_id`) REFERENCES `req_manutencao` (`id_requisicao`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `manutencoes`
@@ -327,9 +331,10 @@ CREATE TABLE `manutencoes` (
 /*!40000 ALTER TABLE `manutencoes` DISABLE KEYS */;
 INSERT INTO `manutencoes` (`id_manutencao`,`professor_id`,`data_manutencao`,`providencia_manutencao`,`definitivo_manutencao`,`req_manutencao_id`,`comentario_manutencao`) VALUES 
  (2,3,'2012-04-26','Verificar rede.',0,14,'Internet voltou ao estado normal.'),
- (3,3,'2012-04-26','Verificar computador.',0,10,NULL),
+ (3,3,'2012-04-26','Verificar computador.',1,10,'Consertado.'),
  (4,1,'2012-04-26','Verificação',0,15,NULL),
- (5,3,'2012-05-05','Verificação',0,13,NULL);
+ (5,3,'2012-05-05','Verificação',0,13,NULL),
+ (6,2,'2012-05-06','Não sei',0,20,NULL);
 /*!40000 ALTER TABLE `manutencoes` ENABLE KEYS */;
 
 
@@ -448,32 +453,11 @@ INSERT INTO `modulos_permissoes_usuarios` (`modulo_permissao_id`,`usuario_id`) V
  (4,4),
  (13,4),
  (13,6),
- (1,7),
- (2,7),
  (4,7),
- (5,7),
- (9,7),
- (13,7),
- (1,8),
- (2,8),
  (3,8),
  (4,8),
- (6,8),
- (13,8),
- (15,8),
  (1,9),
- (2,9),
- (5,9),
- (6,9),
- (7,9),
- (8,9),
- (10,9),
- (11,9),
- (12,9),
- (13,9),
- (15,9),
- (16,9),
- (18,9);
+ (16,9);
 /*!40000 ALTER TABLE `modulos_permissoes_usuarios` ENABLE KEYS */;
 
 
@@ -523,7 +507,7 @@ CREATE TABLE `req_manutencao` (
   KEY `fk_req_manutencao_estado_requisicoes1` (`estado_id`),
   CONSTRAINT `fk_Manutencao_Professores1` FOREIGN KEY (`requisitante_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_req_manutencao_estado_requisicoes1` FOREIGN KEY (`estado_id`) REFERENCES `estados_requisicoes` (`id_estado_requisicao`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
 
 --
 -- Dumping data for table `req_manutencao`
@@ -531,16 +515,23 @@ CREATE TABLE `req_manutencao` (
 
 /*!40000 ALTER TABLE `req_manutencao` DISABLE KEYS */;
 INSERT INTO `req_manutencao` (`id_requisicao`,`dt_requisicao`,`equipamento_requisicao`,`local_equipamento`,`defeito_requisicao`,`requisitante_id`,`estado_id`,`deleted`) VALUES 
- (6,'2012-04-19','Computador 05','Laboratório 11','Não liga o mouse.',3,1,0),
+ (6,'2012-04-19','Computador 05','Laboratório 11','Não liga o mouse.',3,2,0),
  (9,'2012-04-20','Computador 10','Laboratório 20','Tela não liga.',3,4,1),
- (10,'2012-04-20','Computador 08','Laboratório 20','Lerdo :D',2,3,0),
+ (10,'2012-04-20','Computador 08','Laboratório 20','Lerdo :D',2,4,0),
  (11,'2012-04-21','Computador 01, 03, 10.','Laboratório 25','Computador 01 não liga e 03 e 04 estão lentos.',3,4,1),
  (12,'2012-04-21','Máquina do Café','Secretaria','Não sai café pow.',3,4,1),
  (13,'2012-04-21','Computador 1','Direção','Não liga.',3,3,0),
  (14,'2012-04-22','Internet','Laboratório 15','Sem Internet',1,4,0),
  (15,'2012-04-22','Data Show 3','Secretaria','Não liga',5,3,0),
  (16,'2012-04-24','Computador 11','Laboratório 13','Não liga',3,4,1),
- (17,'2012-04-25','Computador 10','Laboratório 40','Teclado estragado.',2,4,1);
+ (17,'2012-04-25','Computador 10','Laboratório 40','Teclado estragado.',2,4,1),
+ (18,'2012-05-06','TEST','TEST','TEST',3,1,0),
+ (19,'2012-05-06','test2','test2','test2',3,2,0),
+ (20,'2012-05-06','haha','haha','ahah',3,3,0),
+ (21,'2012-05-06','Seila','Seila','Seila',2,1,1),
+ (22,'2012-05-06','auhauha','uhauhau','uhauhau',2,1,1),
+ (23,'2012-05-06','hjauhau','uhauahau','uhauahha',2,1,0),
+ (24,'2012-05-06','auhau','huahauh','huahua',2,1,0);
 /*!40000 ALTER TABLE `req_manutencao` ENABLE KEYS */;
 
 
