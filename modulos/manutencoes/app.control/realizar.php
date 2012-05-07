@@ -21,7 +21,7 @@ if (array_key_exists('confirm',$_POST)){
 
 if (array_key_exists('comentario_manutencao', $_POST)){
     
-    $manutencao = UTils::findById($_GET['key'], 'manutencoes', 'req_manutencao_id');
+    $manutencao = Utils::findById($_GET['key'], 'manutencoes', 'req_manutencao_id');
 
     if ($manutencao['professor_id'] == $sessao->getVar('usuario')->id_usuario){
         
