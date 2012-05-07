@@ -9,8 +9,8 @@
 			<th>Sem: </th>
 		</tr>
 		<tr>
-			<th>Professor: </th>
-			<th>Disciplina: </th>
+			<th style='width: 50px'>Professor: </th>
+			<th style='width: 50px'>Disciplina: </th>
 		</tr>
 		<tr>
 			<th rowspan=2>Item</th>
