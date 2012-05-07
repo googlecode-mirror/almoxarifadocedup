@@ -1,0 +1,33 @@
+<h1> Detalhes da Chave </h1>
+
+<table class="detail" align="center">
+    <tr>
+        <th>Responsável</th>
+        <td><?php echo $user['nome_usuario']?><td>
+    </tr>
+    <tr>
+        <th>Data</th>
+        <td><?php echo Utils::FormatDateBr($data_hora[0]) ?><td>
+    </tr>
+    <tr>
+        <th>Hora</th>
+        <td><?php echo $data_hora[1]?><td>
+    </tr>
+    <tr>
+        <th>Nº Chave</th>
+        <td><?php echo $lab['numero_laboratorio']?><td>
+    </tr>
+    
+    <tr>
+        <th>Laboratório</th>
+        <td><?php echo $lab['nome_laboratorio'] ?><td>
+    </tr>
+    <tr>
+        <th colspan="2">&nbsp</th>
+        
+    </tr>
+    <tr>
+         <th><a href='index.php?modulo=chaves&page=visualizar>'>
+             Voltar à Lista</a></th>   
+    </tr>
+</table>

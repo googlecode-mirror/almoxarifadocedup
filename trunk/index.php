@@ -4,7 +4,7 @@ include_once 'util/TSessao.class.php';
 
 class TApplication{
     
-    static private $styleLink = array('login','style','principal','menu','controler_bar');
+    static private $styleLink = array('login','style','principal','menu');
     
     static private $scriptLink = array('jquery','jquery-1.6.2.min','jquery-ui-1.8.16.custom.min','script');
     
@@ -52,7 +52,7 @@ class TApplication{
                 
                 
                 include 'app.functions/validate.php';
-                //validate($usuario);           
+                validate($usuario);           
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     

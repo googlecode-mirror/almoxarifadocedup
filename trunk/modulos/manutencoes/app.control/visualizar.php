@@ -43,5 +43,64 @@ if ($sessao->getVar('msg') != null){
     $sessao->removeVar('msg');
 }
 
+if (array_key_exists('key',$_GET)){
+	
+	$page = 'requerir-detail';
+
+	$id = $_GET['key'];
+	
+	$requisicao = RequerirMapper::getRequisicaoByIdRequisicao($id);
+	
+	if ($requisicao->estado_id == 3){
+	
+		$data = array('req_manutencao_id' => $id);
+	
+		$manu = new Manu;
+		ManuMapper::map($manu,$data);
+		$manutencao = ManuMapper::getManuByRequisicao($manu);
+	
+		$usuario = UTils::findById($manutencao->professor_id, 'usuarios', 'id_usuario');
+	
+	}
+	
+	if (array_key_exists('m-manu',$_GET)){
+	
+		$PageVoltarLista = 'm-manutencoes';
+	}else{
+		$PageVoltarLista = 'visualizar';
+		
+	}
+	
+	$sessao->addVar('estado',$requisicao->estado_id);
+
+}
+
+if (array_key_exists('req-key',$_GET)){
+
+	$id = $_GET['req-key'];
+	$row = Utils::findById($id, 'req_manutencao', 'id_requisicao');
+	$requisicao = new Requerir();
+	$requisicao->setIdRequisicao($id);
+	RequerirMapper::map($requisicao,$row);
+
+
+	if ($requisicao->getRequisitanteId() != $sessao->getVar('usuario')->id_usuario){
+		$sessao->addVar('msg',3);
+		header('location:index.php?modulo=manutencoes&page=visualizar');
+
+	}else{
+
+		RequerirMapper::RequisicaoDelete($requisicao);
+		$sessao->addVar('msg',4);
+		header('location:index.php?modulo=manutencoes&page=visualizar');
+
+	}
+
+}
+
+
+
+
+
 
 ?>
