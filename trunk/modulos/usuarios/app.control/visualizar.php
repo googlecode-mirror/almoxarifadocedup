@@ -1,4 +1,5 @@
 <?php
+
   $criteria = new SearchCriteria();
     
     if (array_key_exists('busca',$_POST)){
@@ -25,4 +26,6 @@
     
    $sessao->removeVar('msg'); 
 }
+
+
 ?>

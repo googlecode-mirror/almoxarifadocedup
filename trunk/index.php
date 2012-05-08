@@ -21,7 +21,7 @@ class TApplication{
     }    
     
            static public function init(){
-
+               
                function __autoload($classe){
                    
                    $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
@@ -42,6 +42,7 @@ class TApplication{
             static public function run(){
                 
                 $sessao = new TSessao(true);
+                
                 $flashes = null;
 
                 $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
@@ -52,14 +53,16 @@ class TApplication{
                 
                 
                 include 'app.functions/validate.php';
-                validate($usuario);           
+                $valida = validate($usuario);
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
                     $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
-         
+                   
                      if ($modulo != null) {
-
+                         
+                         if ($valida){
+                             
                             if (file_exists("modulos/{$modulo}/app.control/{$page}.php")){                  
                                 require("modulos/{$modulo}/app.control/{$page}.php"); 
                             }
@@ -71,7 +74,9 @@ class TApplication{
                                     $flashes = Flash::getFlashes();
                                 }
                             }
-                                     
+                            
+                         }
+                                    
                             require('layout/index.phtml');
                      }
 		}else{
@@ -82,12 +87,13 @@ class TApplication{
                           require('layout/index.phtml');
                          
                     }else{
-                          if ($sessao->getVar('msg') != null){
-                                if ($sessao->getVar('msg') == 1){
+
+                          if ($sessao->getVar('msg1') != null){                          
+                              if ($sessao->getVar('msg1') == 5){
                                     Flash::addFlash('Você não tem permissão!');
                                     $flashes = Flash::getFlashes();
-                                }
-                                $sessao->removeVar('msg');
+                                    $sessao->removeVar('msg1');
+                              } 
                           }
                           $menu = new TMenu($usuario->permissoes);
                           require("app.comuns/app.control/login.php");

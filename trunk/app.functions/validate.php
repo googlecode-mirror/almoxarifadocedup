@@ -13,7 +13,6 @@ function validate($usuario)
         if($_GET)
         {
             $permissoes = $usuario->permissoes;
-            
             $valida = false;
 
             if(isset($permissoes[$_GET['modulo']]))
@@ -25,11 +24,12 @@ function validate($usuario)
             if(!$valida)
             {
                 // se o usuario não tem permissao redireciona pra pagina principal
+                // sessão para indicar que dever ser mostrado a menssagem de não permitido
                 $sessao = new TSessao(true);
-                $sessao->addVar('msg',1);
-                
+                $sessao->addVar('msg1',5);
                 header('location: index.php');
             }
+            return $valida;
         }
     }
     else
