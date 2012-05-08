@@ -52,18 +52,13 @@ class TApplication{
                 
                 
                 include 'app.functions/validate.php';
-                //validate($usuario);           
+                validate($usuario);           
                 
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
                     $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
-                    
-                     if ($page == 'panel'){
-                         $templatePage = "app.comuns/template/{$page}.phtml";
-                         require('layout/index.phtml');
-                     
-           
-                     }elseif ($modulo != null) {
+         
+                     if ($modulo != null) {
 
                             if (file_exists("modulos/{$modulo}/app.control/{$page}.php")){                  
                                 require("modulos/{$modulo}/app.control/{$page}.php"); 
@@ -87,10 +82,19 @@ class TApplication{
                           require('layout/index.phtml');
                          
                     }else{
+                          if ($sessao->getVar('msg') != null){
+                                if ($sessao->getVar('msg') == 1){
+                                    Flash::addFlash('Você não tem permissão!');
+                                    $flashes = Flash::getFlashes();
+                                }
+                                $sessao->removeVar('msg');
+                          }
                           $menu = new TMenu($usuario->permissoes);
                           require("app.comuns/app.control/login.php");
                           $templatePage = "app.comuns/template/panel.phtml";
                           require('layout/index.phtml');
+                          
+                          
                                 
                     }
                }     

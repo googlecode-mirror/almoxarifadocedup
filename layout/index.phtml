@@ -12,24 +12,27 @@ foreach(TApplication::$scriptLink as $script)
     echo '			<script type="text/javascript" src="app.misc/js/'.$script.'.js"></script>',"\n";
 ?>
 		</head>
-	<body>
-            <?php if(isset($usuario)){ ?>
-                <div id="controler_bar">
-                    <div>
-                        <a href="index.php?modulo=usuarios&page=info-usuario">
-                            <div>
-                                <p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p>
-                        </div>
-                        </a>    
-                        <a href="index.php?logout=1"><div><p>Logout</p></div></a>
-                    </div>
-                </div>
-            <?php } ?>    
+	<body>   
                 <div id="corpo">
+                    
                     <?php if(isset($usuario->permissoes)) $menu->show(); ?>
 			<div id="topo">
 					
 			</div>
+                        <?php if(isset($usuario)){ ?>
+                            <div id="controler_bar">
+                                <span><a href="index.php">Painel</a></span>
+                                <div>
+                                    <a href="index.php?modulo=usuarios&page=info-usuario">
+                                        <div>
+                                            <p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p>
+                                    </div>
+                                    </a>    
+                                    <a href="index.php?logout=1"><div><p>Logout</p></div></a>
+                                </div>
+                            </div>
+                        <?php } ?>  
+                    
                             <?php if ($flashes){ ?>
                                 <div id="alert">
                                     <p><span class="ui-icon ui-icon-alert" style="float:left;"></span> <?php echo $flashes ?></p>
