@@ -2,9 +2,10 @@
     if ($sessao->getVar('msg') != null){
    
         if ($sessao->getVar('msg') == 1){
-           Flash::addFlash('Empréstimo concluído.'); 
+           Flash::addFlash('Empréstimo concluído.');
+           $sessao->removeVar('msg');
         }
-        $sessao->removeVar('msg');
+        
     }
 
     $id = $_GET['id'];

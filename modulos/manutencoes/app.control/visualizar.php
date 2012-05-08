@@ -15,7 +15,6 @@ if ((isset($_POST['busca'])) and $_POST['estadoBusca'] != 'todos') {
 }
     
 $requisicoes = RequerirMapper::getRequisicaoByCriteria($criteria);
-
 if (array_key_exists('erro',$_GET)){
     if ($_GET['erro'] == 'concl'){
         Flash::addFlash('Você não pode concluir esta manutencão.');

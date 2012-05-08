@@ -22,7 +22,6 @@
             foreach ($sessao->getVar('mat') as $item){
                 $itemObject = new Item();
                 ItemMapper::map($itemObject, $item);
-
                 $emp->addItens($itemObject);
             
             }
