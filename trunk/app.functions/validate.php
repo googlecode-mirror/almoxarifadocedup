@@ -25,6 +25,9 @@ function validate($usuario)
             if(!$valida)
             {
                 // se o usuario não tem permissao redireciona pra pagina principal
+                $sessao = new TSessao(true);
+                $sessao->addVar('msg',1);
+                
                 header('location: index.php');
             }
         }
