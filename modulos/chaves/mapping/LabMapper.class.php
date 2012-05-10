@@ -109,7 +109,9 @@ class LabMapper {
         TTransaction::open('my_config');
             
          if ($conn = TTransaction::get()){
-               $sql = "UPDATE Laboratorios SET deleted=1
+         		
+         	
+               $sql = "UPDATE laboratorios SET deleted=1
                        WHERE id_laboratorio = ?";
                              
                $sth = $conn->prepare($sql);
