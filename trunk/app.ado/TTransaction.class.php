@@ -31,6 +31,11 @@ final class TTransaction
 
             // desliga o log de SQL
             self::$logger = NULL;
+            
+            $sql = 'SET NAMES utf8';
+            $sth = self::$conn->prepare($sql);
+            $sth->execute();
+            
         }
     }
 
