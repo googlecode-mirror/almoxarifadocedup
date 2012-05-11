@@ -1,5 +1,4 @@
 <?php
-
 $estados = Utils::getAll('estados_requisicoes');
 $criteria = new SearchCriteria();
 

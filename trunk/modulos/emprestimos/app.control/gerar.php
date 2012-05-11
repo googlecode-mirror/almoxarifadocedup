@@ -55,7 +55,7 @@
 
        $sessao->delArray('mat',$_GET['nome']);
        
-      header('location:index.php?modulo=emprestimos&page=gerar'); 
+      header('location:index.php?modulo=emprestimos&page=gerar&id='.$sessao->getVar('id')); 
      }
  
 ?>

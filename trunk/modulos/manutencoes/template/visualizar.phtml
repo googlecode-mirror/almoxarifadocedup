@@ -6,6 +6,7 @@
         <?php 
    
         foreach ($estados as $estado) {
+            if ($estado['id_estado_requisicao'] <> 4 and $estado['id_estado_requisicao'] <> 5 ){
                 echo "<option value={$estado['id_estado_requisicao']}";
                    
                     if (isset($_POST['busca'])){
@@ -13,7 +14,8 @@
                             echo ' selected="selected"';
                         } 
                     }
-                echo ">{$estado['nome_estado_requisicao']}</option>\n";  
+                echo ">{$estado['nome_estado_requisicao']}</option>\n";
+            }
         } 
         ?> 
         

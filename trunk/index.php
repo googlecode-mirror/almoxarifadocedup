@@ -22,17 +22,28 @@ class TApplication{
     
            static public function init(){
                
-               function __autoload($classe){
+               function __autoload($classe){  
                    
-                   $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
+                   $modulos = array('chaves','emprestimos','manutencoes','permissoes','solicitacoes','usuarios');
+                   //$modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
+                   
+                   foreach ($modulos as $modulo){
+                       
+                       if(file_exists('modulos/'.$modulo.'/app.model/'.$classe.'.class.php')){
+                           include_once ('modulos/'.$modulo.'/app.model/'.$classe.'.class.php');
+                       }
+                       if(file_exists('modulos/'.$modulo.'/mapping/'.$classe.'.class.php')){
+                           include_once ('modulos/'.$modulo.'/mapping/'.$classe.'.class.php');
+                       }
+                   }
+                   
+                    $pastas = array('app.ado','app.config','app.widgets','util','app.comuns/app.model','app.comuns/mapping',
+                                "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
 
-                   $pastas = array('app.ado','app.config','app.widgets','util','app.comuns/app.model','app.comuns/mapping',
-                            "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
-                    
-                   foreach ($pastas as $pasta){
-                         if (file_exists("{$pasta}/{$classe}.class.php")) {
+                    foreach ($pastas as $pasta){
+                            if (file_exists("{$pasta}/{$classe}.class.php")) {
 
-                             include_once "{$pasta}/{$classe}.class.php";
+                                include_once "{$pasta}/{$classe}.class.php";
                          }
                     }
                 }  

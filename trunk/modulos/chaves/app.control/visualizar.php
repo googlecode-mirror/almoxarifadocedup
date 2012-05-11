@@ -1,6 +1,6 @@
 <?php
     $laboratorios = LabMapper::getLabs();
-    
+   
     if (array_key_exists('labkey',$_GET)){
     	
     	$page = 'chave-detail';
@@ -11,4 +11,8 @@
 	    $data_hora = explode(' ',$ch['dt_inicial_controle']);
 
     }
+                                
 ?>
+    
+
+    
