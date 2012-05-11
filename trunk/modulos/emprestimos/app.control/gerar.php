@@ -1,7 +1,7 @@
 <?php
      
-    if (array_key_exists('id',$_GET)){
-        $sessao->addVar('id',$_GET['id']);
+    if (array_key_exists('key',$_GET)){
+        $sessao->addVar('id',$_GET['key']);
     }
     
     if ($sessao->getVar('id') != null){
@@ -48,12 +48,12 @@
                     'dt_final'=> $_POST['item_entrega'].' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));
       
       $sessao->addArray('mat',$data);
-      header('location:index.php?modulo=emprestimos&page=gerar');
+      header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id'));
     }
     
     if (array_key_exists('del',$_GET)){
 
-       $sessao->delArray('mat',$_GET['key']);
+       $sessao->delArray('mat',$_GET['nome']);
        
       header('location:index.php?modulo=emprestimos&page=gerar'); 
      }

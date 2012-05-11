@@ -4,8 +4,9 @@ $(document).ready(function() {
     initErrorFields();
     initChangeStatusDialog();
     initDeleteDialog();
+  
 });
-
+	
 function gE(ID){
 	return document.getElementById(ID);
 }
@@ -25,12 +26,33 @@ function ValidaForm(frm) {
 		
 }
 
-function initFlashes() {
-    var flashes = $("#flashes");
-    if (!flashes.length) {
-        return;
-    }
-    setTimeout(function() {
-        flashes.slideUp("slow");
-    }, 2000);
+function clique(e){
+	
+	
+	$(e).attr('class','linha');
+	
+	var key = $(".linha td").html();
+	
+	$("tr").each(function(i){
+		if (i%2 == 0){
+			$(this).attr('bgcolor', '#e0e0e0');
+		}else{
+			$(this).attr('bgcolor', '#ffffff');
+		}
+			$(this).removeClass('linha');
+
+	});
+	
+	$('#menu').css("visibility","visible" );
+	
+	$("#a1").attr('href', 'index.php?modulo=usuarios&page=gerenciar&key='+key);
+	$("#a2").attr('href', 'index.php?modulo=permissoes&page=gerenciar&key='+key);	
+	$("#a3").attr('href', 'index.php?modulo=chaves&page=gerenciar&key='+key);	
+	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);	
+
+	
+	$(e).attr('bgcolor','#E9967A');
+
 }
+
+
