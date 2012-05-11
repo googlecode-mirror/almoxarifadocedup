@@ -2,7 +2,7 @@
     <form style="width:530px;" class="form2" method="POST" action="">
         <label style="padding-right:10px;"><span>Requisitante:</span>
             <input readonly="readonly" style="width:250px;" type="text" name="nome_requisitante" value="<?php echo $requisitante['nome_usuario']; ?>">
-            <a class="btNoMaginAndLink" href="index.php?modulo=emprestimos&page=visualizar&id=<?php echo $_GET['id'] ?>">Empréstimos</a>
+            <a class="btNoMaginAndLink" href="index.php?modulo=emprestimos&page=visualizar&key=<?php echo $_GET['key'] ?>">Empréstimos</a>
         </label><br/>
         <label><span>Responsável:</span>
             <input readonly="readonly" style="width:250px" type="text" name="nome_responsável" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
@@ -34,7 +34,7 @@
                                     <td style='padding-left:4px'>{$item['descricao_item']}</td>
                                     <td>{$item['quantidade_item']}</td>
                                     <td>{$item['dt_final']}</td>
-                                    <td align=center ><a title='Excluir item' href='index.php?modulo=emprestimos&page=gerar&key={$item['descricao_item']}&del=1'>
+                                    <td align=center ><a title='Excluir item' href='index.php?modulo=emprestimos&page=gerar&nome={$item['descricao_item']}&del=1'>
                                         <img src='app.misc/images/ico_delete.png'></a></td> 
                                 </tr>"; 
 

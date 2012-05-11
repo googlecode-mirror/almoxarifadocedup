@@ -5,6 +5,12 @@
     <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
     
 </form>
+<div id="menu" style="text-align:left; margin:15px 0 10px 19.1%; visibility: hidden;">
+	<a id="a1" class="btNoMaginAndLink" title='Editar Usuário' href=''>Editar</a>
+	<a id="a2" class="btNoMaginAndLink" title='Editar Permissões' href=''>Permissões</a>
+	<a id="a3" class="btNoMaginAndLink" title='Registrar Chave' href=''>Registrar Chave</a>
+	<a id="a4" class="btNoMaginAndLink" title='Empréstimo' href=''>Empréstimo</a>
+</div>
 <table align="center" class="table">
     <thead align="left">
         <tr>
@@ -13,10 +19,6 @@
             <th width="125">Tipo</th>
             <th width="150">Email</th>
             <th width="70">Telefone</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
         </tr>
      <thead>
      <tbody align="left">
@@ -26,20 +28,12 @@
         
     $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
     
-    echo "<tr bgcolor='{$bgcolor}'>
+    echo "<tr style='cursor : pointer' bgcolor='$bgcolor' onclick='clique(this)'>
               <td align=center >{$usuario->id_usuario}</td>
               <td>{$usuario->nome_usuario}</td>
               <td>{$usuario->nome_tipo}</td>
               <td>{$usuario->email_usuario}</td>
               <td>{$usuario->telefone_usuario}</td>
-              <td><a title='Editar Usuário' href='index.php?modulo=usuarios&page=gerenciar&key={$usuario->id_usuario}'>
-                                     <img src='app.misc/images/ico_edit.png'></a></td>
-              <td><a title='Editar Pemissões' href='index.php?modulo=permissoes&page=gerenciar&key={$usuario->id_usuario}'>
-                                     <img src='app.misc/images/ico_clientes.png'></a></td>
-              <td><a title='Registrar Chave' href='index.php?modulo=chaves&page=gerenciar&key={$usuario->id_usuario}'>
-                                     <img src='app.misc/images/ico_chave02.jpg'></a></td>
-              <td><a title='Fazer Empréstimo' href='index.php?modulo=emprestimos&page=gerar&id={$usuario->id_usuario}'>
-                                     <img src='app.misc/images/7657_16x16.png'></a></td>
           </tr>";
     $i = $i+1;
     }    
