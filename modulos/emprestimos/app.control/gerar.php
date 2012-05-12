@@ -11,8 +11,8 @@
     if (array_key_exists('save',$_POST)){
     	
     	$dados = array('nome_requisitante' => array('Requisitante'),
-    			       'nome_responsavel' => array('Responsável'),
-    			       'dt_inicial_emprestimo'=> array('Data', 'tipo' => 'data'),
+    		       'nome_responsavel' => array('Responsável'),
+    		       'dt_inicial_emprestimo'=> array('Data', 'tipo' => 'data'),
     			 
     	);
     	
@@ -56,19 +56,27 @@
 
 
     if (array_key_exists('add-mat',$_GET)){
-      $data = array('descricao_item' => $_POST['item'],
-                    'quantidade_item' => str_pad($_POST['item_qtd'], 2, '0', STR_PAD_LEFT),
-                    'dt_final'=> $_POST['item_entrega'].' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));
+      $dados = array('item' => array('Item'),
+                     'item_qtd' => array('Qtd','tipo' => 'inteiro'));
+
+      $validacao = ValidaFormulario($dados);
       
-      $sessao->addArray('mat',$data);
-      header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id'));
+      if ($validacao === true){
+          
+        $data = array('descricao_item' => $_POST['item'],
+                      'quantidade_item' => str_pad($_POST['item_qtd'], 2, '0', STR_PAD_LEFT),
+                      'dt_final'=> $_POST['item_entrega'].' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));  
+        
+        $sessao->addArray('mat',$data);
+        header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id'));
+      }
     }
     
     if (array_key_exists('del',$_GET)){
 
        $sessao->delArray('mat',$_GET['nome']);
        
-      header('location:index.php?modulo=emprestimos&page=gerar&id='.$sessao->getVar('id')); 
+      header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id')); 
      }
  
 ?>

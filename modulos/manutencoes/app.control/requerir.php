@@ -18,9 +18,9 @@ if (array_key_exists('key',$_GET)){
 
 if (array_key_exists('save',$_POST)){
 	$dados = array('dt_requisicao'=> array('Data Atual', 'tipo' => 'data'),
-			       'equipamento_requisicao' => array ('Equipamento'),
-			       'local_equipamento' => array ('Localização'),
-			       'defeito_requisicao' => array ('Defeito'),
+		       'equipamento_requisicao' => array ('Equipamento'),
+		       'local_equipamento' => array ('Localização'),
+		       'defeito_requisicao' => array ('Defeito'),
 	);
 	
 	$validacao = ValidaFormulario($dados);

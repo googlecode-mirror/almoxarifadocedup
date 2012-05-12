@@ -54,7 +54,6 @@ class TApplication{
             static public function run(){
                 
                 $sessao = new TSessao(true);
-                
                 $flashes = null;
 
                 $modulo = (isset($_GET['modulo'])) ? $_GET['modulo'] : null;
@@ -63,10 +62,9 @@ class TApplication{
                 
                 $usuario = $sessao->getVar('usuario');
                 
-                
                 include 'app.functions/validate.php';
-                $valida = validate($usuario);
-                
+                $valida = validate($usuario); 
+                                
                 if (($page != null) and ($logout == null) and (($usuario != null)) or ($page == 'add-usuario')) {
                     
                     $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
@@ -82,9 +80,17 @@ class TApplication{
                             if (file_exists("modulos/{$modulo}/template/{$page}.phtml")){                
  
                                 $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
+                                
+                                if (isset($validacao)){
+                                    Flash::addFlash($validacao);
+                                }
+                                
                                 if (Flash::hasFlashes()) {
                                     $flashes = Flash::getFlashes();
                                 }
+                                
+                                
+                                
                             }
                             
                          }

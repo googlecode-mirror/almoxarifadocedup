@@ -32,9 +32,7 @@
 	     
 	     $sessao->addVar('msg',2);
 	     header('location:index.php');
-  	 }else{
-	 	Flash::addFlash($validacao);
-	 }
+  	 }
 
   }
   

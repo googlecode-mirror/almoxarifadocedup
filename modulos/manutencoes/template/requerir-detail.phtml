@@ -68,8 +68,8 @@
         }elseif ($requisicao->estado_id == 3){
     
         echo"<td><div>
-            <a id=actions class=open-link href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Concluir</a>
-            <a class=actions href='index.php?modulo=manutencoes&page=imprimir&key={$requisicao->id_requisicao}'>Imprimir</a>
+            <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Concluir</a>
+            <a class='actions' href='index.php?modulo=manutencoes&page=imprimir&key={$requisicao->id_requisicao}'>Imprimir</a>
             </div></td>"; 
             
         }elseif ($requisicao->estado_id == 5){
@@ -86,7 +86,7 @@
         <th>&nbsp</th>   
     </tr>
      <tr>
-         <th><a href='index.php?modulo=manutencoes&page=<?php echo $PageVoltarLista; ?>'>
+         <th><a href='index.php?modulo=manutencoes&estado=<?php echo $requisicao->estado_id ?>&page=<?php echo $PageVoltarLista; ?>'>
              Voltar à Lista</a></th>   
     </tr>
     
@@ -97,7 +97,7 @@
     <div id="janela-dialog">
         <form id="form-dialog" class="form" name="frm" method="post" action="">
             <fieldset>
-                <label>Comentário:</label>
+                <label>Comentário(opcional):</label>
                 <textarea class="campo" name="comentario_manutencao" ></textarea>
             </fieldset>
         </form> 
