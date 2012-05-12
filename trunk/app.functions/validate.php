@@ -18,7 +18,6 @@ function validate($usuario)
             if(isset($permissoes[$_GET['modulo']]))
             {
                 if(in_array($_GET['page'],$permissoes[$_GET['modulo']])) $valida = true;
-                
             }
             
             if(!$valida)
@@ -27,16 +26,25 @@ function validate($usuario)
                 // sessão para indicar que dever ser mostrado a menssagem de não permitido
                 $sessao = new TSessao(true);
                 $sessao->addVar('msg1',5);
-                header('location: index.php');
+                //header('location: index.php');
             }
             return $valida;
+        }
+        else
+        {
+            return true;
         }
     }
     else
     {
         // redireciona o usuario que não está logado para a pagina de login pra não exibir nada no get
-        if($_GET != null) 
-           header('location: index.php');
+        if($_GET != null)
+            if($_GET['page']=='add-usuario' and $_GET['modulo']=='usuarios')
+                return true;//header('location: index.php');
+            else
+                return false;
+        else 
+            return true;
     }
 }
 
