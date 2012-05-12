@@ -21,6 +21,7 @@ group by p.nome_permissao;')->fetchAll(PDO::FETCH_COLUMN);
     }
     
     $permissoes['usuarios'][] = 'info-usuario';
+    $permissoes['usuarios'][] = 'logout';
     $permissoes['manutencoes'][] = 'm-manutencoes';
     
     return $permissoes;
