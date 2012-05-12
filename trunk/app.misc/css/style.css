@@ -10,16 +10,29 @@ body {
     background: #F5F5F5;
 }
 
+#headerPage{
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+    border-top:1px solid;
+    border-bottom:2px solid;
+    font-size:15pt;
+    font-weight: bold;
+}
+
+
+
 h1{
     
     margin-bottom: 30px;
 }
 
 #tdiv{
+    margin-top: 25px;
     width:390px;
     background-color:#f0f0f0;
     border: 2px solid;
     border-color: grey;
+    
 }
 
 #tdiv h1 {
@@ -121,6 +134,9 @@ h1{
 
 }
 
+.tpanel{
+    margin-top:20px;
+}
 .tpanel fieldset{
     display:block;
     width:auto;
