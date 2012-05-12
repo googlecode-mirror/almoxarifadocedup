@@ -165,7 +165,6 @@ function intAlertMsg(){
     alert.dialog({
         autoOpen: false,
         modal:true,
-        width:300,
         buttons: {
             'OK': function(){
                 $(this).dialog('close');

@@ -9,14 +9,12 @@ if ((isset($_POST['busca'])) and $_POST['estadoBusca'] != 'todos') {
 }else if (($sessao->getVar('estado') != null) and array_key_exists('estado',$_GET)){
       
       $criteria->setValueCriteria($sessao->getVar('estado')); 
-      $sessao->removeVar('estado');
- 
 }
     
 $requisicoes = RequerirMapper::getRequisicaoByCriteria($criteria);
 if (array_key_exists('erro',$_GET)){
     if ($_GET['erro'] == 'concl'){
-        Flash::addFlash('Você não pode concluir esta manutencão.');
+        Flash::addFlash('Você não pode concluir esta manutencão, pois ela não é sua.');
     }
 }
 
@@ -31,7 +29,7 @@ if ($sessao->getVar('msg') != null){
     }
     
     if ($sessao->getVar('msg') == '3'){
-        Flash::addFlash('Você não pode editar/deletar esta requisição!');
+        Flash::addFlash('Você não pode editar/deletar requisições de outros usuários!');
     }
     
     if ($sessao->getVar('msg') == '4'){
@@ -44,10 +42,10 @@ if ($sessao->getVar('msg') != null){
 if (array_key_exists('key',$_GET)){
 	
 	$page = 'requerir-detail';
-
 	$id = $_GET['key'];
 	
 	$requisicao = RequerirMapper::getRequisicaoByIdRequisicao($id);
+        $sessao->addVar('estado',$requisicao->estado_id);
 	
 	if ($requisicao->estado_id == 3){
 	

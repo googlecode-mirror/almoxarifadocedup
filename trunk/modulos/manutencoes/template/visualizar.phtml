@@ -1,7 +1,6 @@
 <form method="POSt" action="">
     <label>Status:</label>
     <select name="estadoBusca">
-        <option value="todos"></option>
         <option value="todos">Todas</option>
         <?php 
    
@@ -11,9 +10,18 @@
                    
                     if (isset($_POST['busca'])){
                         if ($estado['id_estado_requisicao'] == $_POST['estadoBusca']){
-                            echo ' selected="selected"';
-                        } 
+                            echo ' selected="selected"'; 
+                        }
                     }
+                    
+                    if (array_key_exists('estado',$_GET)){
+                        if ($estado['id_estado_requisicao'] == $sessao->getVar('estado')){
+                            echo ' selected="selected"';
+                            $sessao->removeVar('estado');
+                        }
+                    }
+                    
+                    
                 echo ">{$estado['nome_estado_requisicao']}</option>\n";
         	}  
         }   

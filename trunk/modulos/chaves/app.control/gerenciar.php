@@ -11,11 +11,11 @@
    
    if (array_key_exists('save',$_POST)){
    	
-	   $dados = array('nome_usuario' => array('Usuário'),
-	   			       'dt_inicial_controle'=> array('Data', 'tipo' => 'data'),
+	$dados = array('nome_usuario' => array('Usuário'),
+	   	       'dt_inicial_controle'=> array('Data', 'tipo' => 'data'),
 	   			
-	   );
-   	
+	);
+        
        $validacao = ValidaFormulario($dados);
        
        if ($validacao === true){
@@ -29,8 +29,6 @@
 	       CrlChaveMapper::addCrlChave($ch);
 	       
 	       header('location:index.php?modulo=chaves&page=visualizar');
-       }else{
-       	   Flash::addFlash($validacao);
        }
        
    }
@@ -56,29 +54,40 @@
       }
        
       if (array_key_exists('saveLab',$_POST)){
-       
-            $data = array('nome_laboratorio' => $_POST['nome_laboratorio'],
-                            'numero_laboratorio' => $_POST['numero_laboratorio']);
-
-            $lab = new Lab();          
-            LabMapper::map($lab, $data);
-            LabMapper::addLabs($lab);
-
-            header('location:index.php?modulo=chaves&page=visualizar');
+          
+            $dados = array ('nome_laboratorio' => array('Laboratório'),
+                            'numero_laboratorio' => array('Número','tipo' => 'inteiro'));
+          
+            $validacao = ValidaFormulario($dados);
             
+            if ($validacao === true){
+                $data = array('nome_laboratorio' => $_POST['nome_laboratorio'],
+                                'numero_laboratorio' => $_POST['numero_laboratorio']);
+
+                $lab = new Lab();          
+                LabMapper::map($lab, $data);
+                LabMapper::addLabs($lab);
+                header('location:index.php?modulo=chaves&page=visualizar');
+            }   
       }
           
       if(array_key_exists('updateLab',$_POST)){
-  
-            $data = array('id_laboratorio' => $_POST['id_laboratorio'],
-                            'nome_laboratorio' => $_POST['nome_laboratorio'],
-                            'numero_laboratorio' => $_POST['numero_laboratorio']);
+            
+            $dados = array ('nome_laboratorio' => array('Laboratório'),
+                            'numero_laboratorio' => array('Número','tipo' => 'inteiro'));
+          
+            $validacao = ValidaFormulario($dados);
+            if ($validacao === true){
+                $data = array('id_laboratorio' => $_POST['id_laboratorio'],
+                                'nome_laboratorio' => $_POST['nome_laboratorio'],
+                                'numero_laboratorio' => $_POST['numero_laboratorio']);
 
-            $lab = new Lab();          
-            LabMapper::map($lab, $data);
-            LabMapper::updateLab($lab);
+                $lab = new Lab();          
+                LabMapper::map($lab, $data);
+                LabMapper::updateLab($lab);
 
-            header('location:index.php?modulo=chaves&page=visualizar');
+                header('location:index.php?modulo=chaves&page=visualizar');
+            }
       } 
       
       if (array_key_exists('labkeydelete',$_GET)){

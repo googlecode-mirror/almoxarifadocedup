@@ -9,13 +9,13 @@
                     <input class="campo" type="text" readonly="readonly" style="width:205px" name="nome_requisitante" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
                     
                     <label>Equipamento(s):</label>
-                    <textarea cols="27" rows="6" maxlength="100" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
+                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
                     
                     <label>Localização(s):</label>
-                    <textarea cols="27" rows="6" maxlength="100" class="campo" name="local_equipamento" value=""><?php if (isset($requisicoes)){echo ($requisicoes['local_equipamento']);}?></textarea>
+                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="local_equipamento" value=""><?php if (isset($requisicoes)){echo ($requisicoes['local_equipamento']);}?></textarea>
                     
                     <label>Defeito(s):</label>
-                    <textarea cols="27" rows="6" maxlength="100" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
+                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
                         
                     
                     <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>

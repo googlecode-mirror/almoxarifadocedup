@@ -18,15 +18,18 @@
 	  if ($validacao === true){
       
 	      $usuario->setIdUsuario($id);
+              
+              if (($_POST['celular_usuario']) == ''){
+	         $usuario->setCelularUsuario(null);
+	         
+	      }
 	      
 	      UsuarioMapper::map($usuario,$_POST);
 	      UsuarioMapper::update($usuario);
 	      
 	      Flash::addFlash('Registro Alterado');
 	  
-	  }else{
-	      	Flash::addFlash($validacao);
-	  }  
+	  }
      
   }
 
