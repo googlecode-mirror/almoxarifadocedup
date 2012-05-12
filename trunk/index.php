@@ -16,7 +16,15 @@ function __autoload($classe){
 
     $pastas = array('app.ado','app.config','app.widgets','util','app.comuns/app.model','app.comuns/mapping',
                 "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
-}
+                
+    foreach ($pastas as $pasta){
+               if (file_exists("{$pasta}/{$classe}.class.php")) {
+
+                    include_once "{$pasta}/{$classe}.class.php";
+               }
+    }
+}   
+    
 
 
 class TApplication{
