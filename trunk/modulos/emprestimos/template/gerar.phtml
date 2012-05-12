@@ -5,10 +5,10 @@
             <a class="btNoMaginAndLink" href="index.php?modulo=emprestimos&page=visualizar&key=<?php echo $_GET['key'] ?>">Empréstimos</a>
         </label><br/>
         <label><span>Responsável:</span>
-            <input readonly="readonly" style="width:250px" type="text" name="nome_responsável" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
+            <input readonly="readonly" style="width:250px" type="text" name="nome_responsavel" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
         </label><br/>
         <label><span>Data Inicial:</span>
-            <input readonly="readonly" style="width:70px"type="text" name="dt_inicial_emprestimo" value="<?php echo date('d/m/Y'); ?>">
+            <input readonly="readonly" style="width:90px" type="text" name="dt_inicial_emprestimo" value="<?php echo date('d/m/Y'); ?>">
         </label><br/>
         
         <fieldset>

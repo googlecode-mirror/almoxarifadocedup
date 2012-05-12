@@ -3,7 +3,7 @@
                 <form method="POST" action="">
 
                     <label>Nome:</label>
-                    <input class="campo" type="text" size="30" id="login" name="nome_usuario" value="<?php echo $usuario->getNomeUsuario();?>"/>
+                    <input class="campo" type="text" style="width:210px" id="login" name="nome_usuario" value="<?php echo $usuario->getNomeUsuario();?>"/>
                     
                     <label>Tipo:</label>
                     <select class="campo" name="tipo_usuario_id">
@@ -17,25 +17,25 @@
                     </select>
                     
                     <label>Email:</label>
-                    <input class="campo" type="text" size="30" name="email_usuario" value="<?php echo $usuario->getEmailUsuario();?>"/>
+                    <input class="campo" type="text" style="width:210px" name="email_usuario" value="<?php echo $usuario->getEmailUsuario();?>"/>
                     
                     <label>Telefone:</label>
-                    <input class="campo" type="text" size="15" maxlength="8" name="telefone_usuario" value="<?php echo $usuario->getTelefoneUsuario();?>"/>
+                    <input class="campo" type="text" style="width:105px" maxlength="8" name="telefone_usuario" value="<?php echo $usuario->getTelefoneUsuario();?>"/>
                     
                     <label>Celular (Opcional):</label>
-                    <input class="campo" type="text" size="15" maxlength="8" name="celular_usuario" value="<?php echo $usuario->getCelularUsuario();?>"/>
+                    <input class="campo" type="text" style="width:105px" maxlength="8" name="celular_usuario" value="<?php echo $usuario->getCelularUsuario();?>"/>
                     
                     <label>Data Nascimento:</label>
-                    <input class="campo" type="text" size="15" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
+                    <input class="campo" type="text" style="width:105px" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
                     
                     <label>Login:</label>
-                    <input class="campo" type="text" name="login_usuario" value="<?php echo $usuario->getLoginUsuario();?>"/>
+                    <input class="campo" type="text" style="width:210px" name="login_usuario" value="<?php echo $usuario->getLoginUsuario();?>"/>
                     
                     <label>Senha:</label>
-                    <input class="campo" type="password" name="senha_usuario" value="<?php echo $usuario->getSenhaUsuario();?>"/>
+                    <input class="campo" type="password" style="width:210px" name="senha_usuario" value="<?php echo $usuario->getSenhaUsuario();?>"/>
                     
-                    <label>Confirmar Senha:</label>
-                    <input class="campo" type="password" name="confirma_senha" value="<?php echo $usuario->getSenhaUsuario();?>"/>
+                    <label>Repetir a Senha:</label>
+                    <input class="campo" type="password" style="width:210px" name="confirma_senha" value="<?php echo $usuario->getSenhaUsuario();?>"/>
                     
                     <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="edit" value="Atualizar"/>
                     <input type="button" name="edit" value="Voltar" onclick="javascript:location='index.php'"/>
