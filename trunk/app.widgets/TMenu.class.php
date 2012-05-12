@@ -36,13 +36,13 @@ class TMenu{
 		<li class="menu-item">
                     <img src="app.misc/images/menu/<?php echo $modulo; ?>.png" alt="<?php $modulo ?>" height="50" width="50" />
                     <ul id="id-<?php $modulo ?>" class="submenu-definition">
-<?php	foreach($scripts as $script){?>
+<?php	foreach($scripts as $script){ if($script != 'logout'){?>
                         <li class='menu-subitem'>
                             <a href='index.php?modulo=<?php echo $modulo; ?>&page=<?php echo $script; ?>'>
                                 <img src='app.misc/images/menu/<?php echo $script; ?>.png' alt='<?php echo $script; ?>' height='50' width='50' />
                             </a>
                         </li>
-<?php		}?>
+<?php		}}?>
                     </ul>
                 </li>
 <?php      } ?>
