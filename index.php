@@ -1,6 +1,7 @@
 <?php
 
 include_once 'util/TSessao.class.php';
+include_once 'util/Validacao.php';
 
 class TApplication{
     

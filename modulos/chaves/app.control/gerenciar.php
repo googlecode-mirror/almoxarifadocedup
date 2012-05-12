@@ -10,17 +10,28 @@
    }
    
    if (array_key_exists('save',$_POST)){
-      
-       $data = array ('professor_id' => $_GET['key'],
-                      'laboratorio_id' => $_POST['laboratorio_id'],
-                      'observacao_controle' => ($_POST['observacao_controle'] == '') ? null : $_POST['observacao_controle'],
-                      'dt_inicial_controle' => Utils::FormatDateTimeUs($_POST['dt_inicial_controle'].' '.$_POST['hora_inicial_controle']));
+   	
+	   $dados = array('nome_usuario' => array('Usuário'),
+	   			       'dt_inicial_controle'=> array('Data', 'tipo' => 'data'),
+	   			
+	   );
+   	
+       $validacao = ValidaFormulario($dados);
        
-       $ch = new CrlChave;
-       CrlChaveMapper::map($ch,$data);
-       CrlChaveMapper::addCrlChave($ch);
-       
-       header('location:index.php?modulo=chaves&page=visualizar');
+       if ($validacao === true){
+	       $data = array ('professor_id' => $_GET['key'],
+	                      'laboratorio_id' => $_POST['laboratorio_id'],
+	                      'observacao_controle' => ($_POST['observacao_controle'] == '') ? null : $_POST['observacao_controle'],
+	                      'dt_inicial_controle' => Utils::FormatDateTimeUs($_POST['dt_inicial_controle'].' '.$_POST['hora_inicial_controle']));
+	       
+	       $ch = new CrlChave;
+	       CrlChaveMapper::map($ch,$data);
+	       CrlChaveMapper::addCrlChave($ch);
+	       
+	       header('location:index.php?modulo=chaves&page=visualizar');
+       }else{
+       	   Flash::addFlash($validacao);
+       }
        
    }
    
