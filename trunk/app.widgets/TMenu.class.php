@@ -47,7 +47,7 @@ class TMenu{
                 </li>
 <?php      } ?>
                 <li class="menu-item">
-                    <a href="index.php?modulo=usuarios$page=logout">
+                    <a href="index.php?modulo=usuarios&page=logout">
                         <img src="app.misc/images/menu/logout.png" alt="logout" height="50" width="50" />
                     </a>
                 </li>
