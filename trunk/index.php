@@ -1,5 +1,4 @@
 <?php
-
 function __autoload($classe){  
                    
     $modulos = array('chaves','emprestimos','manutencoes','permissoes','solicitacoes','usuarios');
@@ -48,7 +47,7 @@ class TApplication{
     static public function run(){
 
         $sessao = new TSessao(true);
-
+        include ('util/Validacao.php');
         $flashes = null;
 
         $usuario = $sessao->getVar('usuario');
@@ -82,6 +81,9 @@ class TApplication{
                 {                
                     $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
                 }  
+            }
+            if (isset($validacao)){
+                  Flash::addFlash($validacao);
             }
             
             if (Flash::hasFlashes()) 

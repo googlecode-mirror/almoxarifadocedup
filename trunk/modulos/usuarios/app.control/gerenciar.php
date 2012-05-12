@@ -19,7 +19,7 @@
    				   'login_usuario' => array ("Login",'tipo' =>'nome'),
    				   'senha_usuario' => array('Senha'),
    			           'confirma_senha' => array('Repita a Senha', 'tipo' => 'igualdade', 'compara' => 'senha_usuario', 'legenda_2' => 'Senha'),
-   					);   
+   	);   
    
    	$validacao = ValidaFormulario($dados);
    	
