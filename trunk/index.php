@@ -67,6 +67,13 @@ class TApplication{
                     require("app.comuns/app.control/login.php"); 
                     $templatePage = "app.comuns/template/login.phtml";
                 }else{
+                    if ($sessao->getVar('msg1') != null){                          
+                        if ($sessao->getVar('msg1') == 5){
+                            Flash::addFlash('Você não tem permissão!');
+                        $flashes = Flash::getFlashes();
+                        $sessao->removeVar('msg1');
+                        } 
+                    }
                     $templatePage = "app.comuns/template/panel.phtml";
                 } 
             }else{
@@ -92,18 +99,11 @@ class TApplication{
             }
 
             require('layout/index.phtml');
-            if ($sessao->getVar('msg1') != null){                          
-                if ($sessao->getVar('msg1') == 5){
-                    Flash::addFlash('Você não tem permissão!');
-                    $flashes = Flash::getFlashes();
-                    $sessao->removeVar('msg1');
-                } 
-            }
-
-
         }
+        
         else
-        { 
+        {
+            
             header('location: index.php');
         }     
     }
