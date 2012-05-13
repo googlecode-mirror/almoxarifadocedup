@@ -2,7 +2,7 @@
 $permissoes = PermissaoMapper::getPermissoes();
 $modulos = PermissaoMapper::getModulos();
 $modulos_permissoes = PermissaoMapper::getModulo_Permissoes();
-    
+
     //recupera o usuario 
 $usuario = Utils::findById($_GET['key'],'usuarios','id_usuario');
     
