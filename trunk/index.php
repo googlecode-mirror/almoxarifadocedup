@@ -55,7 +55,9 @@ class TApplication{
 
         include 'app.functions/validate.php';
         $valida = validate($usuario);
-
+        
+        
+        
         if ($valida){
 
             if($usuario) $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
@@ -97,8 +99,10 @@ class TApplication{
             {
                 $flashes = Flash::getFlashes();
             }
-
-            require('layout/index.phtml');
+            
+            if (!isset($_GET['ajax'])){
+                require('layout/index.phtml');
+            }
         }
         
         else
@@ -107,6 +111,7 @@ class TApplication{
             header('location: index.php');
         }     
     }
+    
 }
 
 
