@@ -1,12 +1,17 @@
 <?php
+ if (isset($_POST['val'])){
+    echo $_POST['val'];
+ }
 
-  $criteria = new SearchCriteria();
+
+ $criteria = new SearchCriteria();
     
     if (array_key_exists('busca',$_POST)){
         $criteria->setValueCriteria($_POST['CampoBusca']);
     }
  
   $usuarios = UsuarioMapper::getUsuarios($criteria);
+  $sessao->addVar('usuarios',$usuarios);
   
   if (array_key_exists('empCancel',$_GET)){
       $sessao->removeVar('mat');

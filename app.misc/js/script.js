@@ -8,7 +8,23 @@ $(document).ready(function() {
     intAlertMsg();
     initFormDelete();
     initFormDialogMat();
+    zerar();
+    orderColuna();
 });
+
+function orderColuna(){
+    
+    $('.table th').click(function(){
+        var valor = $(this).html();
+        $("#test").load('index.php?modulo=usuarios&page=visualizar&ajax=1',{val:valor},ready())
+    })
+    
+    function ready(){
+        alert('Ajax terminou com sucesso.');
+    }
+
+}
+
 
 function initDatepicker() {
     

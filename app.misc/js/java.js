@@ -2,8 +2,8 @@ $(document).ready(function() {
     initDatepicker();
     initFlashes();
     initErrorFields();
-    initChangeStatusDialog();
     initDeleteDialog();
+    zerar();
   
 });
 	
@@ -52,6 +52,29 @@ function clique(e){
 
 	
 	$(e).attr('bgcolor','#E9967A');
+
+}
+
+function zerar(){
+
+    $('#content').click(function(e){
+
+        if (e.target == this){
+
+            $('#menu').css("visibility","hidden" );
+           
+            $("#tableUsers tr").each(function(i){
+		if (i%2 == 0){
+			$(this).attr('bgcolor', '#e0e0e0');
+		}else{
+			$(this).attr('bgcolor', '#ffffff');
+		}
+			$(this).removeClass('linha');
+
+            });
+        }
+    })
+
 
 }
 
