@@ -17,10 +17,10 @@ function __autoload($classe){
                 "modulos/{$modulo}/app.model","modulos/{$modulo}/mapping");
                 
     foreach ($pastas as $pasta){
-               if (file_exists("{$pasta}/{$classe}.class.php")) {
+        if (file_exists("{$pasta}/{$classe}.class.php")) {
 
-                    include_once "{$pasta}/{$classe}.class.php";
-               }
+            include_once "{$pasta}/{$classe}.class.php";
+        }
     }
 }   
     
@@ -28,7 +28,7 @@ function __autoload($classe){
 
 class TApplication{
     
-    static private $styleLink = array('login','style','principal','menu','controler_bar');
+    static private $styleLink = array();
     
     static private $scriptLink = array('jquery','jquery-1.6.2.min','jquery-ui-1.8.16.custom.min','script','java');
     
@@ -56,17 +56,21 @@ class TApplication{
         include 'app.functions/validate.php';
         $valida = validate($usuario);
         
-        
-        
         if ($valida){
 
-            if($usuario) $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
+            if($usuario)
+            {
+                $menu = new TMenu($usuario->permissoes,array('gerenciar')); 
+                TApplication::setStyle('menu');
+                TApplication::setStyle('controler_bar');
+            }
 
             if (!$_GET)
             {
                 if($usuario == null)
                 {
                     require("app.comuns/app.control/login.php"); 
+                    TApplication::setStyle('login');
                     $templatePage = "app.comuns/template/login.phtml";
                 }else{
                     if ($sessao->getVar('msg1') != null){                          
@@ -99,21 +103,28 @@ class TApplication{
             {
                 $flashes = Flash::getFlashes();
             }
-            
+
+            if ($sessao->getVar('msg1') != null){                          
+                if ($sessao->getVar('msg1') == 5){
+                    Flash::addFlash('Você não tem permissão!');
+                    $flashes = Flash::getFlashes();
+                    $sessao->removeVar('msg1');
+                }
+            }
+           
             if (!isset($_GET['ajax'])){
+                TApplication::setStyle('style');
+                TApplication::setStyle('principal');
                 require('layout/index.phtml');
             }
         }
-        
         else
         {
-            
             header('location: index.php');
         }     
     }
-    
 }
 
-
 TApplication::run();
+
 ?>
