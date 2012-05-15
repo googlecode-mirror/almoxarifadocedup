@@ -51,9 +51,11 @@ class TApplication{
         $flashes = null;
 
         $usuario = $sessao->getVar('usuario');
-
-
-        include 'app.functions/validate.php';
+		
+        // css para estilo das janelas
+		TApplication::setStyle('redmond/jquery-ui-1.8.16.custom');
+        
+		include 'app.functions/validate.php';
         $valida = validate($usuario);
         
         if ($valida){
