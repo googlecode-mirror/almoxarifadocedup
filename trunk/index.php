@@ -30,7 +30,7 @@ class TApplication{
     
     static private $styleLink = array();
     
-    static private $scriptLink = array('jquery','jquery-1.6.2.min','jquery-ui-1.8.16.custom.min','script','java');
+    static private $scriptLink = array('jquery','jquery-1.7.2.min','jquery-ui-1.8.16.custom.min','script','java');
     
     static public function setStyle($estilo)
     {

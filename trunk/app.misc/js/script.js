@@ -12,7 +12,7 @@ $(document).ready(function() {
     orderColuna();
 });
 
-function orderColuna(){
+/*function orderColuna(){
     
     $('.table th').click(function(){
         var valor = $(this).html();
@@ -24,7 +24,7 @@ function orderColuna(){
     }
 
 }
-
+*/
 
 function initDatepicker() {
     
