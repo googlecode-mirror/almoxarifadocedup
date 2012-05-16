@@ -34,11 +34,16 @@ function clique(e){
 	var key = $(".linha td").html();
 	
 	$("tr").each(function(i){
+		
+	if ($(this).attr('bgcolor') != '#FF7F50') {
+		
 		if (i%2 == 0){
-			$(this).attr('bgcolor', '#e0e0e0');
+			$(this).css('background', '#e0e0e0');
 		}else{
-			$(this).attr('bgcolor', '#ffffff');
+			$(this).css('background', '#ffffff');
 		}
+		
+	}	
 			$(this).removeClass('linha');
 
 	});
@@ -50,8 +55,9 @@ function clique(e){
 	$("#a3").attr('href', 'index.php?modulo=chaves&page=gerenciar&key='+key);	
 	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);	
 
-	
-	$(e).attr('bgcolor','#E9967A');
+	if ($(e).attr('bgcolor') != '#FF7F50') {
+		$(e).css('background','#E9967A');
+	}
 
 }
 
@@ -64,7 +70,8 @@ function zerar(){
             $('#menu').css("visibility","hidden" );
            
             $("#tableUsers tr").each(function(i){
-		if (i%2 == 0){
+		
+        if (i%2 == 0){
 			$(this).attr('bgcolor', '#e0e0e0');
 		}else{
 			$(this).attr('bgcolor', '#ffffff');
