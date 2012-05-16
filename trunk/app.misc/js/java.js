@@ -55,9 +55,9 @@ function clique(e){
 	$("#a3").attr('href', 'index.php?modulo=chaves&page=gerenciar&key='+key);	
 	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);	
 
-	if ($(e).attr('bgcolor') != '#FF7F50') {
-		$(e).css('background','#E9967A');
-	}
+
+	$(e).css('background','#E9967A');
+	
 
 }
 

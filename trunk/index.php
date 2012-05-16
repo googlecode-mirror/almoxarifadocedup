@@ -78,8 +78,8 @@ class TApplication{
                     if ($sessao->getVar('msg1') != null){                          
                         if ($sessao->getVar('msg1') == 5){
                             Flash::addFlash('Você não tem permissão!');
-                        $flashes = Flash::getFlashes();
-                        $sessao->removeVar('msg1');
+                        	$flashes = Flash::getFlashes();
+                        	$sessao->removeVar('msg1');
                         } 
                     }
                     $templatePage = "app.comuns/template/panel.phtml";
@@ -106,13 +106,7 @@ class TApplication{
                 $flashes = Flash::getFlashes();
             }
 
-            if ($sessao->getVar('msg1') != null){                          
-                if ($sessao->getVar('msg1') == 5){
-                    Flash::addFlash('Você não tem permissão!');
-                    $flashes = Flash::getFlashes();
-                    $sessao->removeVar('msg1');
-                }
-            }
+          
            
             if (!isset($_GET['ajax'])){
                 TApplication::setStyle('style');
