@@ -26,7 +26,7 @@
                     <input class="campo" type="text" style="width:105px" maxlength="8" name="celular_usuario" value="<?php echo $usuario->getCelularUsuario();?>"/>
                     
                     <label>Data Nascimento:</label>
-                    <input class="campo" type="text" style="width:105px" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
+                    <input id="datepicker" class="campo" type="text" style="width:105px" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
                     
                     <label>Login:</label>
                     <input class="campo" type="text" style="width:210px" name="login_usuario" value="<?php echo $usuario->getLoginUsuario();?>"/>
