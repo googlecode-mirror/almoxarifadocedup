@@ -40,6 +40,15 @@ if ($sessao->getVar('msg') != null){
 }
 
 if (array_key_exists('key',$_GET)){
+    
+        if ($sessao->getVar('msg') != null){
+    
+            if ($sessao->getVar('msg') == '2'){
+                Flash::addFlash('Requisição alterada!');
+            }
+            
+            $sessao->removeVar('msg');
+        }
 	
 	$page = 'requerir-detail';
 	$id = $_GET['key'];
@@ -54,8 +63,6 @@ if (array_key_exists('key',$_GET)){
 		$manu = new Manu;
 		ManuMapper::map($manu,$data);
 		$manutencao = ManuMapper::getManuByRequisicao($manu);
-	
-		$usuario = UTils::findById($manutencao->professor_id, 'usuarios', 'id_usuario');
 	
 	}
 	
