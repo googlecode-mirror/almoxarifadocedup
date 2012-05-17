@@ -1,6 +1,6 @@
 <?php
 
-include_once '../componentes/MPDF54/mpdf.php';
+include_once 'componentes/MPDF54/mpdf.php';
 
 class TRelatorio {
     

@@ -15,6 +15,12 @@ class Requerir {
     
     /**
      *
+     * @var int 
+     */
+    private $id_requisicao;
+    
+    /**
+     *
      * @var date 
      */
     private $dt_requisicao;
@@ -169,6 +175,30 @@ class Requerir {
     
     function getEstadoId(){
         return $this->estado_id;
+    }
+    
+    function loadRequisitante()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $req = $db->getConn()->query('select nome_usuario from usuarios where id_usuario ='.$this->requisitante_id.';')->fetch(PDO::FETCH_COLUMN);
+        return $req;
+    }
+    
+    function loadEstado()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $est = $db->getConn()->query('select nome_estado_requisicao from estados_requisicoes where id_estado_requisicao ='.$this->estado_id.';')->fetch(PDO::FETCH_COLUMN);
+        return $est;
+    }
+    
+    function loadManutencoes()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $manu = $db->getConn()->query('select * from manutencoes where req_manutencao_id ='.$this->id_requisicao.';')->fetchAll(PDO::FETCH_CLASS, 'Manu');
+        return $manu;
     }
     
 }

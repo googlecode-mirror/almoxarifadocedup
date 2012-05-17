@@ -72,7 +72,24 @@ class CrlChave {
     function getDtFinalControle(){
         return $this->dt_final_controle;
     }
-   
+    
+    function loadProfessor()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $nome = $db->getConn()->query('select nome_usuario from usuarios where id_usuario = '.$this->professor_id.';')->fetch(PDO::FETCH_COLUMN);
+        unset($db);
+        return $nome;
+    }
+    
+    function loadLaboratorio()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $lab = $db->getConn()->query('select nome_laboratorio from laboratorios where id_laboratorio = '.$this->laboratorio_id.';')->fetch(PDO::FETCH_COLUMN);
+        unset($db);
+        return $lab;
+    }   
 }
 
 ?>

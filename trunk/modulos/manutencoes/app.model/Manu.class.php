@@ -116,12 +116,13 @@ class Manu {
         return $this->comentario_manutencao; 
     }
     
-    
-    
-    
-    
-   
-    
+    function loadResponsavel()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $est = $db->getConn()->query('select nome_usuario from usuarios where id_usuario = '.$this->responsavel_id.';')->fetch(PDO::FETCH_COLUMN);
+        return $est;
+    }
 }
 
 ?>
