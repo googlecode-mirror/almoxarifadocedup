@@ -38,7 +38,36 @@ class Emp {
         $this->usuario_id = $valor;
     }
     
+    function __set($name, $value) {
+        if($name == 'Items')
+        {
+            $this->addItens($value);        
+        }            
+    }
     
+    function loadItens()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $itens = $db->getConn()->query('select * from itens_emprestimos where emprestimos_id = '.$this->id_emprestimo.';')->fetchAll(PDO::FETCH_CLASS, "Item");
+        return $itens;
+    }
+    
+    function loadRequisitante()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $req = $db->getConn()->query('select nome_usuario from usuarios where id_usuario = '.$this->requisitante_id.';')->fetchAll(PDO::FETCH_CLASS, "Item");
+        return $req;
+    }
+        
+    function loadAtendente()
+    {
+        include_once 'app.ado/DataBase.php';
+        $db = new DataBase();
+        $aten = $db->getConn()->query('select nome_usuario from usuarios where id_usuario = '.$this->usuario_id.';')->fetchAll(PDO::FETCH_CLASS, "Item");
+        return $aten;
+    }
     
 }
 
