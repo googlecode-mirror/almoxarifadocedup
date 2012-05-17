@@ -348,19 +348,25 @@ CREATE TABLE `manutencoes` (
   `data_manutencao` date NOT NULL,
   `definitivo_manutencao` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 -> o problema não foi resolvido\n1 -> o problema foi resolvido',
   `req_manutencao_id` int(11) NOT NULL,
+  `providencia_manutencao` varchar(255) NOT NULL,
+  `responsavel_id` int(11) NOT NULL,
   PRIMARY KEY (`id_manutencao`),
   KEY `fk_manutencoes_req_manutencao1` (`req_manutencao_id`),
   CONSTRAINT `fk_manutencoes_req_manutencao1` FOREIGN KEY (`req_manutencao_id`) REFERENCES `req_manutencao` (`id_requisicao`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `manutencoes`
 --
 
 /*!40000 ALTER TABLE `manutencoes` DISABLE KEYS */;
-INSERT INTO `manutencoes` (`id_manutencao`,`data_manutencao`,`definitivo_manutencao`,`req_manutencao_id`) VALUES 
- (15,'2012-05-16',1,28),
- (16,'2012-05-16',1,29);
+INSERT INTO `manutencoes` (`id_manutencao`,`data_manutencao`,`definitivo_manutencao`,`req_manutencao_id`,`providencia_manutencao`,`responsavel_id`) VALUES 
+ (15,'2012-05-16',1,28,'',0),
+ (16,'2012-05-16',1,29,'',0),
+ (17,'2012-05-17',1,30,'',0),
+ (18,'2012-05-17',1,30,'É preciso formatar',3),
+ (19,'2012-05-17',1,30,'Funcionando',3),
+ (20,'2012-05-17',1,31,'Arrumado',3);
 /*!40000 ALTER TABLE `manutencoes` ENABLE KEYS */;
 
 
@@ -545,7 +551,7 @@ CREATE TABLE `providencia_manu` (
   `data_providencia` datetime NOT NULL,
   `responsavel_id` int(11) NOT NULL,
   PRIMARY KEY (`id_providencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `providencia_manu`
@@ -560,7 +566,12 @@ INSERT INTO `providencia_manu` (`id_providencia`,`descricao_providencia`,`manute
  (7,'aaaa',29,'2012-05-16 21:03:37',9),
  (8,'aaaa',29,'2012-05-16 21:05:11',9),
  (9,'aaaa',29,'2012-05-16 21:05:14',9),
- (10,'a',29,'2012-05-16 21:08:01',9);
+ (10,'a',29,'2012-05-16 21:08:01',9),
+ (11,'Necessário fazer formatação',30,'2012-05-17 07:56:07',3),
+ (12,'Troca de memória',30,'2012-05-17 08:02:47',3),
+ (13,'Sei la',30,'2012-05-17 08:03:32',3),
+ (14,'Agora eu sei',30,'2012-05-17 08:03:54',3),
+ (15,'Agora vai',30,'2012-05-17 09:02:23',3);
 /*!40000 ALTER TABLE `providencia_manu` ENABLE KEYS */;
 
 
@@ -583,7 +594,7 @@ CREATE TABLE `req_manutencao` (
   KEY `fk_req_manutencao_estado_requisicoes1` (`estado_id`),
   CONSTRAINT `fk_Manutencao_Professores1` FOREIGN KEY (`requisitante_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_req_manutencao_estado_requisicoes1` FOREIGN KEY (`estado_id`) REFERENCES `estados_requisicoes` (`id_estado_requisicao`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção';
 
 --
 -- Dumping data for table `req_manutencao`
@@ -592,7 +603,9 @@ CREATE TABLE `req_manutencao` (
 /*!40000 ALTER TABLE `req_manutencao` DISABLE KEYS */;
 INSERT INTO `req_manutencao` (`id_requisicao`,`dt_requisicao`,`equipamento_requisicao`,`local_equipamento`,`defeito_requisicao`,`requisitante_id`,`estado_id`,`deleted`) VALUES 
  (28,'2012-05-16','Computador 01','Laboratório 10','Não liga',9,4,0),
- (29,'2012-05-16','test','test','test',9,4,0);
+ (29,'2012-05-16','test','test','test',9,4,0),
+ (30,'2012-05-17','Computador 07','Laboratório 40','Não liga',3,4,0),
+ (31,'2012-05-17','test1','test1','test1',3,4,0);
 /*!40000 ALTER TABLE `req_manutencao` ENABLE KEYS */;
 
 
@@ -669,7 +682,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`,`nome_usuario`,`tipo_usuario_id`,`email_usuario`,`telefone_usuario`,`celular_usuario`,`dt_nascimento_usuario`,`login_usuario`,`senha_usuario`) VALUES 
  (1,'Maria de Souza',2,'test@hotmail.com',12312312,'21232133','1992-10-10','teste','teste'),
  (2,'Luan Luiz Corrêa',5,'testando@gmail.com',22222222,'12345324','1991-10-11','bondcs','bond123'),
- (3,'Administrador',3,'admin@gmail.com',33333324,'','1986-10-10','admin','admin'),
+ (3,'Administrador',4,'admin@gmail.com',33333324,'','1986-10-10','admin','admin'),
  (4,'João da Rosa Pereira',3,'joao@gmail.com',12312344,'31233333','1981-10-20','joaocs','123'),
  (5,'Joana da Silva Pereira',3,'joana@gmail.com',22222223,'33423423','1987-10-10','joana','123'),
  (6,'Roberto Vieira de Souza',4,'roberto@gmail.com',32333232,'31231233','1992-10-20','roberto','123'),
