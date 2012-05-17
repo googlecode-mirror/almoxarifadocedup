@@ -22,7 +22,7 @@
 	       $data = array ('professor_id' => $_GET['key'],
 	                      'laboratorio_id' => $_POST['laboratorio_id'],
 	                      'observacao_controle' => ($_POST['observacao_controle'] == '') ? null : $_POST['observacao_controle'],
-	                      'dt_inicial_controle' => Utils::FormatDateTimeUs($_POST['dt_inicial_controle'].' '.$_POST['hora_inicial_controle']));
+	                      'dt_inicial_controle' => Utils::conv_data_to_us($_POST['dt_inicial_controle']).' '.$_POST['hora_inicial_controle']);
 	       
 	       $ch = new CrlChave;
 	       CrlChaveMapper::map($ch,$data);
