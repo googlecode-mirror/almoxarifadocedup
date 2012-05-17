@@ -22,12 +22,12 @@
               
               if (($_POST['celular_usuario']) == ''){
 	             $usuario->setCelularUsuario(null);
-	         
 	          }
 	      
 	      UsuarioMapper::map($usuario,$_POST);
 	      UsuarioMapper::update($usuario);
-	      Flash::addFlash('Registro Alterado');	
+	      Flash::addFlash('Usuario Alterado');
+	      
 	  
 	  }
      
@@ -35,6 +35,4 @@
 
    $row = Utils::findById($id,'usuarios','id_usuario');
    UsuarioMapper::map($usuario,$row);
-   
-   
 ?>

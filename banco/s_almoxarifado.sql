@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 16/05/2012 às 08h57min
+-- Tempo de Geração: 16/05/2012 às 21h16min
 -- Versão do Servidor: 5.5.22
 -- Versão do PHP: 5.3.10-1ubuntu3.1
 
@@ -284,30 +284,22 @@ INSERT INTO `laboratorios` (`id_laboratorio`, `nome_laboratorio`, `numero_labora
 
 CREATE TABLE IF NOT EXISTS `manutencoes` (
   `id_manutencao` int(11) NOT NULL AUTO_INCREMENT,
-  `professor_id` int(11) NOT NULL,
+  `professor_id` int(11) DEFAULT NULL,
   `data_manutencao` date NOT NULL,
-  `providencia_manutencao` text NOT NULL,
   `definitivo_manutencao` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 -> o problema não foi resolvido\n1 -> o problema foi resolvido',
   `req_manutencao_id` int(11) NOT NULL,
-  `comentario_manutencao` text,
   PRIMARY KEY (`id_manutencao`),
   KEY `fk_manutencoes_professores1` (`professor_id`),
   KEY `fk_manutencoes_req_manutencao1` (`req_manutencao_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `manutencoes`
 --
 
-INSERT INTO `manutencoes` (`id_manutencao`, `professor_id`, `data_manutencao`, `providencia_manutencao`, `definitivo_manutencao`, `req_manutencao_id`, `comentario_manutencao`) VALUES
-(2, 3, '2012-04-26', 'Verificar rede.', 0, 14, 'Internet voltou ao estado normal.'),
-(3, 3, '2012-04-26', 'Verificar computador.', 1, 10, 'Consertado.'),
-(4, 1, '2012-04-26', 'Verificação', 0, 15, NULL),
-(5, 3, '2012-05-05', 'Verificação', 0, 13, NULL),
-(6, 2, '2012-05-06', 'Não sei', 1, 20, 'Consertado'),
-(7, 3, '2012-05-08', 'Verificação', 0, 6, NULL),
-(8, 2, '2012-05-08', 'Verificação\r\n', 1, 24, 'Concluída'),
-(9, 3, '2012-05-11', 'Verificar.', 0, 10, NULL);
+INSERT INTO `manutencoes` (`id_manutencao`, `professor_id`, `data_manutencao`, `definitivo_manutencao`, `req_manutencao_id`) VALUES
+(15, NULL, '2012-05-16', 1, 28),
+(16, NULL, '2012-05-16', 1, 29);
 
 -- --------------------------------------------------------
 
@@ -398,6 +390,7 @@ INSERT INTO `modulos_permissoes_usuarios` (`modulo_permissao_id`, `usuario_id`) 
 (13, 2),
 (14, 2),
 (15, 2),
+(16, 2),
 (1, 3),
 (2, 3),
 (3, 3),
@@ -469,6 +462,35 @@ INSERT INTO `permissoes` (`id_permissao`, `nome_permissao`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `providencia_manu`
+--
+
+CREATE TABLE IF NOT EXISTS `providencia_manu` (
+  `id_providencia` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao_providencia` varchar(255) NOT NULL,
+  `manutencao_id` int(11) NOT NULL,
+  `data_providencia` datetime NOT NULL,
+  `responsavel_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_providencia`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `providencia_manu`
+--
+
+INSERT INTO `providencia_manu` (`id_providencia`, `descricao_providencia`, `manutencao_id`, `data_providencia`, `responsavel_id`) VALUES
+(3, 'O computador será formatado amanhã', 28, '2012-05-16 20:46:17', 9),
+(4, 'Computador Formatado', 28, '2012-05-16 20:51:13', 9),
+(5, 'aaaa', 29, '2012-05-16 20:59:13', 9),
+(6, 'hehe', 29, '2012-05-16 21:00:57', 9),
+(7, 'aaaa', 29, '2012-05-16 21:03:37', 9),
+(8, 'aaaa', 29, '2012-05-16 21:05:11', 9),
+(9, 'aaaa', 29, '2012-05-16 21:05:14', 9),
+(10, 'a', 29, '2012-05-16 21:08:01', 9);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `req_manutencao`
 --
 
@@ -484,33 +506,15 @@ CREATE TABLE IF NOT EXISTS `req_manutencao` (
   PRIMARY KEY (`id_requisicao`),
   KEY `fk_Manutencao_Professores1` (`requisitante_id`),
   KEY `fk_req_manutencao_estado_requisicoes1` (`estado_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção' AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='tabela pra armazenar as requisições de manutenção' AUTO_INCREMENT=30 ;
 
 --
 -- Extraindo dados da tabela `req_manutencao`
 --
 
 INSERT INTO `req_manutencao` (`id_requisicao`, `dt_requisicao`, `equipamento_requisicao`, `local_equipamento`, `defeito_requisicao`, `requisitante_id`, `estado_id`, `deleted`) VALUES
-(6, '2012-04-19', 'Computador 05', 'Laboratório 11', 'Não liga o mouse.', 3, 3, 0),
-(9, '2012-04-20', 'Computador 10', 'Laboratório 20', 'Tela não liga.', 3, 1, 0),
-(10, '2012-04-20', 'Computador 08', 'Laboratório 20', 'Lerdo :D', 2, 3, 0),
-(11, '2012-04-21', 'Computador 01, 03, 10.', 'Laboratório 25', 'Computador 01 não liga e 03 e 04 estão lentos.', 3, 2, 0),
-(12, '2012-04-21', 'Máquina do Café', 'Secretaria', 'Não sai café pow.', 3, 2, 0),
-(13, '2012-04-21', 'Computador 1', 'Direção', 'Não liga.', 3, 2, 0),
-(14, '2012-04-22', 'Internet', 'Laboratório 15', 'Sem Internet', 1, 2, 0),
-(15, '2012-04-22', 'Data Show 3', 'Secretaria', 'Não liga', 5, 3, 0),
-(16, '2012-04-24', 'Computador 11', 'Laboratório 13', 'Não liga', 3, 2, 0),
-(17, '2012-04-25', 'Computador 10', 'Laboratório 40', 'Teclado estragado.', 2, 2, 0),
-(18, '2012-05-06', 'TEST', 'TEST', 'TEST', 3, 5, 0),
-(19, '2012-05-06', 'test2', 'test2', 'test2', 3, 2, 0),
-(20, '2012-05-06', 'haha', 'haha', 'ahah', 3, 2, 0),
-(21, '2012-05-06', 'Seila', 'Seila', 'Seila', 2, 5, 0),
-(22, '2012-05-06', 'auhauha', 'uhauhau', 'uhauhau', 2, 5, 0),
-(23, '2012-05-06', 'hjauhau', 'uhauahau', 'uhauahha', 2, 5, 0),
-(24, '2012-05-06', 'auhau', 'huahauh', 'huahua', 2, 3, 0),
-(25, '2012-05-08', 'Computador', 'Lab 30', 'Não liga', 2, 5, 0),
-(26, '2012-05-11', 'Computador 30', 'Laboratório 20', 'Não liga.', 3, 2, 0),
-(27, '2012-05-11', 'a', 'a', 'a', 3, 1, 1);
+(28, '2012-05-16', 'Computador 01', 'Laboratório 10', 'Não liga', 9, 4, 0),
+(29, '2012-05-16', 'test', 'test', 'test', 9, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -560,28 +564,30 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `tipo_usuario_id` int(11) NOT NULL,
   `email_usuario` varchar(60) NOT NULL,
   `telefone_usuario` int(11) NOT NULL,
-  `celular_usuario` int(11) DEFAULT NULL,
+  `celular_usuario` varchar(11) DEFAULT NULL,
   `dt_nascimento_usuario` date NOT NULL,
   `login_usuario` varchar(20) NOT NULL,
   `senha_usuario` varchar(25) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `fk_usuarios_tipos_usuarios1` (`tipo_usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome_usuario`, `tipo_usuario_id`, `email_usuario`, `telefone_usuario`, `celular_usuario`, `dt_nascimento_usuario`, `login_usuario`, `senha_usuario`) VALUES
-(1, 'Maria de Souza', 2, 'test@hotmail.com', 12312312, 21232133, '1992-10-10', 'teste', 'teste'),
-(2, 'Luan Luiz Corrêa', 5, 'testando@gmail.com', 22222222, 12345324, '1991-10-11', 'bondcs', 'bond123'),
-(3, 'Administrador', 2, 'admin@gmail.com', 33333323, 11222222, '1986-10-10', 'admin', 'admin'),
-(4, 'João da Rosa Pereira', 3, 'joao@gmail.com', 12312344, 31233333, '1981-10-20', 'joaocs', '123'),
-(5, 'Joana da Silva Pereira', 3, 'joana@gmail.com', 22222223, 33423423, '1987-10-10', 'joana', '123'),
-(6, 'Roberto Vieira de Souza', 4, 'roberto@gmail.com', 32333232, 31231233, '1992-10-20', 'roberto', '123'),
-(7, 'Lucas da Silva Santos', 1, 'lucas@gmail.com', 12312312, 12312312, '1977-10-10', 'lucas', 'lucas123'),
-(8, 'Roberta Martins Corrêa', 1, 'roberta@gmail.com', 23123123, 12312312, '1982-10-20', 'roberta', 'roberta123'),
-(9, 'Jarkko Ahola', 2, 'j.ahola@gmail.com', 36328877, 0, '1991-03-27', 'jahola', '1234');
+(1, 'Maria de Souza', 2, 'test@hotmail.com', 12312312, '21232133', '1992-10-10', 'teste', 'teste'),
+(2, 'Luan Luiz Corrêa', 5, 'testando@gmail.com', 22222222, '12345324', '1991-10-11', 'bondcs', 'bond123'),
+(3, 'Administrador', 3, 'admin@gmail.com', 33333324, '', '1986-10-10', 'admin', 'admin'),
+(4, 'João da Rosa Pereira', 3, 'joao@gmail.com', 12312344, '31233333', '1981-10-20', 'joaocs', '123'),
+(5, 'Joana da Silva Pereira', 3, 'joana@gmail.com', 22222223, '33423423', '1987-10-10', 'joana', '123'),
+(6, 'Roberto Vieira de Souza', 4, 'roberto@gmail.com', 32333232, '31231233', '1992-10-20', 'roberto', '123'),
+(7, 'Lucas da Silva Santos', 1, 'lucas@gmail.com', 12312312, '12312312', '1977-10-10', 'lucas', 'lucas123'),
+(8, 'Roberta Martins Corrêa', 1, 'roberta@gmail.com', 23123123, '12312312', '1982-10-20', 'roberta', 'roberta123'),
+(9, 'Jarkko Ahola', 4, 'j.ahola@gmail.com', 36328876, '', '1991-03-27', 'jahola', '1234'),
+(10, 'Maria Nascimento', 1, 'mariatb@hotmail.com', 23232132, '', '1992-10-10', 'mariacs', 'maria123'),
+(11, 'test', 1, 'testando@globo.com', 22222222, '0', '1992-10-10', 'abc123', '123');
 
 --
 -- Restrições para as tabelas dumpadas

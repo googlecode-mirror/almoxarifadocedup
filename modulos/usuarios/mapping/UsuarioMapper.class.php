@@ -99,7 +99,7 @@ class UsuarioMapper {
     public static function update(Usuario $usuario){
         
         TTransaction::open('my_config');
-            
+
          if ($conn = TTransaction::get()){
                $sql = "UPDATE usuarios SET nome_usuario=?,
                                            tipo_usuario_id=?,

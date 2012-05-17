@@ -3,28 +3,54 @@ $id = $_GET['key'];
 $requisicao = RequerirMapper::getRequisicaoByIdRequisicao($id);
 $sessao->addVar('estado',$requisicao->estado_id);
 
-if (array_key_exists('confirm',$_POST)){
-    $dados = array ('nome_usuario' => array('Responsável'),
-                    'data_manutencao' => array('Data', 'tipo' => 'data'),
-                    'providencia_manutencao' => array ('Providencia')
-                  );
-    
-    
-    $data = array('professor_id' => $sessao->getVar('usuario')->id_usuario,
-                  'data_manutencao' => $_POST['data_manutencao'],
-                  'providencia_manutencao' => $_POST['providencia_manutencao'],
-                  'definitivo_manutencao' => 0,
-                  'req_manutencao_id' => $id);
-    
-    $validacao = ValidaFormulario($dados);
-    if ($validacao === true){
-        
-        $manutencao = new Manu();
-        ManuMapper::map($manutencao,$data);
-        ManuMapper::addManu($manutencao);
+$dados = array ('nome_usuario' => array('Responsável'),
+		'providencia_manutencao' => array ('Providência')
+);
 
-        header('location:index.php?modulo=manutencoes&page=m-manutencoes');
-    }
+$validacao = ValidaFormulario($dados);
+
+if ($validacao === true){
+
+	if (array_key_exists('first',$_GET)){
+	   
+	    
+	    $data = array('responsavel_id' => $sessao->getVar('usuario')->id_usuario,
+	    			  'data_manutencao' => date('Y-m-d H:i:s'),
+	                  'definitivo_manutencao' => $_POST['definitivo_manutencao'],
+	    		      'providencia_manutencao' => $_POST['providencia_manutencao'],
+	                  'req_manutencao_id' => $id);
+	    
+	        $manutencao = new Manu();
+	        ManuMapper::map($manutencao,$data);
+	        ManuMapper::addManu($manutencao);
+	        ManuMapper::addProvidencia($manutencao);
+	    
+	    header('location:index.php?modulo=manutencoes&page=visualizar&key='.$id);
+	
+	   
+	}else{
+		
+		$data = array('responsavel_id' => $sessao->getVar('usuario')->id_usuario,
+				'data_manutencao' => date('Y-m-d H:i:s'),
+				'definitivo_manutencao' => $_POST['definitivo_manutencao'],
+				'providencia_manutencao' => $_POST['providencia_manutencao'],
+				'req_manutencao_id' => $id);
+		
+		$manutencao = new Manu();
+		ManuMapper::map($manutencao,$data);
+		ManuMapper::addProvidencia($manutencao);
+		
+		header('location:index.php?modulo=manutencoes&page=visualizar&key'.$id);
+		
+	}
+
+
+}else{
+	if (array_key_exists('first',$_GET)){
+		header('location:index.php?modulo=manutencoes&page=visualizar&first=1&key='.$_GET['key']);
+	}else{
+		header('location:index.php?modulo=manutencoes&page=visualizar&key='.$_GET['key']);
+	}
 }
 
 if (array_key_exists('comentario_manutencao', $_POST)){

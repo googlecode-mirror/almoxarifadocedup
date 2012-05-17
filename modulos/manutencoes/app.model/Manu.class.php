@@ -22,7 +22,7 @@ class Manu {
      *
      * @var int 
      */
-    private $professor_id;
+    private $reponsavel_id;
     
     /**
      *
@@ -68,12 +68,12 @@ class Manu {
         return $this->id_manutencao; 
     }
     
-    function setProfessorId($valor){
-        $this->professor_id = $valor; 
+    function setResponsavelId($valor){
+        $this->responsavel_id = $valor; 
     }
     
-    function getProfessorId(){
-        return $this->professor_id; 
+    function getResponsavelId(){
+        return $this->responsavel_id; 
     }
     
     function setDataManutencao($valor){

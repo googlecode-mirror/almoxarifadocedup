@@ -49,7 +49,7 @@ class TApplication{
         $sessao = new TSessao(true);
         include ('util/Validacao.php');
         $flashes = null;
-
+        
         $usuario = $sessao->getVar('usuario');
 		
         // css para estilo das janelas
@@ -97,17 +97,19 @@ class TApplication{
                     $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
                 }  
             }
+            
             if (isset($validacao)){
-                  Flash::addFlash($validacao);
+	            if ($validacao !== true ){
+	                Flash::addFlash($validacao);
+	            }
             }
             
             if (Flash::hasFlashes()) 
-            {
+            {	
+            	
                 $flashes = Flash::getFlashes();
             }
-
-          
-           
+   
             if (!isset($_GET['ajax'])){
                 TApplication::setStyle('style');
                 TApplication::setStyle('principal');

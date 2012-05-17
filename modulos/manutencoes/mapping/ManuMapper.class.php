@@ -18,20 +18,20 @@ class ManuMapper {
             $manu->setIdManutencao($propriedades['id_manutencao']);
          }
          
-         if (array_key_exists('professor_id',$propriedades)){
-            $manu->setProfessorId($propriedades['professor_id']);
+         if (array_key_exists('responsavel_id',$propriedades)){
+         	$manu->setResponsavelId($propriedades['responsavel_id']);
          }
          
          if (array_key_exists('data_manutencao',$propriedades)){
             $manu->setDataManutencao($propriedades['data_manutencao']);
          }
-         
-         if (array_key_exists('providencia_manutencao',$propriedades)){
-            $manu->setProvidenciaManutencao($propriedades['providencia_manutencao']);
-         }
-         
+  
          if (array_key_exists('definitivo_manutencao',$propriedades)){
             $manu->setDefinitivoManutencao($propriedades['definitivo_manutencao']);
+         }
+         
+         if (array_key_exists('providencia_manutencao',$propriedades)){
+         	$manu->setProvidenciaManutencao($propriedades['providencia_manutencao']);
          }
          
          if (array_key_exists('req_manutencao_id',$propriedades)){
@@ -44,18 +44,14 @@ class ManuMapper {
          TTransaction::open('my_config');
             
          if ($conn = TTransaction::get()){
-               $sql = "INSERT INTO manutencoes (professor_id,
-                                             data_manutencao,
-                                             providencia_manutencao,
+               $sql = "INSERT INTO manutencoes (data_manutencao,
                                              definitivo_manutencao,
                                              req_manutencao_id)
-                       VALUES (?,STR_TO_DATE(?,'%d/%m/%Y'),?,?,?)";
+                       VALUES (?,?,?)";
                                                 
                
                $sth = $conn->prepare($sql);
-               $sth->execute(array($manu->getProfessorId(),
-                                   $manu->getDataManutencao(),
-                                   $manu->getProvidenciaManutencao(),
+               $sth->execute(array($manu->getDataManutencao(),
                                    $manu->getDefinitivoManutencao(),
                                    $manu->getReqManutencaoId()));
                
@@ -95,30 +91,38 @@ class ManuMapper {
 
     }
     
-    public static function addComents(Manu $manu){
+    public static function addProvidencia(Manu $manu){
         
                TTransaction::open('my_config');
                if ($conn = TTransaction::get()){
         
-                    $sql = "UPDATE manutencoes SET comentario_manutencao=?
-                            WHERE req_manutencao_id = ?";
+                    $sql = "INSERT INTO providencia_manu (descricao_providencia,
+                    									  manutencao_id,
+                    									  data_providencia,
+                    									  responsavel_id)
+                            VALUES (?,?,?,?)";
 
                     $sth = $conn->prepare($sql);
-                    $sth->execute(array($manu->getComentatioManutencao(),
-                                        $manu->getReqManutencaoId()));
+                    $sth->execute(array($manu->getProvidenciaManutencao(),
+                    					$manu->getReqManutencaoId(),
+                    					$manu->getDataManutencao(),
+                                        $manu->getResponsavelId()));
                     
-                    $sql = "UPDATE req_manutencao SET estado_id = 4
-                            WHERE id_requisicao = ?";
+                    if ($manu->getDefinitivoManutencao() == 1){
 
-                    $sth = $conn->prepare($sql);
-                    $sth->execute(array($manu->getReqManutencaoId()));
+                    	$sql = "UPDATE req_manutencao SET estado_id = 4
+                    		WHERE id_requisicao = ?";
+                    	$sth = $conn->prepare($sql);
+                    	$sth->execute(array($manu->getReqManutencaoId()));
+                    	
+                    	$sql = "UPDATE manutencoes SET definitivo_manutencao = 1
+                    	WHERE req_manutencao_id = ?";
+                    	$sth = $conn->prepare($sql);
+                    	$sth->execute(array($manu->getReqManutencaoId()));
+                    	
+                    }
                     
-                    $sql = "UPDATE manutencoes SET definitivo_manutencao = 1
-                            WHERE req_manutencao_id = ?";
-
-                    $sth = $conn->prepare($sql);
-                    $sth->execute(array($manu->getReqManutencaoId()));
-                   
+      
                     TTransaction::close();
   
                }

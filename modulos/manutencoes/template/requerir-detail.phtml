@@ -27,22 +27,6 @@
         <th>Status</th>
         <td><?php echo $requisicao->nome_estado_requisicao; ?><td>
     </tr>
-    <?php 
-    if ($requisicao->estado_id == 3){
-      echo "<tr>
-            <th>Responsável</th>
-            <td>{$usuario['nome_usuario']}</td>
-
-            </tr>
-            
-            <tr>
-            <th>Providência</th>
-            <td>{$manutencao->providencia_manutencao}</td>
-
-            </tr>";
-        
-        
-    }?>
     <tr>
         <th colspan="2">&nbsp</th>
         
@@ -61,14 +45,14 @@
         }elseif ($requisicao->estado_id == 2){
     
         echo"<td><div>
-            <a class=actions href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Realizar</a>
+            <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&first=1&key={$requisicao->id_requisicao}'>Atualizar</a>
             <a class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Aprovação</a>
             </div></td>"; 
             
         }elseif ($requisicao->estado_id == 3){
     
         echo"<td><div>
-            <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Concluir</a>
+            <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Atualizar</a>
             <a class='actions' href='index.php?modulo=manutencoes&page=imprimir&key={$requisicao->id_requisicao}'>Imprimir</a>
             </div></td>"; 
             
@@ -95,10 +79,20 @@
 </table>
 
     <div id="janela-dialog">
-        <form id="form-dialog" class="form" name="frm" method="post" action="">
+        <form id="form-dialog" style="text-align: left" class="form" name="frm" method="post" action="">
             <fieldset>
-                <label>Comentário:(opcional)</label>
-                <textarea class="campo" name="comentario_manutencao" ></textarea>
+                <label>Responsável:</label>
+                <input type="text" name="nome_usuario" readonly="readonly" value=<?php echo $sessao->getVar('usuario')->nome_usuario;?> />
+                
+                <label style="margin-top:7px;" >Data:</label>
+                <input style="margin-top:5px;" type="text" name="data_manutencao" readonly="readonly" value="<?php echo date('d/m/y H:m:s');?>"/>
+                
+                <label style="margin-top:7px;" >Definitivo:</label>
+                <div style="margin-top:5px;"><span>Sim</span><input type="radio" name="definitivo_manutencao" value="1"/>
+                									<span>Não</span><input checked="checked" type="radio" name="definitivo_manutencao" value="0"/>
+                </div>
+                <label style="margin-top:15px;">Providência:</label>
+                <textarea style="margin-top:15px;" class="campo" name="providencia_manutencao" ></textarea>
             </fieldset>
         </form> 
     </div>  
