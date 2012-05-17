@@ -97,9 +97,9 @@ class ManuMapper {
                if ($conn = TTransaction::get()){
         
                     $sql = "INSERT INTO providencia_manu (descricao_providencia,
-                    									  manutencao_id,
-                    									  data_providencia,
-                    									  responsavel_id)
+                                                            manutencao_id,
+                                                            data_providencia,
+                                                            responsavel_id)
                             VALUES (?,?,?,?)";
 
                     $sth = $conn->prepare($sql);

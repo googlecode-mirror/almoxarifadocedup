@@ -15,6 +15,12 @@ class DataBase{
 		return $this->conexao;	
 	}
 	
-	
+        public function __call($method,$param)
+        {
+            if(method_exists($this->conexao,$method))
+            {
+                $this->conexao->$method($param);
+            }
+        }	
 }
 ?>

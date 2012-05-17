@@ -1,12 +1,12 @@
 <?php
 
-include 'DataBase.php';
+include 'app.ado/DataBase.php';
 
 $db = new DataBase();
 
-$con = $db->getConn()->query('select id_controle,professor_id,laboratorio_id,observacao_controle,dt_final_controle from ctrl_chaves;')->fetchAll(PDO::FETCH_CLASS, 'CrlChave');
+$con = $db->getConn()->query('select * from req_manutencao;')->fetchAll(PDO::FETCH_CLASS, 'Requerir');
 
-$pdf = new TRelChaves($con);
+$pdf = new TRelManutencao($con);
 $pdf->render();
 
 ?>

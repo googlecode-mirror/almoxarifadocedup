@@ -1,7 +1,7 @@
 <?php
 
-class TRelChave{
-    
+class TRelManutencao
+{
     private $id;
     private $dt_inicial;
     private $dt_final;
@@ -12,7 +12,7 @@ class TRelChave{
     {
         if($conteudo != null)
         {
-            if(is_array($conteudo) or is_a($conteudo, TTableChave))
+            if(is_array($conteudo) or is_a($conteudo, TTableManutencao))
                 $this->conteudo = $conteudo;       
         }
     }
@@ -37,27 +37,27 @@ class TRelChave{
             $pdo = new DataBase();
             $db = $pdo->getConn();
             
-            $sql = 'select * from ctrl_chaves';
+            $sql = 'select * from req_manutencoes';
             
             if($this->dt_inicial or $this->dt_final)
             {
                 $this->dt_inicial = $this->dt_inicial ? $this->dt_inicial : '2012/01/01';
                 $this->dt_final = $this->dt_final ? $this->dt_final : date('Y/m/d');
                 
-                $sql .= ' where ((dt_inicial_controle between ? and ?) or (dt_final_controle between ? and ?))';
+                $sql .= ' where (dt_requisicao between ? and ?)';
                 
                 $exec[] = $this->dt_inicial;
                 $exec[] = $this->dt_final;
                 
                 if($this->id)
                 {
-                    $sql .= ' and id_controle = ?';
+                    $sql .= ' and id_requisicao = ?';
                     $exec[] = $this->id;
                 }
             }
             elseif($this->id)
             {
-                $sql .= ' where id_controle = ?';
+                $sql .= ' where id_requisicao = ?';
                 $exec[] = $this->id;
             }
             
@@ -69,21 +69,32 @@ class TRelChave{
             
             $sth = $db->prepare($sql);
             $conteudo = $sth->execute($exec);
-            $this->conteudo = $conteudo->fetchAll(PDO::FETCH_CLASS, 'CrlChave');
+            $this->conteudo = $conteudo->fetchAll(PDO::FETCH_CLASS, 'Requerir');
         }
         
-        $tabela = new TTableChave($this->conteudo);
+        if(is_array($this->conteudo))
+        {
+            $html = '';
+            foreach ($this->conteudo as $requisicao)
+            {
+                $tabela = new TTableManutencao($requisicao);
+                $html .= $tabela->render();
+            }
+        }
+        else
+        {
+            $tabela = new TTableManutencao($this->conteudo);
+            $html .= $tabela->render();
+        }
         
-        $pdf = new TRelatorio();
-        $pdf->writeHTML($tabela->render());
-        $pdf->render();
-        $pdf->exit();
+//        $pdf = new TRelatorio();
+//        
+//        $pdf->writeHTML($html);
+//        
+//        $pdf->render();
+//        $pdf->exit();
     }
-    
 }
-
-
-
 
 
 ?>

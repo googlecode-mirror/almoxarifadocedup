@@ -19,7 +19,7 @@ class TTableChave{
     }
     
     public function render()
-    {?>
+    { ?>
         <table>
             <thead>
                 <tr>
@@ -31,14 +31,13 @@ class TTableChave{
                 </tr>
             </thead>
             <tbody>
-<?php foreach($this->obj as $ob){ 
-    $date = explode(' ',$ob->dt_final_controle); ?>
+<?php foreach($this->obj as $ob){?>
                 <tr>
-			<td><?php echo $date[0]; ?></td>
-			<td><?php echo $ob->professor_id; ?></td>
-			<td><?php echo $ob->laboratorio_id; ?></td>
-			<td><?php echo $ob->observacao_controle; ?></td>
-			<td><?php echo $date[1]; ?></td>
+			<td><?php echo $ob->getDtInicialControle(); ?></td>
+			<td><?php echo $ob->loadProfessor(); ?></td>
+			<td><?php echo $ob->loadLaboratorio(); ?></td>
+			<td><?php echo $ob->getObservacaoControle(); ?></td>
+			<td><?php echo $ob->getDtFinalControle(); ?></td>
 		</tr>
 <?php } ?>
             </tbody>
