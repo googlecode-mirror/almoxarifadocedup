@@ -50,7 +50,9 @@ final class Utils {
      */
      
      static function formatDateTimeUs($databr) {
+     	echo $databr;
        $date = new DateTime($databr);
+       
        return $date->format('Y-m-d H:i:s');
     }
     
@@ -120,6 +122,7 @@ final class Utils {
          TTransaction::open('my_config');
             
          if ($conn = TTransaction::get()){
+         	
                $sql = "SELECT * FROM {$tabela}
                       WHERE {$campo} = ?";
                                                 

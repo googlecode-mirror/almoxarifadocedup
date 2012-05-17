@@ -76,20 +76,18 @@ final class Flash {
      * @return array flash messages
      */
     public static function getFlashes() {
-        self::initFlashes();
+
         $copy = self::$flashes;
-        self::$flashes = null;
+        self::$flashes = null;	
         return $copy;
     }
 
     private static function initFlashes() {
+    	
         if (self::$flashes !== null) {
             return;
         }
-        if (!array_key_exists(self::FLASHES_KEY, $_SESSION)) {
-            $_SESSION[self::FLASHES_KEY] = array();
-        }
-        self::$flashes = &$_SESSION[self::FLASHES_KEY];
+        
     }
 
 }
