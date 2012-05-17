@@ -96,8 +96,7 @@ class TApplication{
                 {                
                     $templatePage = "modulos/{$modulo}/template/{$page}.phtml";
                 }  
-            }
-            
+            }     
             if (isset($validacao)){
 	            if ($validacao !== true ){
 	                Flash::addFlash($validacao);
@@ -108,6 +107,7 @@ class TApplication{
             {	
             	
                 $flashes = Flash::getFlashes();
+             
             }
    
             if (!isset($_GET['ajax'])){
