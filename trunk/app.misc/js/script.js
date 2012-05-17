@@ -47,12 +47,22 @@ function initDatepicker() {
 		isRTL: false,
 		showMonthAfterYear: false,
 		yearSuffix: ''};
+                
     
     $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+    $('#datepicker')
+        .attr('readonly', 'readonly')
+        .datepicker({
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            yearRange: "1920:2000",
+	    changeYear: true
+        });
+        
     $('.datepicker')
         .attr('readonly', 'readonly')
         .datepicker({
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
         });
         
     
