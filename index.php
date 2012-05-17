@@ -52,11 +52,10 @@ class TApplication{
         
         $usuario = $sessao->getVar('usuario');
 		
-        // css para estilo das janelas
-		TApplication::setStyle('redmond/jquery-ui-1.8.16.custom');
-        
-		include 'app.functions/validate.php';
+        include 'app.functions/validate.php';
         $valida = validate($usuario);
+        
+        //include 'relatorios/teste.php';
         
         if ($valida){
 
@@ -113,6 +112,7 @@ class TApplication{
             if (!isset($_GET['ajax'])){
                 TApplication::setStyle('style');
                 TApplication::setStyle('principal');
+                TApplication::setStyle('redmond/jquery-ui-1.8.16.custom');
                 require('layout/index.phtml');
             }
         }
