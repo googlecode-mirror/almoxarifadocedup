@@ -1,7 +1,7 @@
-<?php
+ï»¿<?php
 /**
  * classe TLabel
- * classe para construção de rótulos de texto
+ * classe para construÃ§Ã£o de rÃ³tulos de texto
  */
 class TLabel extends TField
 {
@@ -10,26 +10,26 @@ class TLabel extends TField
     private $fontColor; // cor da fonte
 
     /**
-     * método construtor
+     * mÃ©todo construtor
      * instancia o label, cria um objeto <font>
      * @param $value = Texto do Label
      */
     public function __construct($value)
     {
-        // atribui o conteúdo do label
+        // atribui o conteÃºdo do label
         $this->setValue($value);
 
         // instancia um elemento <font>
         $this->tag = new TElement('font');
 
-        // define valores iniciais às propriedades
+        // define valores iniciais Ã s propriedades
         $this->fontSize = '14';
         $this->fontFace = 'Arial';
         $this->fontColor = 'black';
     }
 
     /**
-     * método setSize
+     * mÃ©todo setSize
      * define o tamanho da fonte
      * @param $size = tamanho da fonte
      */
@@ -39,8 +39,8 @@ class TLabel extends TField
     }
 
     /**
-     * método setFontFace
-     * define a família da fonte
+     * mÃ©todo setFontFace
+     * define a famÃ­lia da fonte
      * @param $font = nome da fonte
      */
     public function setFontFace($font)
@@ -49,7 +49,7 @@ class TLabel extends TField
     }
 
     /**
-     * método setFontColor
+     * mÃ©todo setFontColor
      * define a cor da fonte
      * @param $color = cor da fonte
      */
@@ -59,7 +59,7 @@ class TLabel extends TField
     }
 
     /**
-     * método show()
+     * mÃ©todo show()
      * exibe o widget na tela
      */
     public function show()
@@ -68,7 +68,7 @@ class TLabel extends TField
         $this->tag->style =	 "font-family:{$this->fontFace}; ".
                              "color:{$this->fontColor}; ".
                              "font-size:{$this->fontSize}";
-        // adiciona o conteúdo à tag
+        // adiciona o conteÃºdo Ã  tag
         $this->tag->add($this->value);
         // exibe a tag
         $this->tag->show();

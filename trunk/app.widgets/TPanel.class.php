@@ -1,12 +1,12 @@
-<?php
+ï»¿<?php
 /**
  * classe TPanel
- * painel de posições fixas
+ * painel de posiÃ§Ãµes fixas
  */
 class TPanel extends TElement
 {
     /**
-     * método __construct()
+     * mÃ©todo __construct()
      * instancia objeto TPanel.
      * @param $width     = largura do painel
      * @param $height = altura do painel
@@ -14,7 +14,7 @@ class TPanel extends TElement
     public function __construct($width, $height)
     {
         // instancia objeto TStyle
-        // para definir as características do painel
+        // para definir as caracterÃ­sticas do painel
         $painel_style = new TStyle('tpanel');
         $painel_style->position          = 'relative';
         $painel_style->width             = $width;
@@ -30,7 +30,7 @@ class TPanel extends TElement
     }
 
     /**
-     * método put()
+     * mÃ©todo put()
      * posiciona um objeto no painel
      * @param $widget = objeto a ser inserido no painel
      * @param $col     = coluna em pixels.
@@ -40,9 +40,9 @@ class TPanel extends TElement
     {
         // cria uma camada para o widget
         $camada = new TElement('div');
-        // define a posição da camada
+        // define a posiÃ§Ã£o da camada
         $camada->style = "position:absolute; left:{$col}px; top:{$row}px;";
-        // adiciona o objeto (widget) à camada recém-criada
+        // adiciona o objeto (widget) Ã  camada recÃ©m-criada
         $camada->add($widget);
         // adiciona widget no array de elementos
         parent::add($camada);

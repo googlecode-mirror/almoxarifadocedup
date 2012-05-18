@@ -1,28 +1,28 @@
-<?php
+ï»¿<?php
 /**
  * classe TImage
- * classe para exibição de imagens
+ * classe para exibiÃ§Ã£o de imagens
  */
 class TImage
 {
-    private $source;  // localização da imagem
+    private $source;  // localizaÃ§Ã£o da imagem
     private $tag;     // objeto TElement
 
     /**
-     * método construtor
+     * mÃ©todo construtor
      * instancia objeto TImage
-     * @param $source = localização da imagem
+     * @param $source = localizaÃ§Ã£o da imagem
      */
     public function __construct($source)
     {
-        // atribui a localização da imagem
+        // atribui a localizaÃ§Ã£o da imagem
         $this->source = $source;
         // instancia objeto TElement
         $this->tag    = new TElement('img');
     }
 
     /**
-     * método show()
+     * mÃ©todo show()
      * exibe imagem na tela
      */
     public function show()

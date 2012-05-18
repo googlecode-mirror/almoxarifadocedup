@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //Salvar com o nome DataBase.php
 include './app.ado/Config.php';
 

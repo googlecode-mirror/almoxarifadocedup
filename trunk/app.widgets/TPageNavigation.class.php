@@ -1,7 +1,7 @@
-<?php
+ï»¿<?php
 /**
  * classe TPageNavigation
- * Cria uma barra de navegação para um TDataGrid
+ * Cria uma barra de navegaÃ§Ã£o para um TDataGrid
  */
 class TPageNavigation
 {
@@ -11,7 +11,7 @@ class TPageNavigation
     private $totalRecords;
 
     /**
-     * método ()
+     * mÃ©todo ()
      * 
      * @param  $xxxx    = xxxx
      */
@@ -21,7 +21,7 @@ class TPageNavigation
     }
 
     /**
-     * método ()
+     * mÃ©todo ()
      * 
      * @param  $xxxx    = xxxx
      */
@@ -31,7 +31,7 @@ class TPageNavigation
     }
 
     /**
-     * método ()
+     * mÃ©todo ()
      * 
      * @param  $xxxx    = xxxx
      */
@@ -41,7 +41,7 @@ class TPageNavigation
     }
 
     /**
-     * método ()
+     * mÃ©todo ()
      * 
      * @param  $xxxx    = xxxx
      */
@@ -51,7 +51,7 @@ class TPageNavigation
     }
 
     /**
-     * método ()
+     * mÃ©todo ()
      * 
      * @param  $xxxx    = xxxx
      */

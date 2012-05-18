@@ -1,22 +1,22 @@
-<?php
+ï»¿<?php
 /**
  * classe TPage
- * classe para controle do fluxo de execução
+ * classe para controle do fluxo de execuÃ§Ã£o
  */
 class TPage extends TElement
 {
     /**
-     * método __construct()
+     * mÃ©todo __construct()
      */
     public function __construct()
     {
-        // define o elemento que irá representar
+        // define o elemento que irÃ¡ representar
         parent::__construct('html');
     }
 
     /**
-     * método show()
-     * exibe o conteúdo da página
+     * mÃ©todo show()
+     * exibe o conteÃºdo da pÃ¡gina
      */
     public function show()
     {
@@ -25,8 +25,8 @@ class TPage extends TElement
     }
 
     /**
-     * método run()
-     * executa determinado método de acordo com os parâmetros recebidos
+     * mÃ©todo run()
+     * executa determinado mÃ©todo de acordo com os parÃ¢metros recebidos
      */
     public function run()
     {

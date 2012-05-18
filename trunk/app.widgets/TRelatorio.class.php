@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 include_once 'componentes/MPDF54/mpdf.php';
 

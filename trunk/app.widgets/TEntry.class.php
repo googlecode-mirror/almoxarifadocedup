@@ -1,12 +1,12 @@
-<?php
+ï»¿<?php
 /**
  * classe TEntry
- * classe para construção de caixas de texto
+ * classe para construÃ§Ã£o de caixas de texto
  */
 class TEntry extends TField
 {
     /**
-     * método show()
+     * mÃ©todo show()
      * exibe o widget na tela
      */
     public function show()
@@ -16,7 +16,7 @@ class TEntry extends TField
         $this->tag->value = $this->value;   // valor da TAG
         $this->tag->type = 'text';          // tipo de input
         $this->tag->style = "width:{$this->size}"; // tamanho em pixels
-        // se o campo não é editável
+        // se o campo nÃ£o Ã© editÃ¡vel
         if (!parent::getEditable())
         {
             $this->tag->readonly = "1";

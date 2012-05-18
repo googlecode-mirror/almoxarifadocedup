@@ -1,12 +1,12 @@
-<?php
+ï»¿<?php
 /**
  * classe THidden
- * classe para construção de campos escondidos
+ * classe para construÃ§Ã£o de campos escondidos
  */
 class THidden extends TField
 {
     /**
-     * método show()
+     * mÃ©todo show()
      * exibe o widget na tela
      */
     public function show()

@@ -1,19 +1,19 @@
-<?php
+ï»¿<?php
 /**
  * classe TForm
- * classe para construção de formulários
+ * classe para construÃ§Ã£o de formulÃ¡rios
  */
 class TForm
 {
     protected $fields;      // array de objetos contidos pelo form
-    private   $name;        // nome do formulário
+    private   $name;        // nome do formulÃ¡rio
 	private $action; // URL da propriedade Action do Form
-	private $java;// função de javascript
+	private $java;// funÃ§Ã£o de javascript
 
     /**
-     * método construtor
-     * instancia o formulário
-     * @param $name = nome do formulário
+     * mÃ©todo construtor
+     * instancia o formulÃ¡rio
+     * @param $name = nome do formulÃ¡rio
      */
     public function __construct($name = 'my_form', $action = '', $java = '')
     {
@@ -23,9 +23,9 @@ class TForm
     }
 
     /**
-     * método setName()
-     * define o nome do formulário
-     * @param $name      = nome do formulário
+     * mÃ©todo setName()
+     * define o nome do formulÃ¡rio
+     * @param $name      = nome do formulÃ¡rio
      */
     public function setName($name)
     {
@@ -33,7 +33,7 @@ class TForm
     }
 	
 	/**
-     * método setPropAction()
+     * mÃ©todo setPropAction()
      * URL da propriedade Action do Form
      * @param $action    = propriedade Action do Form
      */
@@ -43,9 +43,9 @@ class TForm
     }
 	
 	/**
-     * método setJava
+     * mÃ©todo setJava
      * funcao javascript
-     * @param $nomeFuncao    = nome da função javascript
+     * @param $nomeFuncao    = nome da funÃ§Ã£o javascript
      */
 	 public function setJava($nomeFuncao)
     {
@@ -54,8 +54,8 @@ class TForm
 
 
     /**
-     * método setEditable()
-     * define se o formulário poderá ser editado
+     * mÃ©todo setEditable()
+     * define se o formulÃ¡rio poderÃ¡ ser editado
      * @param $bool = TRUE ou FALSE
      */
     public function setEditable($bool)
@@ -70,8 +70,8 @@ class TForm
     }
 
     /**
-     * método setFields()
-     * define quais são os campos do formulário
+     * mÃ©todo setFields()
+     * define quais sÃ£o os campos do formulÃ¡rio
      * @param $fields = array de objetos TField
      */
     public function setFields($fields)
@@ -91,8 +91,8 @@ class TForm
     }
 
     /**
-     * método getField()
-     * retorna um campo do formulário por seu nome
+     * mÃ©todo getField()
+     * retorna um campo do formulÃ¡rio por seu nome
      * @param $name      = nome do campo
      */
     public function getField($name)
@@ -101,15 +101,15 @@ class TForm
     }
 
     /**
-     * método setData()
-     * atribui dados aos campos do formulário
+     * mÃ©todo setData()
+     * atribui dados aos campos do formulÃ¡rio
      * @param $object = objeto com dados
      */
     public function setData($object)
     {
         foreach ($this->fields as $name => $field)
         {
-            if ($name) // labels não possuem nome
+            if ($name) // labels nÃ£o possuem nome
             {
                 @$field->setValue($object->$name);
             }
@@ -117,8 +117,8 @@ class TForm
     }
 
     /**
-     * método getData()
-     * retorna os dados do formulário em forma de objeto
+     * mÃ©todo getData()
+     * retorna os dados do formulÃ¡rio em forma de objeto
      */
     public function getData($class = 'StdClass')
     {
@@ -148,8 +148,8 @@ class TForm
     }
 
     /**
-     * método add()
-     * adiciona um objeto no formulário
+     * mÃ©todo add()
+     * adiciona um objeto no formulÃ¡rio
      * @param $object = objeto a ser adicionado
      */
     public function add($object)
@@ -158,22 +158,22 @@ class TForm
     }
 
     /**
-     * método show()
-     * Exibe o formulário na tela
+     * mÃ©todo show()
+     * Exibe o formulÃ¡rio na tela
      */
     public function show()
     {
-        // instancia TAG de formulário
+        // instancia TAG de formulÃ¡rio
         $tag = new TElement('form');
         $tag->enctype = "multipart/form-data";
-        $tag->name = $this->name; // nome do formulário
-        $tag->method = 'post';         // método de transferência
+        $tag->name = $this->name; // nome do formulÃ¡rio
+        $tag->method = 'post';         // mÃ©todo de transferÃªncia
 		$tag->action = $this->action; // action do form
-		$tag->onsubmit = $this->java; // função javascript
-        // adiciona o objeto filho ao formulário
+		$tag->onsubmit = $this->java; // funÃ§Ã£o javascript
+        // adiciona o objeto filho ao formulÃ¡rio
         $tag->add($this->child);
 
-        // exibe o formulário
+        // exibe o formulÃ¡rio
         $tag->show();
     }
 }

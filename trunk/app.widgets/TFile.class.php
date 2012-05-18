@@ -1,12 +1,12 @@
-<?php
+Ôªø<?php
 /**
  * classe TFile
- * classe para construÁ„o de botıes de seleÁ„o de arquivos
+ * classe para constru√ß√£o de bot√µes de sele√ß√£o de arquivos
  */
 class TFile extends TField
 {
     /**
-     * mÈtodo show()
+     * m√©todo show()
      * exibe o widget na tela
      */
     public function show()
@@ -15,7 +15,7 @@ class TFile extends TField
         $this->tag->name = $this->name;    // nome da TAG
         $this->tag->value = $this->value;  // valor da TAG
         $this->tag->type = 'file';         // tipo de input
-        // se o campo n„o È edit·vel
+        // se o campo n√£o √© edit√°vel
         if (!parent::getEditable())
         {
             // desabilita a TAG input
