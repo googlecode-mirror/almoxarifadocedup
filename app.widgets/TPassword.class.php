@@ -1,12 +1,12 @@
-<?php
+ï»¿<?php
 /**
  * classe TPassword
- * classe para construção de campos de digitação de senhas
+ * classe para construÃ§Ã£o de campos de digitaÃ§Ã£o de senhas
  */
 class TPassword extends TField
 {
     /**
-     * método show()
+     * mÃ©todo show()
      * exibe o widget na tela
      */
     public function show()
@@ -16,7 +16,7 @@ class TPassword extends TField
         $this->tag->value = $this->value; // valor da TAG
         $this->tag->type = 'password';          // tipo do input
         $this->tag->style = "width:{$this->size}";		 // tamanho em pixels
-        // se o campo não é editável
+        // se o campo nÃ£o Ã© editÃ¡vel
         if (!parent::getEditable())
         {
             $this->tag->readonly = "1";

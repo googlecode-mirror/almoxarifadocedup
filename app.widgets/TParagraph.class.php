@@ -1,24 +1,24 @@
-<?php
+ï»¿<?php
 /**
  * classe TParagraph
- * classe para exibição de parágrafos
+ * classe para exibiÃ§Ã£o de parÃ¡grafos
  */
 class TParagraph extends TElement
 {
     /**
-     * método construtor
+     * mÃ©todo construtor
      * instancia objeto TParagraph
      * @param $texto = texto a ser exibido
      */
     public function __construct($text)
     {
         parent::__construct('p');
-        // atribui o conteúdo do texto
+        // atribui o conteÃºdo do texto
         parent::add($text);
     }
 
     /**
-     * método setAlign()
+     * mÃ©todo setAlign()
      * define o alinhamento do texto
      * @param $align = alinhamento do texto
      */

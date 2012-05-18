@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //Salvar com o nome Config.php
 class Config{
 	public static $host = 'localhost';

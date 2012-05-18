@@ -1,12 +1,12 @@
-<?php
+Ôªø<?php
 /**
  * classe TCheckButton
- * classe para construÁ„o de botıes de verificaÁ„o
+ * classe para constru√ß√£o de bot√µes de verifica√ß√£o
  */
 class TCheckButton extends TField
 {
     /**
-     * mÈtodo show()
+     * m√©todo show()
      * exibe o widget na tela
      */
     public function show()
@@ -15,7 +15,7 @@ class TCheckButton extends TField
         $this->tag->name = $this->name;     // nome da TAG
         $this->tag->value = $this->value;   // valor
         $this->tag->type = 'checkbox';      // tipo do input
-        // se o campo n„o È edit·vel
+        // se o campo n√£o √© edit√°vel
         if (!parent::getEditable())
         {
             // desabilita a TAG input

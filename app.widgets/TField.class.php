@@ -1,7 +1,7 @@
-<?php
+Ôªø<?php
 /**
  * classe TField
- * classe base para construÁ„o dos widgets para formul·ros
+ * classe base para constru√ß√£o dos widgets para formul√°ros
  */
 abstract class TField
 {
@@ -12,19 +12,19 @@ abstract class TField
     protected $tag;
 
     /**
-     * mÈtodo construtor
+     * m√©todo construtor
      * instancia um campo do formulario
      * @param $name = nome do campo
      */
     public function __construct($name)
     {
-        // define algumas caracterÌsticas iniciais
+        // define algumas caracter√≠sticas iniciais
         self::setEditable(true);
         self::setName($name);
         self::setSize(200);
 
         // Instancia um estilo CSS chamado tfield
-        // que ser· utilizado pelos campos do formul·rio
+        // que ser√° utilizado pelos campos do formul√°rio
         $style1 = new TStyle('tfield');
         $style1->border          = 'solid';
         $style1->border_color    = '#a0a0a0';
@@ -45,7 +45,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo setName()
+     * m√©todo setName()
      * define o nome do widget
      * @param $name     = nome do widget
      */
@@ -55,7 +55,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo getName()
+     * m√©todo getName()
      * retorna o nome do widget
      */
     public function getName()
@@ -64,7 +64,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo setValue()
+     * m√©todo setValue()
      * define o valor de um campo
      * @param $value    = valor do campo
      */
@@ -74,7 +74,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo getValue()
+     * m√©todo getValue()
      * retorna o valor de um campo
      */
     public function getValue()
@@ -83,8 +83,8 @@ abstract class TField
     }
 
     /**
-     * mÈtodo setEditable()
-     * define se o campo poder· ser editado
+     * m√©todo setEditable()
+     * define se o campo poder√° ser editado
      * @param $editable = TRUE ou FALSE
      */
     public function setEditable($editable)
@@ -93,7 +93,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo getEditable()
+     * m√©todo getEditable()
      * retorna o valor da propriedade $editable
      */
     public function getEditable()
@@ -102,7 +102,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo setProperty()
+     * m√©todo setProperty()
      * define uma propriedade para o campo
      * @param $name = nome da propriedade
      * @param $valor = valor da propriedade
@@ -114,7 +114,7 @@ abstract class TField
     }
 
     /**
-     * mÈtodo setSize()
+     * m√©todo setSize()
      * define a largura do widget
      * @param $size = tamanho em pixels
      */

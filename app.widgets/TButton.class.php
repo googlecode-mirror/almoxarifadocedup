@@ -1,7 +1,7 @@
-<?php
+ï»¿<?php
 /**
  * classe TButton
- * responsável por exibir um botão
+ * responsÃ¡vel por exibir um botÃ£o
  */
 class TButton extends TField
 {
@@ -13,10 +13,10 @@ class TButton extends TField
 	private $java = '#';
 
     /**
-     * método setAction
-     * define a ação do botão (função a ser executada)
-     * @param $action = ação do botão
-     * @param $label    = rótulo do botão
+     * mÃ©todo setAction
+     * define a aÃ§Ã£o do botÃ£o (funÃ§Ã£o a ser executada)
+     * @param $action = aÃ§Ã£o do botÃ£o
+     * @param $label    = rÃ³tulo do botÃ£o
      */
     public function setAction($action, $label)
     {
@@ -25,16 +25,16 @@ class TButton extends TField
     }
 
     /**
-     * método setFormName
-     * define o nome do formulário para a ação botão
-     * @param $name = nome do formulário
+     * mÃ©todo setFormName
+     * define o nome do formulÃ¡rio para a aÃ§Ã£o botÃ£o
+     * @param $name = nome do formulÃ¡rio
      */
     public function setFormName($name)
     {
         $this->formName = $name;
     }
 	/**
-     * método setType
+     * mÃ©todo setType
      * define o tipo e o src do button
 	 * para fazer um IMAGE BUTTON
      * @param $tipo = image
@@ -48,9 +48,9 @@ class TButton extends TField
 	}
 	
 	/**
-     * método setJava
+     * mÃ©todo setJava
      * define um funcao javascript
-     * @param $function nome da função
+     * @param $function nome da funÃ§Ã£o
      */
 	
 	function setJava($function){
@@ -58,28 +58,28 @@ class TButton extends TField
 	}
 
     /**
-     * método show()
-     * exibe o botão
+     * mÃ©todo show()
+     * exibe o botÃ£o
      */
     public function show()
     {
         $url = $this->action->serialize();
-        // define as propriedades do botão
+        // define as propriedades do botÃ£o
         $this->tag->name    = $this->name;    // nome da TAG
         $this->tag->type    = $this->type;       // tipo de input
-        $this->tag->value   = $this->label;   // rótulo do botão
+        $this->tag->value   = $this->label;   // rÃ³tulo do botÃ£o
 		$this->tag->src 	= $this->src;
-        // se o campo não é editável
+        // se o campo nÃ£o Ã© editÃ¡vel
         if (!parent::getEditable())
         {
             $this->tag->disabled = "1";
             $this->tag->class = 'tfield_disabled'; // classe CSS
         }
-        // define a ação do botão
+        // define a aÃ§Ã£o do botÃ£o
         $this->tag->onclick =	"document.{$this->formName}.action='{$url}'; ";
 
 	
-        // exibe o botão
+        // exibe o botÃ£o
         $this->tag->show();
     }
 }

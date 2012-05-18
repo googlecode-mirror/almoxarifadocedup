@@ -1,13 +1,13 @@
-<?php
+ï»¿<?php
 /**
  * classe TSession
- * gerencia uma seção com o usuário
+ * gerencia uma seÃ§Ã£o com o usuÃ¡rio
  */
 class TSession
 {
     /**
-     * método construtor
-     * inicializa uma seção
+     * mÃ©todo construtor
+     * inicializa uma seÃ§Ã£o
      */
     function __construct()
     {
@@ -18,9 +18,9 @@ class TSession
     }
 
     /**
-     * método setValue()
-     * armazena uma variável na seção
-     * @param $var     = Nome da variável
+     * mÃ©todo setValue()
+     * armazena uma variÃ¡vel na seÃ§Ã£o
+     * @param $var     = Nome da variÃ¡vel
      * @param $value = Valor
      */
     static function setValue($var, $value)
@@ -29,11 +29,11 @@ class TSession
     }
 	
 	/**
-     * método setValueArray()
-     * armazena uma variável na seção Array
-     * @param $var     = Nome da variável
+     * mÃ©todo setValueArray()
+     * armazena uma variÃ¡vel na seÃ§Ã£o Array
+     * @param $var     = Nome da variÃ¡vel
      * @param $value = Valor
-	 * @param $key = posição da Array
+	 * @param $key = posiÃ§Ã£o da Array
      */
 	function setValueArray($var, $key = 0, $value)
     {
@@ -42,9 +42,9 @@ class TSession
 
 
     /**
-     * método getValue()
-     * retorna uma variável da seção
-     * @param $var = Nome da variável
+     * mÃ©todo getValue()
+     * retorna uma variÃ¡vel da seÃ§Ã£o
+     * @param $var = Nome da variÃ¡vel
      */
     static function getValue($var)
     {
@@ -60,8 +60,8 @@ class TSession
     }
 
     /**
-     * método freeSession()
-     * destrói os dados de uma seção
+     * mÃ©todo freeSession()
+     * destrÃ³i os dados de uma seÃ§Ã£o
      */
     function freeSession()
     {
