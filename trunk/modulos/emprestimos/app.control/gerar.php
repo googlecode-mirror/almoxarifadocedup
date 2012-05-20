@@ -24,7 +24,7 @@
 	        $emp->setRequisitanteId($sessao->getVar('id'));
 	        $emp->setUsuarioId($sessao->getVar('usuario')->id_usuario);  
 	        EmpMapper::map($emp, $_POST);
-	        $date_inicial = Utils::formatDateTimeUs($_POST['dt_inicial_emprestimo'].' '.date('H:m:s'));
+	        $date_inicial = Utils::conv_data_to_us($_POST['dt_inicial_emprestimo']).' '.date('H:m:s');
 	        $emp->setDtInicialEmprestimo($date_inicial);
 	  
 	        if ($sessao->getVar('mat') != null){
@@ -48,13 +48,9 @@
     	}else{
     		Flash::addFlash($validacao);
     	}
-        
-        
-        
+   
     }
-    
-
-
+   
     if (array_key_exists('add-mat',$_GET)){
       $dados = array('item' => array('Item'),
                      'item_qtd' => array('Qtd','tipo' => 'inteiro'));
@@ -65,7 +61,7 @@
           
         $data = array('descricao_item' => $_POST['item'],
                       'quantidade_item' => str_pad($_POST['item_qtd'], 2, '0', STR_PAD_LEFT),
-                      'dt_final'=> $_POST['item_entrega'].' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));  
+                      'dt_final'=> Utils::conv_data_to_us($_POST['item_entrega']).' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));  
         
         $sessao->addArray('mat',$data);
         header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id'));

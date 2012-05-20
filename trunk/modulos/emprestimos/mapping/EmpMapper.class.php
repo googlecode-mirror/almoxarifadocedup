@@ -52,9 +52,8 @@ class EmpMapper {
                
                foreach ($emp->items as $item){
                    $entregue = 1;
-                    
                    if ($item->dt_final != '00/00/00 00:00:00'){
-                        $data = Utils::formatDateTimeUs($item->dt_final);
+                        $data = $item->dt_final;
                         $item->setDtFinal($data);
                         $entregue = 0;
                     }

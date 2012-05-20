@@ -15,8 +15,17 @@ body {
     margin-bottom: 20px;
     border-top:1px solid;
     border-bottom:2px solid;
+    
+}
+
+#headerPage > span{
     font-size:15pt;
     font-weight: bold;
+    
+}
+
+#headerPage a {
+    float:left;
 }
 
 
@@ -169,6 +178,10 @@ table{
     background-color:#CCCCCC;
 }
 
+.hover{
+    background-color:#EEDD82;
+}
+
 .table tr th {
     padding-left:5px;
     padding-right:5px;
@@ -290,8 +303,8 @@ table{
 .form label {
     float: left;
     width: 130px;
-    line-height: 9px;
-    padding-bottom: 8px;
+    line-height: 5px;
+
     font-weight: bold;
     color: #4c7cbd;
 }
@@ -300,7 +313,7 @@ table{
     padding: 1px 0 1px 3px;
     border: 1px solid #d6d6d6;
     color: #414141;
-    padding-bottom:4px;
+    padding-bottom:14px;
     float:left;
 }
 
@@ -356,5 +369,23 @@ table{
     margin-top: 20px;
     margin-left:35%;
 
+}
+
+#controler_bar_login
+{
+    width: 100%;
+    height: 30px;
+    background-color:#FFF;
+    border-top:1px solid;
+    border-bottom:1px solid;
+    margin-bottom:20px;
+
+}
+
+#controler_bar_login>span
+{
+    float: left; 
+    padding-top:0.5%;
+    padding-left:2%;
 }
 

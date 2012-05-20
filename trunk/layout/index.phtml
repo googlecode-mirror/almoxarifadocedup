@@ -23,13 +23,18 @@ foreach(TApplication::$scriptLink as $script)
                                 <span><a href="index.php">Painel</a></span>
                                 <div>
                                     <a href="index.php?modulo=usuarios&page=info-usuario">
-                                        <div>
-                                            <p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p>
+                                    <div>
+                                          <p><?php echo $sessao->getVar('usuario')->nome_usuario; ?></p>
                                     </div>
                                     </a>    
                                     <a href="index.php?modulo=usuarios&page=logout"><div><p>Logout</p></div></a>
                                 </div>
                             </div>
+                        <?php }else{ ?>
+                            <div onclick="zerar()" id="controler_bar_login">
+                                <span><a href="index.php">Inicio</a></span>
+                            </div>
+  
                         <?php } ?>  
                     
                             <?php if ($flashes){ ?>

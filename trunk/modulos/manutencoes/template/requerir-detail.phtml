@@ -1,6 +1,8 @@
-<h1> Detalhes da Requisicão </h1>
+<div id="headerPage">
+    <span>Detalhes da Requisição</span>
+</div>
 
-<table class="detail" align="center">
+<table class="detail" style="margin-bottom:30px; "align="center">
     <tr>
         <th>Requisitante</th>
         <td><?php echo $requisicao->nome_usuario; ?><td>
@@ -25,73 +27,94 @@
     
     <tr>
         <th>Status</th>
-        <td><?php echo $requisicao->nome_estado_requisicao; ?><td>
+        <td><?php echo $requisicao->nome_estado_requisicao;
+                  if ($requisicao->estado_id == 2){
+                    echo "<a class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar</a>";
+                  }
+             ?></td>
     </tr>
     <tr>
         <th colspan="2">&nbsp</th>
         
     </tr>
-    <tr>
-        <th></th>
+    <tr align="center">
+
         <?php 
         
         if ($requisicao->estado_id == 1){
             
-        echo"<td><div>
+        echo"<td colspan=2><div>
             <a class=actions href='index.php?modulo=manutencoes&page=aprovar&key={$requisicao->id_requisicao}'>Aprovar</a>
             <a class=actions href='index.php?modulo=manutencoes&page=aprovar&negar=1&key={$requisicao->id_requisicao}'>Negar</a>
-            </div></td>";  
+            </div></td>";
+    
             
         }elseif ($requisicao->estado_id == 2){
     
-        echo"<td><div>
+        echo"<td colspan=2><div>
             <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Atualizar</a>
-            <a class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Aprovação</a>
-            </div></td>"; 
+            </div></td>";
+    
             
         }elseif ($requisicao->estado_id == 3){
-    
-        echo"<td><div>
-            <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Atualizar</a>
+            echo"<td colspan=2><div>
+                <a id='actions' class='open-link' href='index.php?modulo=manutencoes&page=realizar&key={$requisicao->id_requisicao}'>Atualizar</a>
             <a class='actions' href='index.php?modulo=manutencoes&page=imprimir&key={$requisicao->id_requisicao}'>Imprimir</a>
-            </div></td>"; 
-            
-        }elseif ($requisicao->estado_id == 5){
-    
-        echo"<td><div>
-            <a  class=actions href='index.php?modulo=manutencoes&page=aprovar&cancel=1&key={$requisicao->id_requisicao}'>Cancelar Negação</a>
-            </div></td>"; 
-            
+                </div></td>";  
         }
         ?>
-         
-    </tr>
-    <tr>
-        <th>&nbsp</th>   
-    </tr>
-     <tr>
-         <th><a href='index.php?modulo=manutencoes&estado=<?php echo $requisicao->estado_id ?>&page=<?php echo $PageVoltarLista; ?>'>
-             Voltar à Lista</a></th>   
-    </tr>
-    
-    
-    
+      </tr>    
 </table>
+        <div style="text-align:right; margin-right:3.5%; margin-bottom:0.5%;"><a id="actions" href='index.php?modulo=manutencoes&estado=<?php echo $requisicao->estado_id ?>&page=<?php echo $PageVoltarLista; ?>'>
+             Voltar à Lista</a></div>  
+        <?php if ($requisicao->estado_id == 3){ ?>
+              
+    <table class="table" align="center">
+        <thead>
+            <tr align="left">
+                <th width="200">Responsável</th>
+                <th width="150">Data</th>
+                <th width="550">Providência</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($manutencao)){
+                $i = 0;
+                foreach($manutencao as $mat){
+                    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';
+                    echo "<tr align=left bgcolor={$bgcolor}>
+                            <td style=padding-left:5px>$mat->nome_usuario</td>
+                            <td>".Utils::formatDateTime($mat->data_manutencao)."</td>
+                            <td>$mat->providencia_manutencao</td>
+                         </tr>";
+                $i = $i+1;
+                }
+            }
 
-    <div id="janela-dialog">
+            ?>
+            
+        </tbody> 
+    </table>
+        
+        
+        
+        <?php } ?>
+ 
+    <div id="janela-dialog" title="Atualização da Requisição">
         <form id="form-dialog" style="text-align: left" class="form" name="frm" method="post" action="">
             <fieldset>
-                <label>Responsável:</label>
-                <input type="text" name="nome_usuario" readonly="readonly" value=<?php echo $sessao->getVar('usuario')->nome_usuario;?> />
+                <label style="margin-top:11px;" >Responsável:</label>
+                <input type="text" name="nome_usuario" readonly="readonly" value=<?php echo $sessao->getVar('usuario')->nome_usuario;?> /><br/>
                 
-                <label style="margin-top:7px;" >Data:</label>
-                <input style="margin-top:5px;" type="text" name="data_manutencao" readonly="readonly" value="<?php echo date('d/m/y H:m:s');?>"/>
+                <label style="margin-top:16px;" >Data:</label>
+                <input style="margin-top:5px;" type="text" name="data_manutencao" readonly="readonly" value="<?php echo date('d/m/y H:m:s');?>"/><br/>
                 
-                <label style="margin-top:7px;" >Definitivo:</label>
+                <label style="margin-top:13px;" >Definitivo:</label>
                 <div style="margin-top:5px;"><span>Sim</span><input type="radio" name="definitivo_manutencao" value="1"/>
                 									<span>Não</span><input checked="checked" type="radio" name="definitivo_manutencao" value="0"/>
                 </div>
-                <label style="margin-top:15px;">Providência:</label>
+                <label style="margin-top:21px;">Providência:</label>
                 <textarea style="margin-top:15px;" class="campo" name="providencia_manutencao" ></textarea>
             </fieldset>
         </form> 

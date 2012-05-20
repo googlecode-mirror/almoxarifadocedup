@@ -78,16 +78,14 @@ class RequerirMapper {
             
          if ($conn = TTransaction::get()){
                
-               $sql = 'SELECT R.*,U.nome_usuario,E.nome_estado_requisicao FROM req_manutencao R
+               $sql = 'SELECT distinct R.*,U.nome_usuario,E.nome_estado_requisicao FROM req_manutencao R
                INNER JOIN manutencoes M ON
                (R.id_requisicao = M.req_manutencao_id)
                INNER JOIN usuarios U ON
                (U.id_usuario = R.requisitante_id)
                INNER JOIN estados_requisicoes E ON
                (R.estado_id = E.id_estado_requisicao)
-               INNER JOIN providencia_manu P on
-               (M.id_manutencao = P.manutencao_id)
-               WHERE deleted = 0 and R.estado_id = 3 and P.responsavel_id = ?
+               WHERE deleted = 0 and R.estado_id = 3 and M.responsavel_id = ?
                ORDER BY R.id_requisicao DESC';
                        
                $sth = $conn->prepare($sql);

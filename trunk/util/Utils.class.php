@@ -51,7 +51,6 @@ final class Utils {
      
      static function formatDateTimeUs($databr) {
        $date = new DateTime($databr);
-       
        return $date->format('Y-m-d H:i:s');
     }
     

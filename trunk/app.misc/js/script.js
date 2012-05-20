@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     initDatepicker();
     initFlashes();
@@ -8,23 +7,86 @@ $(document).ready(function() {
     intAlertMsg();
     initFormDelete();
     initFormDialogMat();
-    zerar();
-    orderColuna();
+    zerar(); 
+    efeitomouse();
+    populadisciplina();
+    populafase();
+
 });
 
-/*function orderColuna(){
+function efeitomouse(){
     
-    $('.table th').click(function(){
-        var valor = $(this).html();
-        $("#test").load('index.php?modulo=usuarios&page=visualizar&ajax=1',{val:valor},ready())
-    })
-    
-    function ready(){
-        alert('Ajax terminou com sucesso.');
-    }
-
+     $("#table tr").hover(
+    function(){
+        if ($(this).attr('bgcolor') != '#FF7F50') {
+            $(this).addClass("hover");
+        }
+    },
+    function(){
+        $(this).removeClass("hover");
+    });
+  
 }
-*/
+
+function populadisciplina(){
+       
+       $("#curso").change(function(){
+           $.ajax({
+               type: "POST",
+               url: 'index.php?modulo=solicitacoes&page=gerar&ajax=1',
+               data: {val: $("#curso").val()},
+               datatype: "json",
+               success: function (valores){
+                   var options = "";
+                   
+                   $.each(valores,function(key,valor){
+                       options += '<option value="'+ valor[0]+ '">'+ valor[1]+'</option>';
+                   })
+                   $("#disciplina").html(options);  
+               }
+           })
+       })
+  
+}
+
+function populafase(){
+       
+       $("#curso").change(function(){
+           $.ajax({
+               type: "POST",
+               url: 'index.php?modulo=solicitacoes&page=gerar&ajax=1',
+               data: {valor: $("#curso").val()},
+               datatype: "json",
+               success: function (valores){
+                   var options = "";
+                   $.each(valores,function(key,valor){
+                       options += '<option value="'+ valor[0]+ '">'+ valor[1]+'</option>';
+                     
+                   })
+                   $("#fase").html(options);  
+               }
+           })  
+       })
+  
+}
+
+ 
+
+
+
+//function orderColuna(){
+//    
+//    $('.table th').click(function(){
+//        var valor = $(this).html();
+//        $("#test").load('index.php?modulo=usuarios&page=visualizar&ajax=1',{val:valor},ready())
+//    })
+//    
+//    function ready(){
+//        alert('Ajax terminou com sucesso.');
+//    }
+//
+//}
+
 
 function initDatepicker() {
     
@@ -89,6 +151,7 @@ function initDeleteDialog() {
         autoOpen: false,
         modal: true,
         width: 476,
+        resizable: false,
         buttons: {
             'OK': function() {
                 $(this).dialog('close');
@@ -114,6 +177,7 @@ function initFormDialog() {
         autoOpen: false,
         modal: true,
         width: 520,
+        resizable: false,
         buttons: {
             'OK': function() {
                 Form.submit();
@@ -136,10 +200,12 @@ function initFormDialogMat() {
     var Dialog = $('#janela-dialogMat');
     var Link = $('.open-linkMat');
     var Form = $('#form-dialogMat');
+  
     Dialog.dialog({
         autoOpen: false,
         modal: true,
         width: Dialog.attr('width'),
+        resizable: false,
         buttons: {
             'OK': function() {
                 Form.submit();
@@ -147,15 +213,44 @@ function initFormDialogMat() {
             },
             'Cancel': function() {
                 $(this).dialog('close');
+                
             }
         }
     });
+
     Link.click(function() {
     Form.attr('action', $(this).attr('href'));
     Dialog.dialog('option', 'title', $(this).attr('title'));
+    Dialog.dialog('option', 'open', getAquisicoes($(this).attr('title')));
+    Dialog.dialog('option', 'title', '');
     Dialog.dialog('open');
-        return false;
+    
+    return false;
     });
+
+}
+
+function getAquisicoes(id){
+   
+            $.ajax({
+               type: "POST",
+               url: 'index.php?modulo=solicitacoes&page=visualizar&ajax=1',
+               data: {val: id},
+               datatype: "json",
+               success: function (valores){
+                   var obj = jQuery.parseJSON(valores);
+                   var options = "";
+                   $.each(obj,function(key,valor){
+                       options += '<tr><td>'+valor[0]+'</td> \n\
+                                   <td align="left" style=padding-left:5px>'+valor[1]+'</td>\n\
+                                   <td>'+valor[2]+'</td></tr>';
+                   })
+                   $("#tableBody").html(options);  
+               }
+           })
+             
+ 
+        
 }
 
 function initFormDelete() {
@@ -166,6 +261,7 @@ function initFormDelete() {
         autoOpen: false,
         modal: true,
         width: 520,
+        resizable: false,
         buttons: {
             'OK': function() {
                 Form.submit();
@@ -173,6 +269,7 @@ function initFormDelete() {
             },
             'Cancel': function() {
                 $(this).dialog('close');
+                
             }
         }
     });
@@ -191,6 +288,7 @@ function intAlertMsg(){
     alert.dialog({
         autoOpen: false,
         modal:true,
+        resizable: false,
         buttons: {
             'OK': function(){
                 $(this).dialog('close');

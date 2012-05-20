@@ -62,7 +62,7 @@
             
             if ($validacao === true){
                 $data = array('nome_laboratorio' => $_POST['nome_laboratorio'],
-                                'numero_laboratorio' => $_POST['numero_laboratorio']);
+                              'numero_laboratorio' => $_POST['numero_laboratorio']);
 
                 $lab = new Lab();          
                 LabMapper::map($lab, $data);

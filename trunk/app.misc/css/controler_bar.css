@@ -15,8 +15,7 @@
 #controler_bar div
 {
     width: auto;
-    
-    height: 20px;
+    height: 10px;
     float: left;
     margin-right: 7px;
     
@@ -26,6 +25,12 @@
 {
     float: right;  
     padding: 0;
+ 
+}
+
+#controler_bar a
+{
+    margin:0px;
 }
 
 #controler_bar>span
