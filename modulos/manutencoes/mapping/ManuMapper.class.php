@@ -94,12 +94,14 @@ class ManuMapper {
                TTransaction::open('my_config');
                if ($conn = TTransaction::get()){
         
-                    $sql = "SELECT * FROM manutencoes
+                    $sql = "SELECT M.*,U.nome_usuario FROM manutencoes M
+                            INNER JOIN usuarios U ON
+                            (U.id_usuario = M.responsavel_id)
                             WHERE req_manutencao_id = ?";
 
                     $sth = $conn->prepare($sql);
                     $sth->execute(array($manu->getReqManutencaoId()));
-                    $result = $sth->fetch(PDO::FETCH_OBJ);
+                    $result = $sth->fetchALL(PDO::FETCH_OBJ);
                     
                     return $result;
                     
@@ -109,7 +111,7 @@ class ManuMapper {
                }
 
     }
-    
+
 //    public static function addProvidencia(Manu $manu){
 //        
 //               TTransaction::open('my_config');

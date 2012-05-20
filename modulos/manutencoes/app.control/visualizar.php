@@ -8,8 +8,9 @@ if ((isset($_POST['busca'])) and $_POST['estadoBusca'] != 'todos') {
 
 }else if (($sessao->getVar('estado') != null) and array_key_exists('estado',$_GET)){
       
-      $criteria->setValueCriteria($sessao->getVar('estado')); 
-}
+      if ($_GET['estado'] != 4){
+        $criteria->setValueCriteria($sessao->getVar('estado')); 
+}     }
     
 $requisicoes = RequerirMapper::getRequisicaoByCriteria($criteria);
 if (array_key_exists('erro',$_GET)){

@@ -1,0 +1,53 @@
+<div id="headerPage">
+    <span>Solicitação</span>
+</div>
+<div style="text-align:left;" id="box">
+    <form style="width:430px; background-color: #f0f0f0; padding:15px; border:1px solid;" class="form2" method="POST" action="">
+        <label><span>Requisitante:</span>
+            <input readonly="readonly" style="width:250px" type="text" name="nome_requisitante" value="<?php echo $sessao->getVar('usuario')->nome_usuario; ?>">
+        </label><br/>
+        <label><span>Data:</span>
+            <input readonly="readonly" style="width:130px" type="text" name="dt_aquisicao_inicial" value="<?php echo date('d/m/Y H:i:s'); ?>">
+        </label><br/>
+        <label><span>Curso:</span>
+            <Select id="curso" type="text" name="curso_id" >
+                <option value="">Selecione</option>
+                <?php 
+                foreach ($cursos as $curso) {
+                    echo "<option value={$curso[0]}>{$curso[1]}</option>";
+                }
+                
+                ?>
+            </select>
+        </label><br/>
+        <label><span>Disciplina:</span>
+            <Select style="min-width: 100px" id="disciplina" type="text" name="disciplina_id" >
+                
+            </select>
+        </label><br/>
+        <label><span>Fase:</span>
+            <Select style="width:50px;" id="fase" type="text" name="fase_id" >
+                
+            </select>
+        </label><br/>
+        <label><span>Semestre:</span>
+            <input style="width:50px;" readonly="readonly" style="width:125px" type="text" name="semestre" 
+                   value="<?php 
+                   $date = date('d/m/Y');
+                   $mes = substr($date,3,2);
+                   $ano = substr($date,6,4);
+                   
+                   if ($mes <= 6){
+                       echo $ano.' A';
+                   }else{
+                       echo $ano.' B';
+                   }
+                   
+            
+            ?>">
+        </label><br/>
+        <input type="submit" value="Continuar" name="save" />
+        <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
+    </form>
+</div>     
+       

@@ -1,9 +1,4 @@
 <?php
- if (isset($_POST['val'])){
-    echo $_POST['val'];
- }
-
-
  $criteria = new SearchCriteria();
     
     if (array_key_exists('busca',$_POST)){

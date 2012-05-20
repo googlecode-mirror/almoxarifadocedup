@@ -4,7 +4,6 @@ $(document).ready(function() {
     initErrorFields();
     initDeleteDialog();
     zerar();
-  
 });
 	
 function gE(ID){

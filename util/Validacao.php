@@ -80,6 +80,10 @@ function ValidaFormulario(array $campos){
 			if($itens['tipo'] == 'cnpj_separators' && !preg_match("/^\d{3}.\d{3}.\d{3}/\d{4}-\d{2}$/",$_POST[$campo])){
 				$camposErrados[] = "Digite o formato correto no campo ".strtoupper($itens[0])." correto: 000.000.000/0000-00.<br/><br/>";
 			}
+                        
+                        if($itens['tipo'] == 'select' && $_POST[$campo] == 0){
+				$camposErrados[] = "No campo ".strtoupper($itens[0])." voce deve selecionar algo.<br/><br/>";
+			}
 		}
 	}
 	// verifica se houve algum erro

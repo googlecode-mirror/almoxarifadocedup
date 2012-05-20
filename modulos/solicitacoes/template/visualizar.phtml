@@ -1,0 +1,90 @@
+<div id="headerPage">
+    <span>Solicitações Pendentes</span>
+</div>
+<form method="POSt" action="">
+    <label>Requisitante:</label>
+    <input type="text" name="CampoBusca" value=""/>
+    <input type="submit" value="Buscar" name="busca"/>
+    <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
+    
+</form>
+
+<table id="table" style="margin-top:30px;" align="center" class="table">
+    <thead align="left">
+        <tr>
+            <th width="170">Requisitante</th>
+            <th>Data</th>
+            <th align="center">Semestre</th>
+            <th align="center">Curso</th>
+            <th style=padding-left:13px>Disciplina</th>
+            <th align="center" width="50">Fase</th>
+            <th>Itens</th>
+            <th></th>
+            <th></th>
+        </tr>
+     </thead>
+     <tbody align="left">
+    <?php 
+    
+    if (isset($solicitacoes[0])){
+	    $i = 0;
+	    foreach($solicitacoes as $solicitacao){
+	    
+	    $data = explode(' ',$solicitacao->dt_aquisicao_inicial);
+	    $date_inicial = Utils::formatDateBr($data[0]);
+	    $databr = ($date_inicial.' '.$data[1])  ;   
+	        
+	    $bgcolor = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';    
+	    
+	    echo "<tr bgcolor={$bgcolor}>
+	              <td style=padding-left:5px>{$solicitacao->nome_usuario}</td>
+                      <td>{$databr}</td>
+	              <td align=center>{$solicitacao->semestre}</td>
+                      <td >{$solicitacao->nome_curso}</td>
+                      <td style=padding-left:13px>{$solicitacao->nome_disciplina}</td>
+                      <td align=center>{$solicitacao->nome}</td>	              
+	
+	              <td align=center ><a class=open-linkMat title='{$solicitacao->id_aquisicao}' href='index.php?modulo=manutencoes&page=visualizar&key={$solicitacao->id_aquisicao}'>
+	                                     <img src='app.misc/images/ico_produtos.png'></a></td>
+	              <td align=center ><a title='Imprimir Solicitação' href='index.php'>
+	                                     <img src='app.misc/images/ico_print.png'></a></td>
+	              <td align=center ><a class='open-link-delete' title='Excluir solicitação' href='index.php?modulo=solicitacoes&page=visualizar&delete-key={$solicitacao->id_aquisicao}'>
+	                                     <img src='app.misc/images/ico_delete.png'></a></td>";  
+	                
+	     echo "</tr>";
+	    $i = $i+1;
+	    }
+    }else{
+    	echo "<tr bgcolor='#FFFFFF'>
+    	<td align='center' colspan = 9 >Nenhuma solicitação encontrada.</td>
+    	</tr>";
+    }
+
+    ?>
+    
+     </tbody>
+</table>
+
+<div width="480" id="janela-dialogMat" class="ui-draggable">
+    <table width="440" class="table">
+        <thead>
+            <tr>
+                <th width="40">Código</th>
+                <th width="350">Nome</th>
+                <th>quantidade</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            
+        </tbody>
+        
+    </table>
+</div>
+
+<div id="janela-delete">
+        <form id="form-delete" class="form" name="frm" method="post" action="">
+            <fieldset>
+                 Deseja deletar esta solicitação?
+            </fieldset>
+        </form> 
+</div>

@@ -2,11 +2,11 @@
                 <h1>Requerir manutenção</h1>    
                 <form method="POST" action="">
 
-                    <label>Data atual:</label>
-                    <input class="campo" type="text" readonly="readonly" style="width:105px" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
-                    
                     <label>Requisitante:</label>
                     <input class="campo" type="text" readonly="readonly" style="width:200px" name="nome_requisitante" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
+                    
+                    <label>Data:</label>
+                    <input class="campo" type="text" readonly="readonly" style="width:105px" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
                     
                     <label>Equipamento(s):</label>
                     <textarea cols="23" rows="6" maxlength="100" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
