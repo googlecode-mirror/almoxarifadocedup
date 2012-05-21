@@ -57,32 +57,40 @@
         <input type="button" name="save" value="Cancelar" onclick="javascript:location='index.php?modulo=usuarios&page=visualizar&empCancel=1'"/>
     </form>
 </div>
-<div width="770" id="janela-dialogMat">
+<div style="text-align: left;" width="500" id="janela-dialogMat">
     <form id="form-dialogMat" method="POST" action="">
         <label>
-            <span>Item</span>
-            <input style="width:300px;" type="text" name="item">
+            <span>Material</span>
+            <input style="width:300px; margin-bottom:30px" type="text" name="item">
         </label>
         <label>
             <span>Qtd</span>
             <input style="width:50px;" type="text" name="item_qtd">
-        </label>
-        <label>
-            <span>Data</span>
-            <input style="width:100px;" class="text datepicker" type="text" name="item_entrega" value="00/00/00">
-        </label>
-        <select name="hora_entrega">
-        <?php for ($i=0; $i < 24; ++$i){
-               echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
-            }
-        ?>
-        </select>
-        <span>:</span>
-        <select name="minuto_entrega">
-        <?php for ($i=0; $i < 60; $i = $i + 15){
-               echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
-            }
-        ?>
-        </select>
+        </label><br/>
+        <fieldset>
+            <legend>
+                <label>
+                    <span>Habilitar</span>
+                    <input style="margin-bottom:5px;" type="checkbox" name="">
+                </label>
+                <label>
+            </legend>
+                    <span>Data</span>
+                    <input style="width:100px;" class="text datepicker" type="text" name="item_entrega" value="00/00/00">
+                </label>
+                <select name="hora_entrega">
+                <?php for ($i=0; $i < 24; ++$i){
+                    echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
+                    }
+                ?>
+                </select>
+                <span>:</span>
+                <select name="minuto_entrega">
+                <?php for ($i=0; $i < 60; $i = $i + 15){
+                    echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
+                    }
+                ?>
+                </select>
+        </fieldset>
     </form>
 </div>
