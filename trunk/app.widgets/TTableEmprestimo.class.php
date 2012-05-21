@@ -9,12 +9,12 @@ class TTableEmprestimo
     }
     
     public function render()
-    {?>
-<table>
+    {
+	$html = "<table>
 	<thead>
 		<tr>
-			<th>Requisitante: <?php echo $this->obj->loadRequisitante(); ?></th>
-			<th>Data: <?php echo $this->obj->dt_inicial_emprestimo; ?></th>
+			<th>Requisitante: {$this->obj->loadRequisitante()}</th>
+			<th>Data: {$this->obj->dt_inicial_emprestimo}</th>
 		</tr>
 		<tr>
 			<th>Descricao</th>
@@ -22,18 +22,20 @@ class TTableEmprestimo
 			<th>Entrega</th>
 		</tr>
 	</thead>
-	<tbody>
-<?php $itens = $this->obj->loadItens();
-foreach($itens as $item){?>
-		<tr>
-			<td><?php echo $item->descricao_item; ?></td>
-			<td><?php echo $item->quantidade_item; ?></td>
-			<td><?php echo $item->dt_final;?></td>
-		</tr>
-<?php } ?>
-	</tbody>
-</table>    
-<?php }
+	<tbody>";
+	$itens = $this->obj->loadItens();
+	foreach($itens as $item){
+	$html .="<tr>
+			<td>{$item->descricao_item}</td>
+			<td>{$item->quantidade_item}</td>
+			<td>{$item->dt_final}</td>
+		</tr>";
+	}
+	$html .="	</tbody>
+</table>"; 
+
+	return $html;
+	}
 }
 
 ?>

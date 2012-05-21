@@ -1,4 +1,4 @@
-<table>
+ï»¿<table>
 	<thead>
 		<tr>
 			<th><img ></th>
@@ -15,11 +15,11 @@
 		<tr>
 			<th rowspan=2>Item</th>
 			<th rowspan=2>Quantidade</th>
-			<th rowspan=2>Descrição / Especificação</th>
+			<th rowspan=2>DescriÃ§Ã£o / EspecificaÃ§Ã£o</th>
 			<th colspan=2>Data</th>		
 		</tr>
 		<tr>
-			<th>Solicitação</th>
+			<th>SolicitaÃ§Ã£o</th>
 			<th>Entrega</th>
 		</tr>	
 	</thead>

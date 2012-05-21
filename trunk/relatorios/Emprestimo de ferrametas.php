@@ -1,11 +1,11 @@
-<table>
+ï»¿<table>
 	<thead>
 		<tr>
 			<th>Requisitante: </th>
 			<th>Data: __/__/____</th>
 		</tr>
 		<tr>
-			<th>Descrição</th>
+			<th>DescriÃ§Ã£o</th>
 			<th>Quantidade</th>
 			<th>Entrega</th>
 		</tr>
