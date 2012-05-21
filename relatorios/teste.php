@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 include 'app.ado/DataBase.php';
 
@@ -8,5 +8,16 @@ $con = $db->getConn()->query('select * from emprestimos where usuario_id = 2;')-
 
 $pdf = new TRelEmprestimo($con);
 $pdf->render();
+
+
+// include_once '../componentes/MPDF54/mpdf.php';
+
+// $pdf = new mPDF();
+
+// $pdf->WriteHTML("alo mundo");
+
+// $pdf->Output('jomaro.pdf',"D");
+
+// exit();
 
 ?>

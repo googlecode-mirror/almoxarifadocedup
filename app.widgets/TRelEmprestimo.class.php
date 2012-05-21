@@ -45,10 +45,12 @@ class TRelEmprestimo{
             $tabela = new TTableEmprestimo($this->conteudo);
             $html .= $tabela->render();
         }
+		
+		//var_dump($html);
         
         $pdf = new TRelatorio();
-        $pdf->writeHTML($html);
-        $pdf->render();
+        $pdf->pdf->WriteHTML(utf8_encode($html));
+        $pdf->pdf->Output('jomaro.pdf','D');
         $pdf->exit();
     }
     

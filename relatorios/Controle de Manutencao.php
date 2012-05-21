@@ -1,4 +1,4 @@
-<table>
+﻿<table>
     <thead>
         <tr>
             <th>Laboratorio: </th>
