@@ -14,6 +14,15 @@ $(document).ready(function() {
 
 });
 
+function habilitar(){
+    
+    
+}
+
+
+
+
+
 function efeitomouse(){
     
      $("#table tr").hover(
@@ -122,6 +131,7 @@ function initDatepicker() {
         });
         
     $('.datepicker')
+        .datepicker('disable')
         .attr('readonly', 'readonly')
         .datepicker({
             dateFormat: 'dd/mm/yy',

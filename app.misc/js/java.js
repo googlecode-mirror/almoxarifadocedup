@@ -25,6 +25,25 @@ function ValidaForm(frm) {
 		
 }
 
+function habilita(e){
+    
+    select = $(".select");
+    date = $("#date");
+
+ 
+    if ($("#habilitar").attr("checked") == "checked"){
+        select.removeAttr("disabled");
+        date.datepicker( "enable" );
+    }else{
+        select.attr("disabled","disabled");
+        date.datepicker( "disable" );
+        
+    }
+  
+    
+    
+}
+
 function clique(e){
 	
 	

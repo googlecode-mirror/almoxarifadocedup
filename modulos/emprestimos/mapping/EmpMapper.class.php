@@ -51,18 +51,18 @@ class EmpMapper {
                $lastId = $conn->lastInsertId();
                
                foreach ($emp->items as $item){
-                   $entregue = 1;
-                   if ($item->dt_final != '00/00/00 00:00:00'){
-                        $data = $item->dt_final;
-                        $item->setDtFinal($data);
+                    if ($item->dt_final == null){
+                        $entregue = 1;
+                    }else{
                         $entregue = 0;
                     }
-                   
+
                     $sql = "INSERT INTO itens_emprestimos (descricao_item,
                                                            quantidade_item,
                                                            dt_final,
                                                            emprestimos_id,
-                                                           entregue)
+                                                           entregue
+                                                           )
                             VALUES (?,?,?,?,?)";
                     $sth = $conn->prepare($sql);
                     $sth->execute(array($item->descricao_item,
@@ -89,7 +89,7 @@ class EmpMapper {
                        INNER JOIN emprestimos E ON
                        E.id_emprestimo = I.emprestimos_id
                        WHERE E.requisitante_id = ? AND
-                       I.entregue = 0";
+                       I.dt_final <> '' and entregue = 0";
                                                 
                
                $sth = $conn->prepare($sql);

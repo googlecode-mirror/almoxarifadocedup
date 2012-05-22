@@ -106,7 +106,7 @@ class TApplication{
             {	
             	
                 $flashes = Flash::getFlashes();
-             
+                 
             }
    
             if (!isset($_GET['ajax'])){
