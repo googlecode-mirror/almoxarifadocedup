@@ -32,6 +32,10 @@
                     if ($sessao->getVar('mat') != null) {
                         $i=0;
                         foreach ($sessao->getVar('mat') as $item){
+                            if ($item['dt_final'] == null){
+                               $item['dt_final'] = "Sem Prazo";
+                            }
+                            
                             $color = ($i % 2) == 0 ? '#ffffff' : '#e0e0e0';
                             echo "<tr bgcolor='$color'>
                                     <td style='padding-left:4px'>{$item['descricao_item']}</td>
@@ -57,7 +61,7 @@
         <input type="button" name="save" value="Cancelar" onclick="javascript:location='index.php?modulo=usuarios&page=visualizar&empCancel=1'"/>
     </form>
 </div>
-<div style="text-align: left;" width="500" id="janela-dialogMat">
+<div style="text-align: left;" width="520" id="janela-dialogMat">
     <form id="form-dialogMat" method="POST" action="">
         <label>
             <span>Material</span>
@@ -71,24 +75,24 @@
             <legend>
                 <label>
                     <span>Habilitar</span>
-                    <input style="margin-bottom:5px;" type="checkbox" name="">
+                    <input onclick="habilita(this)" id="habilitar" style="margin-bottom:5px;" type="checkbox" name="">
                 </label>
                 <label>
             </legend>
                     <span>Data</span>
-                    <input style="width:100px;" class="text datepicker" type="text" name="item_entrega" value="00/00/00">
+                    <input id="date" style="width:100px;" readonly="readonly" class="datepicker" type="text" name="item_entrega" value="00/00/00">
                 </label>
-                <select name="hora_entrega">
+                <select class="select" disabled="disabled" name="hora_entrega">
                 <?php for ($i=0; $i < 24; ++$i){
                     echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
                     }
                 ?>
                 </select>
                 <span>:</span>
-                <select name="minuto_entrega">
+                <select class="select" disabled="disabled" name="minuto_entrega">
                 <?php for ($i=0; $i < 60; $i = $i + 15){
                     echo '<option value='.$i.'>'.str_pad($i, 2, '0', STR_PAD_LEFT).'</option>'; 
-                    }
+                    }        
                 ?>
                 </select>
         </fieldset>

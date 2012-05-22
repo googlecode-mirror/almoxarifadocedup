@@ -73,7 +73,7 @@ class RequerirMapper {
     
    
     static function getRequisicaoByResp($id){
-        
+
         TTransaction::open('my_config');
             
          if ($conn = TTransaction::get()){
@@ -85,7 +85,7 @@ class RequerirMapper {
                (U.id_usuario = R.requisitante_id)
                INNER JOIN estados_requisicoes E ON
                (R.estado_id = E.id_estado_requisicao)
-               WHERE deleted = 0 and R.estado_id = 3 and M.responsavel_id = ?
+               WHERE R.deleted = 0 and R.estado_id = 3 and M.responsavel_id = ?
                ORDER BY R.id_requisicao DESC';
                        
                $sth = $conn->prepare($sql);

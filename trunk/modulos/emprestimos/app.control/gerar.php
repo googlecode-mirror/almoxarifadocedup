@@ -40,7 +40,7 @@
 	            $sessao->removeVar('mat');
 	            
 	            $sessao->addVar('msg',3);
-	            header('location:index.php?modulo=usuarios&page=visualizar');
+	            //header('location:index.php?modulo=usuarios&page=visualizar');
 	                
 	        }else{
 	            Flash::addFlash('Por favor adicione um item.');
@@ -59,9 +59,16 @@
       
       if ($validacao === true){
           
+        if (!isset($_POST['item_entrega']) and !isset($_POST['hora_entrega']) and !isset($_POST['minuto_entrega'])){
+            $data = null;
+        }else{
+            $data = Utils::conv_data_to_us($_POST['item_entrega']).' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00');
+        }
+        
+          
         $data = array('descricao_item' => $_POST['item'],
                       'quantidade_item' => str_pad($_POST['item_qtd'], 2, '0', STR_PAD_LEFT),
-                      'dt_final'=> Utils::conv_data_to_us($_POST['item_entrega']).' '.Utils::formatTime($_POST['hora_entrega'].':'.$_POST['minuto_entrega'].':00'));  
+                      'dt_final'=>  $data); 
         
         $sessao->addArray('mat',$data);
         header('location:index.php?modulo=emprestimos&page=gerar&key='.$sessao->getVar('id'));
