@@ -123,6 +123,29 @@ class LabMapper {
                 echo 'Sem conexão com banco!';
          }
     }
+    
+    public static function VerificaNumeroLab($numero){
+        
+        TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+         		
+         	
+               $sql = "SELECT count(numero_laboratorio) FROM laboratorios
+                       WHERE numero_laboratorio = ? AND deleted = 0";
+                             
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($numero));
+               return $sth->fetch();
+               
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+    }
+    
+    
 }
 
 ?>

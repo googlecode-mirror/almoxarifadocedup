@@ -11,6 +11,7 @@ $(document).ready(function() {
     efeitomouse();
     populadisciplina();
     populafase();
+    ValidaCampos();
 
 });
 

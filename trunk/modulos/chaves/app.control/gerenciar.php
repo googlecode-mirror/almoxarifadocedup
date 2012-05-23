@@ -1,4 +1,15 @@
 <?php
+   if (array_key_exists('val',$_POST)){
+       $result = LabMapper::VerificaNumeroLab($_POST['val']);
+       
+       if ($result[0] >= 1){
+           echo "true";
+       }else{
+           echo "false";
+       }
+   }
+
+
 
    if (array_key_exists('key',$_GET)){
        $usuario = Utils::findById($_GET['key'],'usuarios', 'id_usuario');

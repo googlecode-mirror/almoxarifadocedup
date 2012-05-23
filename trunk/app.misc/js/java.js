@@ -4,6 +4,7 @@ $(document).ready(function() {
     initErrorFields();
     initDeleteDialog();
     zerar();
+    
 });
 	
 function gE(ID){
@@ -22,7 +23,35 @@ function ValidaForm(frm) {
 	alert('Senha diferentes!');
 	return false;
 	}
-		
+}
+
+
+function ValidaCampos(frm){
+  
+       
+            
+            $("#numeroLab").blur(function(){
+                if ($("#numeroLab").val() != ""){
+                    $.ajax({
+                    type: "POST",
+                    url: 'index.php?modulo=chaves&page=gerenciar&ajax=1&lab=1',
+                    data: {val: $("#numeroLab").val()},
+                    success: function(valor){
+                        if (valor == 'true'){
+                            $("#numeroLab").css('background','red');
+                            alert('Esse número está em uso.');
+                            flag = false;
+                        }else{
+                            $("#numeroLab").css('background','#fff');
+                            flag = true;
+                        }
+                    }
+                    })
+                }
+            })
+            
+        return flag;
+
 }
 
 function habilita(e){
@@ -35,6 +64,7 @@ function habilita(e){
         select.removeAttr("disabled");
         date.datepicker( "enable" );
     }else{
+        alert('ola');
         select.attr("disabled","disabled");
         date.datepicker( "disable" );
         
