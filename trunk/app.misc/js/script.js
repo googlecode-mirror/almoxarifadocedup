@@ -137,7 +137,6 @@ function initDatepicker() {
         .datepicker({
             dateFormat: 'dd/mm/yy',
         });
-        
     
 }
 
@@ -235,6 +234,7 @@ function initFormDialogMat() {
     Dialog.dialog('option', 'open', getAquisicoes($(this).attr('title')));
     Dialog.dialog('option', 'title', '');
     Dialog.dialog('open');
+    $("#date").datepicker( "disable" )
     
     return false;
     });

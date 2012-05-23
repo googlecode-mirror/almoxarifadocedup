@@ -1,18 +1,19 @@
 <div id="headerPage">
     <span>Usuários</span>
 </div>
-<form method="POSt" action="">
+<form method="POST" action="">
     <label>Nome:</label>
     <input type="text" name="CampoBusca" value=""/>
     <input type="submit" value="Buscar" name="busca"/>
     <input type="button" value="Voltar" name="busca" onclick="javascript:location='index.php'"/>
     
 </form>
-<div id="menu" style="text-align:left; margin:15px 0 10px 19.1%; visibility: hidden;">
+<div id="menu" style="text-align:left; margin:15px 0 10px 23.2%; visibility: hidden;">
 	<a id="a1" class="btNoMaginAndLink" title='Editar Usuário' href=''>Editar</a>
 	<a id="a2" class="btNoMaginAndLink" title='Editar Permissões' href=''>Permissões</a>
 	<a id="a3" class="btNoMaginAndLink" title='Registrar Chave' href=''>Registrar Chave</a>
 	<a id="a4" class="btNoMaginAndLink" title='Empréstimo' href=''>Empréstimo</a>
+        <a id="a5" class="btNoMaginAndLink" title='Excluir' href=''>Excluir</a>
 </div>
 <table id="table" align="center" class="table">
     <thead align="left">
@@ -21,7 +22,6 @@
             <th width="170">Nome</th>
             <th width="125">Tipo</th>
             <th width="150">Email</th>
-            <th width="70">Telefone</th>
         </tr>
      <thead>
      <tbody id="test" align="left">
@@ -35,8 +35,7 @@
               <td align=center >{$usuario->id_usuario}</td>
               <td>{$usuario->nome_usuario}</td>
               <td>{$usuario->nome_tipo}</td>
-              <td>{$usuario->email_usuario}</td>
-              <td>{$usuario->telefone_usuario}</td>
+              <td>{$usuario->email_usuario}</td
           </tr>";
     $i = $i+1;
     }    

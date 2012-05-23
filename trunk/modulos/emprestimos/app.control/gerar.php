@@ -39,7 +39,7 @@
 	            EmpMapper::insert($emp);
 	            $sessao->removeVar('mat');
 	            
-	            $sessao->addVar('msg',3);
+	            Flash::addFlash('Empréstimo salvo com sucesso');
 	            //header('location:index.php?modulo=usuarios&page=visualizar');
 	                
 	        }else{

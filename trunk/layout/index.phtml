@@ -38,10 +38,16 @@ foreach(TApplication::$scriptLink as $script)
                         <?php } ?>  
                     
                             <?php if ($flashes){ ?>
-                                <div id="alert" class="ui-icon-alert" style="text-align:left; margin-left:0 auto">
-                                    <p><span style="float:left;"></span> <?php echo $flashes ?></p>
+                                <div id="alert" >
+                                    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0"></span> <?php echo $flashes ?></p>
                                 </div>    
-                                <?php } ?>  
+                            <?php } ?>
+                    
+                             <?php if (isset($erros)){ ?>
+                                <div id="alert" style="text-align:left; margin-left:0 auto">
+                                    <p><?php echo $erros ?></p>
+                                </div>
+                             <?php } ?>  
                                             
                                 <div id="content">
                                         <?php 
