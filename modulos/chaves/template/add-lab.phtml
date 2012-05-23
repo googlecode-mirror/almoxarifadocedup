@@ -1,11 +1,11 @@
 <div id="tdiv">
     <h1>Laboratório</h1>
-    <form method="POST" action="">
+    <form method="POST" action="" onsubmit="return ValidaCampos(this)">
         <label>Laboratório:</label>
         <input type="hidden" name="id_laboratorio" value="<?php if (isset($lab->id_laboratorio)){ echo $lab->id_laboratorio;} ?>"/>
         <input class="campo" style="width:200px;" type="text" name="nome_laboratorio" value="<?php if (isset($lab->nome_laboratorio)){ echo $lab->nome_laboratorio;} ?>" />
         <label>Número:</label>
-        <input class="campo" size="3" type="text" name="numero_laboratorio" value="<?php if (isset($lab->numero_laboratorio)){ echo $lab->numero_laboratorio;} ?>" />
+        <input id="numeroLab" class="campo" size="3" type="text" name="numero_laboratorio" value="<?php if (isset($lab->numero_laboratorio)){ echo $lab->numero_laboratorio;} ?>" />
         <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="<?php echo (isset($_GET['labkeyedit']))? 'updateLab' : 'saveLab'; ?>" value="Salvar" />
         <input onclick="javascript:location='index.php?modulo=chaves&page=visualizar'" type="button" name="voltar" value="Voltar" />
     </form>         
