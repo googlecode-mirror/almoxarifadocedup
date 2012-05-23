@@ -27,9 +27,7 @@ function ValidaForm(frm) {
 
 
 function ValidaCampos(frm){
-  
-       
-            
+    
             $("#numeroLab").blur(function(){
                 if ($("#numeroLab").val() != ""){
                     $.ajax({
@@ -39,7 +37,6 @@ function ValidaCampos(frm){
                     success: function(valor){
                         if (valor == 'true'){
                             $("#numeroLab").css('background','red');
-                            alert('Esse número está em uso.');
                             flag = false;
                         }else{
                             $("#numeroLab").css('background','#fff');
@@ -58,13 +55,11 @@ function habilita(e){
     
     select = $(".select");
     date = $("#date");
-
  
     if ($("#habilitar").attr("checked") == "checked"){
         select.removeAttr("disabled");
         date.datepicker( "enable" );
     }else{
-        alert('ola');
         select.attr("disabled","disabled");
         date.datepicker( "disable" );
         

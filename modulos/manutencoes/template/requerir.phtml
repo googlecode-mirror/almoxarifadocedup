@@ -1,25 +1,32 @@
- <div id="tdiv">
-                <h1>Requerir manutenção</h1>    
-                <form method="POST" action="">
+<div id="headerPage">
+    <span>Requerir manutenção</span>
+</div>
+<div id="box">
+ 
+                <form style="width:410px; background-color: #f0f0f0; padding:15px 0px 15px 15px; border:1px solid; text-align: left;" class="form2" method="POST" action="">
 
-                    <label>Requisitante:</label>
-                    <input class="campo" type="text" readonly="readonly" style="width:200px" name="nome_requisitante" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
+                    <label><span>Requisitante:</span>
+                        <input class="campo" type="text" readonly="readonly" style="width:245px" name="nome_requisitante" value="<?php echo $sessao->getVar('usuario')->nome_usuario;?>"/>
+                    </label><br/>
                     
-                    <label>Data:</label>
-                    <input class="campo" type="text" readonly="readonly" style="width:105px" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
+                    <label><span>Data:</span>
+                        <input class="campo" type="text" readonly="readonly" style="width:105px" name="dt_requisicao" value="<?php echo Utils::getDate()?>"/>
+                    </label><br/>
                     
-                    <label>Equipamento(s):</label>
-                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
+                    <label><span>Equipamento(s):</span>
+                        <textarea cols="33" rows="3" maxlength="130" class="campo" name="equipamento_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['equipamento_requisicao']);}?></textarea>
+                    </label><br/>
                     
-                    <label>Localização(s):</label>
-                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="local_equipamento" value=""><?php if (isset($requisicoes)){echo ($requisicoes['local_equipamento']);}?></textarea>
+                    <label><span>Localização(s):</span>
+                        <textarea cols="33" rows="3" maxlength="130" class="campo" name="local_equipamento" value=""><?php if (isset($requisicoes)){echo ($requisicoes['local_equipamento']);}?></textarea>
+                    </label><br/>
+                   
+                    <label><span>Defeito(s):</span>
+                        <textarea cols="33" rows="3" maxlength="130" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
+                    </label><br/>   
                     
-                    <label>Defeito(s):</label>
-                    <textarea cols="23" rows="6" maxlength="100" class="campo" name="defeito_requisicao" value=""><?php if (isset($requisicoes)){echo ($requisicoes['defeito_requisicao']);}?></textarea>
-                        
-                    
-                    <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>
+                    <input style="margin-right:10px;" type="submit" name="<?php echo (isset($id))? 'update' : 'save' ?>" value="Requerir"/>
                     <input type="button" name="edit" value="Voltar" onclick="javascript:location='<?php echo (isset($id))? 'index.php?modulo=manutencoes&page=visualizar' : 'index.php' ?>'"/>
                 </form>
-         </div>
+ </div>
          

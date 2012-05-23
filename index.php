@@ -98,15 +98,13 @@ class TApplication{
             }     
             if (isset($validacao)){
 	            if ($validacao !== true ){
-	                Flash::addFlash($validacao);
+	                $erros = $validacao;
 	            }
             }
             
             if (Flash::hasFlashes()) 
             {	
-            	
-                $flashes = Flash::getFlashes();
-                 
+                $flashes = Flash::getFlashes();   
             }
    
             if (!isset($_GET['ajax'])){
