@@ -7,7 +7,7 @@
  
   $usuarios = UsuarioMapper::getUsuarios($criteria);
   $sessao->addVar('usuarios',$usuarios);
-  
+ 
   if (array_key_exists('empCancel',$_GET)){
       $sessao->removeVar('mat');
   }
@@ -22,6 +22,9 @@
 
     }elseif ($sessao->getVar('msg') == 3){
         Flash::addFlash('Empréstimo salvo com sucesso.');
+
+    }elseif ($sessao->getVar('msg') == 4){
+        Flash::addFlash("Usuário excluído"); 
     }
     
    $sessao->removeVar('msg'); 

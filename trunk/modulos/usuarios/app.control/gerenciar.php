@@ -9,8 +9,13 @@
     $row = Utils::findById($id,'usuarios','id_usuario');
     UsuarioMapper::map($usuario,$row);
 
-  
-   if (array_key_exists('edit',$_POST)){
+  if (array_key_exists('delete',$_GET)){
+     UsuarioMapper::delete($_GET[$id]);
+     $sessao->addVar('msg',4);
+     header("location:index.php?modulo=usuarios&page=visualizar");
+  }
+ 
+  if (array_key_exists('edit',$_POST)){
    	
    	$dados = array('nome_usuario' => array('Nome'),
    				   'email_usuario'=> array('Email', 'tipo' => 'email'),

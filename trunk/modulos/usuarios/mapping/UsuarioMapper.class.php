@@ -164,6 +164,23 @@ class UsuarioMapper {
         
     } 
     
+    public static function delete($id){
+         
+         TTransaction::open('my_config');
+            
+         if ($conn = TTransaction::get()){
+               
+               $sql = "DELETE FROM usuarios
+                       WHERE id_usuario = ?";  
+               $sth = $conn->prepare($sql);
+               $sth->execute(array($id));
+
+               TTransaction::close();
+
+         }else{
+                echo 'Sem conexão com banco!';
+         }
+    }
     
 }
 

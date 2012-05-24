@@ -97,8 +97,8 @@ function clique(e){
 	$("#a2").attr('href', 'index.php?modulo=permissoes&page=gerenciar&key='+key);	
 	$("#a3").attr('href', 'index.php?modulo=chaves&page=gerenciar&key='+key);	
 	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);
-        $("#a5").attr('href', 'index.php?modulo=usuarios&page=visualizar&key='+key);	
-        $("#a5").attr('id','delete-link');
+        $("#a5").attr('href', 'index.php?modulo=usuarios&page=gerenciar&delete=1&key='+key);	
+        $("#a5").addClass('open-link-delete');
 
 	$(e).css('background','#E9967A');
 	
