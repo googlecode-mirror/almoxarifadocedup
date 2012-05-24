@@ -3,10 +3,10 @@
                 <form method="POST" action="">
 
                     <label>Nome:</label>
-                    <input class="campo" type="text" style="width:210px" id="login" name="nome_usuario" value="<?php echo $usuario->getNomeUsuario();?>"/>
+                    <input id="sf_nome" class="campo" title="Informe seu nome completo." type="text" style="width:210px" id="login" name="nome_usuario" value="<?php echo $usuario->getNomeUsuario();?>"/>
                     
                     <label>Tipo:</label>
-                    <select class="campo" name="tipo_usuario_id">
+                    <select class="campo" title="Informe a área de atuação." name="tipo_usuario_id">
                     <?php foreach (Usuario::allTipos() as $tipo) {
                           echo "<option value={$tipo['id_tipo']}"; 
                                 if ($tipo['id_tipo'] == $usuario->getTipoUsuarioId()){
@@ -17,25 +17,25 @@
                     </select>
                     
                     <label>Email:</label>
-                    <input class="campo" type="text" style="width:210px" name="email_usuario" value="<?php echo $usuario->getEmailUsuario();?>"/>
+                    <input class="campo" title="Informe um email válido." type="text" style="width:210px" name="email_usuario" value="<?php echo $usuario->getEmailUsuario();?>"/>
                     
                     <label>Telefone:</label>
-                    <input class="campo" type="text" style="width:105px" maxlength="8" name="telefone_usuario" value="<?php echo $usuario->getTelefoneUsuario();?>"/>
+                    <input class="campo" title="Informe seu telefone sem DDD." type="text" style="width:105px" maxlength="8" name="telefone_usuario" value="<?php echo $usuario->getTelefoneUsuario();?>"/>
                     
                     <label>Celular (Opcional):</label>
                     <input class="campo" type="text" style="width:105px" maxlength="8" name="celular_usuario" value="<?php echo $usuario->getCelularUsuario();?>"/>
                     
                     <label>Data Nascimento:</label>
-                    <input id="datepicker" class="campo" type="text" style="width:105px" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
+                    <input id="datepicker" title="Informe sua data de nascimento." class="campo" type="text" style="width:105px" name="dt_nascimento_usuario" value="<?php echo Utils::formatDateBr($usuario->getDtNascimentoUsuario());?>"/>
                     
                     <label>Login:</label>
-                    <input class="campo" type="text" style="width:210px" name="login_usuario" value="<?php echo $usuario->getLoginUsuario();?>"/>
+                    <input class="campo" title="Informe um login com no mínimo 3 caracteres." type="text" style="width:210px" name="login_usuario" value="<?php echo $usuario->getLoginUsuario();?>"/>
                     
                     <label>Senha:</label>
-                    <input class="campo" type="password" style="width:210px" name="senha_usuario" value="<?php echo $usuario->getSenhaUsuario();?>"/>
+                    <input class="campo" title="Informe uma senha." type="password" style="width:210px" name="senha_usuario" value="<?php echo $usuario->getSenhaUsuario();?>"/>
                     
                     <label>Repita a Senha:</label>
-                    <input class="campo" type="password" style="width:210px" name="confirma_senha" value="<?php echo $usuario->getSenhaUsuario();?>"/>
+                    <input class="campo" title="Repita a senha informada." type="password" style="width:210px" name="confirma_senha" value="<?php echo $usuario->getSenhaUsuario();?>"/>
                     
                     <input style="margin-left:35%; margin-bottom:20px;" type="submit" name="edit" value="Atualizar"/>
                     <input type="button" name="edit" value="Voltar" onclick="javascript:location='index.php?modulo=usuarios&page=visualizar'"/>

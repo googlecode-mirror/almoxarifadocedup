@@ -3,7 +3,8 @@
    * var responsável por popular o <SELECT> 
    */  
   $tipos_usuarios = Usuario::allTipos();
-
+  TApplication::setScript('jquery.sf');
+  
   if (array_key_exists('save',$_POST)){
   	
   	 $dados = array('nome_usuario' => array('Nome'),

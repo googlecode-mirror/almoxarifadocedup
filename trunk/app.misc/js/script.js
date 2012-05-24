@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    
+    efeitomouse();
     initDatepicker();
     initFlashes();
     initErrorFields();
@@ -7,26 +9,34 @@ $(document).ready(function() {
     intAlertMsg();
     initFormDelete();
     initFormDialogMat();
+    SF();
     zerar(); 
-    efeitomouse();
     populadisciplina();
     populafase();
+    casa();
+    efeitomouse();
     ValidaCampos();
+    
+ 
 
 });
 
-function habilitar(){
-    
-    
+function SF(){
+        $('#frm').StickyForm({
+             'debug': 'false', // [true/false] Enable debugging
+             'elementTypes'	: 'all', // [text,password,checkbox,radio,textarea,select-one,all] separate element types with comma separated values (default is all)
+             'cookieLifetime': '0.1', // [integer] number of days of cookie lifetime
+             'disableOnSubmit': 'true', // [true/false] disable submitting the form while the form is processing
+             'excludeElementIDs': '', // [ID1,ID2] exclude element IDs with comma separated values
+             'scope': 'global', // [single/global] should the values be sticky only on this form (single) or across all forms on site (default is global)
+             'disableIfGetSet' : 'elq' // ['',$_GET var] set to the $_GET var.  If this $_GET var is present, it will automatically disable the plugin. (default is '')
+       });
 }
-
-
-
-
 
 function efeitomouse(){
     
-     $("#table tr").hover(
+    
+    $("#table tr").hover(
     function(){
         if ($(this).attr('bgcolor') != '#FF7F50') {
             $(this).addClass("hover");
@@ -59,6 +69,7 @@ function populadisciplina(){
   
 }
 
+
 function populafase(){
        
        $("#curso").change(function(){
@@ -79,24 +90,6 @@ function populafase(){
        })
   
 }
-
- 
-
-
-
-//function orderColuna(){
-//    
-//    $('.table th').click(function(){
-//        var valor = $(this).html();
-//        $("#test").load('index.php?modulo=usuarios&page=visualizar&ajax=1',{val:valor},ready())
-//    })
-//    
-//    function ready(){
-//        alert('Ajax terminou com sucesso.');
-//    }
-//
-//}
-
 
 function initDatepicker() {
     
@@ -252,9 +245,11 @@ function getAquisicoes(id){
                    var obj = jQuery.parseJSON(valores);
                    var options = "";
                    $.each(obj,function(key,valor){
-                       options += '<tr><td>'+valor[0]+'</td> \n\
+                       if (key%2 == 0){ cor = '#ffffff'}else{ cor = '#e0e0e0'}
+                       options += '<tr bgcolor='+cor+'><td>'+valor[0]+'</td> \n\
                                    <td align="left" style=padding-left:5px>'+valor[1]+'</td>\n\
                                    <td>'+valor[2]+'</td></tr>';
+                       
                    })
                    $("#tableBody").html(options);  
                }
@@ -310,13 +305,5 @@ function intAlertMsg(){
     })
        
     alert.dialog('open');
-     
-    
-   
-    
-    
-   
-    
-    
-    
-}
+}    
+

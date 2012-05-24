@@ -26,7 +26,7 @@ function ValidaForm(frm) {
 }
 
 
-function ValidaCampos(frm){
+function ValidaCampos(){
     
             $("#numeroLab").blur(function(){
                 if ($("#numeroLab").val() != ""){
@@ -96,8 +96,9 @@ function clique(e){
 	$("#a1").attr('href', 'index.php?modulo=usuarios&page=gerenciar&key='+key);
 	$("#a2").attr('href', 'index.php?modulo=permissoes&page=gerenciar&key='+key);	
 	$("#a3").attr('href', 'index.php?modulo=chaves&page=gerenciar&key='+key);	
-	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);	
-
+	$("#a4").attr('href', 'index.php?modulo=emprestimos&page=gerar&key='+key);
+        $("#a5").attr('href', 'index.php?modulo=usuarios&page=visualizar&key='+key);	
+        $("#a5").attr('id','delete-link');
 
 	$(e).css('background','#E9967A');
 	
