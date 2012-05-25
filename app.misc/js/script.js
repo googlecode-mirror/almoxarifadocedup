@@ -9,12 +9,11 @@ $(document).ready(function() {
     intAlertMsg();
     initFormDelete();
     initFormDialogMat();
-    SF();
     zerar(); 
     populadisciplina();
     populafase();
-    casa();
     efeitomouse();
+    SF();
     ValidaCampos();
     
  
@@ -22,7 +21,7 @@ $(document).ready(function() {
 });
 
 function SF(){
-        $('#frm').StickyForm({
+       $('#frm').StickyForm({
              'debug': 'false', // [true/false] Enable debugging
              'elementTypes'	: 'all', // [text,password,checkbox,radio,textarea,select-one,all] separate element types with comma separated values (default is all)
              'cookieLifetime': '0.1', // [integer] number of days of cookie lifetime
