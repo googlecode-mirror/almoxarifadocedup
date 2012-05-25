@@ -8,7 +8,8 @@ $usuario = Utils::findById($_GET['key'],'usuarios','id_usuario');
     
     //recupera as pemissões do usuario
 $dataBancoVetor = PermissaoMapper::getPermissoesById($_GET['key']);
-    
+
+var_dump($dataBancoVetor);   
     // transforma o ventor em array
 foreach ($dataBancoVetor as $array){
     $dataBanco[] = $array[0];
